@@ -1,0 +1,60 @@
+{
+  "name": "@pomona/goods-core",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Wirya Ramadhan <wiryar@pomona.id>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "./lib/index.js",
+  "module": "./lib/index.es.js",
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "yarn storybook:build",
+    "clean": "rimraf lib && rimraf tsc-out",
+    "compile": "yarn clean && yarn rollup",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prepublishOnly": "yarn compile",
+    "rollup": "rollup -c ./rollup.config.js",
+    "storybook": "start-storybook -p 9001",
+    "storybook:build": "build-storybook --quiet",
+    "type-check": "tsc --emitDeclarationOnly",
+    "validate": "yarn lint && yarn type-check"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.0.1",
+    "@storybook/addon-a11y": "^5.3.19",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-notes": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.0",
+    "@types/styled-system": "^5.1.9",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-preset-react-app": "^9.1.2",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "storybook-addon-jsx": "^7.3.0"
+  },
+  "dependencies": {
+    "@styled-system/should-forward-prop": "^5.1.5",
+    "styled-system": "^5.1.5"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
+  }
+}

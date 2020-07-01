@@ -1,0 +1,25 @@
+{
+  "name": "goods-native",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Wirya Ramadhan <wiryar@pomona.id>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/goods-native.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.0.1"
+  }
+}

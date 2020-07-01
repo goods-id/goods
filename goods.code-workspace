@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "✨ pomona-goods-ui",
+			"path": "."
+		},
+		{
+			"name": "📦 goods-core",
+			"path": "packages/goods-core"
+		},
+		{
+			"name": "📦 goods-helpers",
+			"path": "packages/goods-helpers"
+		},
+		{
+			"name": "📦 goods-native",
+			"path": "packages/goods-native"
+		},
+		{
+			"name": "📦 goods-ui",
+			"path": "packages/goods-ui"
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "./node_modules/typescript/lib",
+		"workbench.colorCustomizations": {}
+	}
+}
