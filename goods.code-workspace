@@ -23,6 +23,7 @@
 	],
 	"settings": {
 		"typescript.tsdk": "./node_modules/typescript/lib",
-		"workbench.colorCustomizations": {}
+		"workbench.colorCustomizations": {},
+		"git.ignoreLimitWarning": true
 	}
 }
