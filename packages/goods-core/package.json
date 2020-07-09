@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "> TODO: description",
   "author": "Wirya Ramadhan <wiryar@pomona.id>",
   "homepage": "",
@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@styled-system/should-forward-prop": "^5.1.5",
+    "csstype": "^2.6.11",
     "styled-system": "^5.1.5"
   },
   "peerDependencies": {

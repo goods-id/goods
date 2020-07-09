@@ -17,6 +17,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    'no-nested-ternary': 'off',
     'dot-notation': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
@@ -32,7 +33,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.json'],
+        extensions: ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.json', '.d.ts'],
       },
     },
     'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx'],
@@ -48,7 +49,10 @@ module.exports = {
         'no-unused-vars': 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/explicit-function-return-type': ['off'],
-        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
         // Allow `.ts` and `.tsx` extensions to be omitted
         'import/extensions': [
           'error',

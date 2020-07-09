@@ -48,7 +48,9 @@ export interface IconCore {
   p?: string
 }
 
-export interface StyledIconCore extends IconCore, React.SVGProps<SVGSVGElement> {
+export interface StyledIconCore
+  extends IconCore,
+    React.SVGProps<SVGSVGElement> {
   size?: IconSize
 }
 
@@ -133,7 +135,14 @@ const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
       return (
         <g fill="none">
           <path fill="none" d="M0 0H32V32H0z" />
-          <rect width="22.667" height="22.667" x="4.667" y="2.667" fill={c} rx="4" />
+          <rect
+            width="22.667"
+            height="22.667"
+            x="4.667"
+            y="2.667"
+            fill={c}
+            rx="4"
+          />
           <rect width="8.667" height="2" x="8.667" y="8" fill="#FFF" rx="1" />
           <rect width="3.333" height="2" x="20" y="8" fill="#FFF" rx="1" />
           <rect width="14.667" height="2" x="8.667" y="14" fill="#FFF" rx="1" />
@@ -184,7 +193,11 @@ const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
     case IconName.transaction:
       return (
         <g fill="none">
-          <path fill="#FFF" fillOpacity="0" d="M0.013 0.046H31.360000000000003V31.393H0.013z" />
+          <path
+            fill="#FFF"
+            fillOpacity="0"
+            d="M0.013 0.046H31.360000000000003V31.393H0.013z"
+          />
           <path
             fill={c}
             d="M24.163 16v4.245H7.183V16c0-.541.44-.98.98-.98h15.02c.542 0 .98.439.98.98zM7.184 20.898h6.857v7.837H8.274c-.289 0-.566-.115-.77-.32-.205-.204-.32-.482-.32-.77v-6.747zM15.02 20.898H16.326V28.735H15.02zM24.163 20.898v6.746c0 .29-.115.567-.32.771-.204.205-.481.32-.77.32h-5.767v-7.837h6.857z"
@@ -323,23 +336,25 @@ const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
   }
 }
 
-const Icon = React.forwardRef(({ name, id, c, m, p, rotate, size, ...rest }: any, ref) => {
-  return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      id={id}
-      m={m}
-      p={p}
-      name={name}
-      ref={ref}
-      rotate={rotate}
-      size={size}
-      viewBox="0 0 32 32"
-      {...rest}
-    >
-      <IconRender name={name} c={c} />
-    </Svg>
-  )
-})
+const Icon = React.forwardRef(
+  ({ name, id, c, m, p, rotate, size, ...rest }: any, ref) => {
+    return (
+      <Svg
+        xmlns="http://www.w3.org/2000/svg"
+        id={id}
+        m={m}
+        p={p}
+        name={name}
+        ref={ref}
+        rotate={rotate}
+        size={size}
+        viewBox="0 0 32 32"
+        {...rest}
+      >
+        <IconRender name={name} c={c} />
+      </Svg>
+    )
+  }
+)
 
 export default Icon
