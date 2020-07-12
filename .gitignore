@@ -8,8 +8,9 @@ storybook-static/
 dist/
 tsc-out/
 .cache/
+/packages/*/storybook-static/
 
-# Lockfiles
+# /Lockfiles
 /package-lock.json
 /packages/*/package-lock.json
 /packages/*/yarn.lock

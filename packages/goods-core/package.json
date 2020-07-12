@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "> TODO: description",
   "author": "Wirya Ramadhan <wiryar@pomona.id>",
   "homepage": "",
@@ -15,7 +15,7 @@
     "lib"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "scripts": {
     "build": "yarn storybook:build",
@@ -46,11 +46,11 @@
     "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-react-app": "^9.1.2",
     "react-docgen-typescript-loader": "^3.7.2",
+    "rollup-plugin-url": "^3.0.1",
     "storybook-addon-jsx": "^7.3.0"
   },
   "dependencies": {
     "@styled-system/should-forward-prop": "^5.1.5",
-    "csstype": "^2.6.11",
     "styled-system": "^5.1.5"
   },
   "peerDependencies": {

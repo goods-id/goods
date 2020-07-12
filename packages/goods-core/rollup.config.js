@@ -4,6 +4,8 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
+import copy from 'rollup-plugin-copy'
+import url from 'rollup-plugin-url'
 import pkg from './package.json'
 
 export default {
@@ -33,6 +35,22 @@ export default {
           jsx: 'react',
         },
       },
+    }),
+    copy({
+      targets: [
+        {
+          src: 'assets/svg/*',
+          dest: 'lib/assets/svg',
+        },
+        {
+          src: 'assets/png/*',
+          dest: 'lib/assets/png',
+        },
+      ],
+    }),
+    url({
+      include: ['**/*.woff', '**/*.woff2'],
+      limit: Infinity,
     }),
   ],
 }

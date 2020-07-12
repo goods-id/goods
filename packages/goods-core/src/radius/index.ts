@@ -1,4 +1,4 @@
-import { NameToCSSValue } from './@types/core'
+import { NameToCSSValue } from '../@types/core'
 
 export const radiusConstants = {
   '0': '0px',

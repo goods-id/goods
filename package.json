@@ -1,10 +1,13 @@
 {
-  "name": "pomona-goods-ui",
-  "version": "1.0.1",
+  "name": "@pomona/goods",
+  "version": "1.0.2",
   "description": "Pomona Design System",
   "main": "N/A",
   "license": "MIT",
   "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
@@ -56,9 +59,11 @@
     "rollup": "^2.17.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.4",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "yarn": "^1.22.4"
   },
   "resolutions": {
     "@types/react": "16.13.1",
