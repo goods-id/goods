@@ -1,4 +1,4 @@
-import { NameToCSSValue } from '../@types/core'
+import { NameToCSSValue } from '../@types/global'
 
 export const spacingConstants = {
   '0': '0px',

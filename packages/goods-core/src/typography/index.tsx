@@ -10,7 +10,7 @@ import {
   TextAlignProperty,
   MarginProperty,
 } from 'csstype'
-import { BaseProps } from '../@types/core'
+import { BaseProps } from '../@types/global'
 import breakpoints, { InBreakpoint, getValueInBp } from '../breakpoints'
 
 const commonRules = ['title', 'subtitle', 'body', 'caption'] as const
@@ -183,7 +183,10 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
 })
 
 const Text: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  TextProps & React.RefAttributes<HTMLParagraphElement>
+  TextProps &
+    React.RefAttributes<
+      HTMLParagraphElement | HTMLSpanElement | HTMLHeadingElement
+    >
 >> = React.memo(React.forwardRef((props, ref) => <P ref={ref} {...props} />))
 
 export default Text
