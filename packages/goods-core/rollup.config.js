@@ -5,7 +5,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
 import copy from 'rollup-plugin-copy'
-import url from 'rollup-plugin-url'
+import url from '@rollup/plugin-url'
 import pkg from './package.json'
 
 export default {

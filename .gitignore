@@ -132,3 +132,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+yarn.lock
