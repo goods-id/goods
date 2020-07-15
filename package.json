@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Pomona Design System",
   "main": "N/A",
   "license": "MIT",
@@ -15,11 +15,8 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run compile",
     "build:storybook": "lerna run storybook:build",
     "clean": "lerna run clean",
-    "compile": "lerna run compile",
-    "prepare": "yarn compile",
     "lerna": "lerna",
     "lint": "lerna run lint",
     "report-coverage": "yarn workspace @pomona/goods-core run report-coverage",
