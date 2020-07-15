@@ -41,6 +41,11 @@ type MobileBasicSettings = {
 
 type TextBreakpoint = 'xs' | 'lg'
 
+export type HTMLText =
+  | HTMLParagraphElement
+  | HTMLHeadingElement
+  | HTMLSpanElement
+
 export interface TextCssProps {
   rule?: MobileRule
   dRule?: DesktopRule
@@ -50,13 +55,11 @@ export interface TextCssProps {
   lineHeight?: InBreakpoint<LineHeightProperty<string>, TextBreakpoint>
   weight?: InBreakpoint<FontWeightProperty, TextBreakpoint>
   m?: InBreakpoint<MarginProperty<string>, TextBreakpoint>
-  textAlign: InBreakpoint<TextAlignProperty, TextBreakpoint>
+  textAlign?: InBreakpoint<TextAlignProperty, TextBreakpoint>
   c?: ColorProperty
 }
 
-export interface TextProps
-  extends TextCssProps,
-    BaseProps<HTMLParagraphElement | HTMLHeadingElement | HTMLSpanElement> {}
+export interface TextProps extends TextCssProps, BaseProps<HTMLText> {}
 
 const desktopBasicSettings: DesktopBasicSettings = {
   title: {
@@ -159,7 +162,7 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
     fontWeight:
       getValueInBp(props.weight, 'xs') || ruleBased?.fontWeight || 'normal',
     margin: getValueInBp(props.m, 'xs') || '',
-    textAlign: getValueInBp(props.textAlign, 'xs'),
+    textAlign: getValueInBp(props.textAlign, 'xs') || 'left',
 
     [breakpointLg]: {
       fontSize:
@@ -177,16 +180,13 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
         dRuleBased?.fontWeight ||
         'normal',
       margin: getValueInBp(props.m, ['lg', 'xs']) || '',
-      textAlign: getValueInBp(props.textAlign, ['lg', 'xs']) || '',
+      textAlign: getValueInBp(props.textAlign, ['lg', 'xs']) || 'left',
     },
   }
 })
 
 const Text: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  TextProps &
-    React.RefAttributes<
-      HTMLParagraphElement | HTMLSpanElement | HTMLHeadingElement
-    >
+  TextProps & React.RefAttributes<HTMLText>
 >> = React.memo(React.forwardRef((props, ref) => <P ref={ref} {...props} />))
 
 export default Text

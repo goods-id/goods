@@ -1,8 +1,8 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "> TODO: description",
-  "author": "Wirya Ramadhan <wiryar@pomona.id>",
+  "author": "Pomona IT",
   "homepage": "",
   "license": "ISC",
   "main": "./lib/index.js",
