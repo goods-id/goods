@@ -8,7 +8,7 @@ export enum IconName {
   profile = 'profile',
   profileOff = 'profileOff',
   notification = 'notification',
-  notoficationOff = 'notificationOff',
+  notificationOff = 'notificationOff',
   note = 'note',
   noteOff = 'noteOff',
   cart = 'cart',
@@ -41,6 +41,24 @@ export enum IconRotate {
   left = 270,
 }
 
+interface IconRenderProps {
+  name: keyof typeof IconName
+  c?: string
+  c1?: string
+}
+
+export interface SvgProps {
+  size?: keyof typeof IconSize | number
+  rotate?: keyof typeof IconRotate | number
+  p?: string
+  m?: string
+}
+
+export interface IconProps
+  extends IconRenderProps,
+    SvgProps,
+    Omit<React.SVGProps<SVGSVGElement>, 'rotate' | 'name' | 'ref'> {}
+
 export interface IconCore {
   id?: string
   c?: string
@@ -56,15 +74,33 @@ export interface StyledIconCore
 
 export type Ref = SVGSVGElement
 
-const Svg = styled.svg(({ size, rotate, p, m }: any) => ({
+function getSize(size?: keyof typeof IconSize | number): string {
+  return typeof size === 'number'
+    ? `${size}px`
+    : size
+    ? IconSize[size]
+    : IconSize.normal
+}
+
+function getRotate(rotate?: keyof typeof IconRotate | number): string {
+  return rotate
+    ? `rotate(${typeof rotate === 'number' ? rotate : IconRotate[rotate]}deg)`
+    : ''
+}
+
+export const Svg = styled.svg(({ size, rotate, p, m }: SvgProps) => ({
   padding: p || '',
   margin: m || '',
-  width: size || IconSize.normal,
-  height: size || IconSize.normal,
-  transform: rotate ? `rotate(${rotate}deg)` : '',
+  width: getSize(size),
+  height: getSize(size),
+  transform: getRotate(rotate),
 }))
 
-const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
+const IconRender = ({
+  name,
+  c = colors.blue50,
+  c1 = colors.red60,
+}: IconRenderProps) => {
   switch (name) {
     case IconName.home:
       return (
@@ -121,7 +157,7 @@ const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
           <rect width="14" height="1.333" x="9" y="28.667" fill={c} rx=".667" />
         </g>
       )
-    case IconName.notoficationOff:
+    case IconName.notificationOff:
       return (
         <g fill="none">
           <path fill="none" d="M0 0H32V32H0z" />
@@ -336,8 +372,8 @@ const IconRender = ({ name, c = colors.blue50, c1 = colors.red60 }: any) => {
   }
 }
 
-const Icon = React.forwardRef(
-  ({ name, id, c, m, p, rotate, size, ...rest }: any, ref) => {
+const Icon = React.forwardRef<SVGSVGElement, IconProps>(
+  ({ name, id, c, c1, m, p, rotate, size, ...rest }, ref) => {
     return (
       <Svg
         xmlns="http://www.w3.org/2000/svg"
@@ -351,7 +387,7 @@ const Icon = React.forwardRef(
         viewBox="0 0 32 32"
         {...rest}
       >
-        <IconRender name={name} c={c} />
+        <IconRender name={name} c={c} c1={c1} />
       </Svg>
     )
   }
