@@ -8,6 +8,7 @@ export interface Theme {
   radius: typeof radius
   spacing: typeof spacing
   breakpoints: typeof breakpoints
+  fontBase: string
 }
 
 const theme: Theme = {
@@ -15,12 +16,16 @@ const theme: Theme = {
   radius,
   spacing,
   breakpoints,
+  fontBase: 'Rubik',
 }
 
-export function overrideTheme(newTheme: Partial<Pick<Theme, 'colors'>>): Theme {
+export function overrideTheme(
+  newTheme: Partial<Pick<Theme, 'colors' | 'fontBase'>>
+): Theme {
   return {
     ...theme,
     colors: { ...theme.colors, ...newTheme.colors },
+    ...(newTheme.fontBase && { fontBase: newTheme.fontBase }),
   }
 }
 

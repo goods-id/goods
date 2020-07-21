@@ -127,15 +127,15 @@ const mobileBasicSettings: MobileBasicSettings = {
   },
   'big-button': {
     fontWeight: 500,
-    fontSize: '21px',
-    lineHeight: '32px',
-    letterSpacing: '-0.25px',
-  },
-  'med-small-button': {
-    fontWeight: 500,
     fontSize: '14px',
     lineHeight: '20px',
     letterSpacing: '0.5px',
+  },
+  'med-small-button': {
+    fontWeight: 500,
+    fontSize: '11px',
+    lineHeight: '16px',
+    letterSpacing: '0.75px',
   },
 }
 
@@ -153,7 +153,7 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
 
   return {
     color: props.c || theme?.colors?.black30 || '',
-    fontFamily: props.fontFam || 'Rubik',
+    fontFamily: props.fontFam || theme?.fontBase || 'Rubik',
     fontSize: getValueInBp(props.size, 'xs') || ruleBased?.fontSize || '',
     letterSpacing:
       getValueInBp(props.letterSpace, 'xs') || ruleBased?.letterSpacing || '',
