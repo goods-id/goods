@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Pomona Design System",
   "main": "N/A",
   "license": "MIT",
@@ -8,20 +8,17 @@
   "publishConfig": {
     "access": "restricted"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build:storybook": "lerna run storybook:build",
     "clean": "lerna run clean",
     "lerna": "lerna",
     "lint": "lerna run lint",
     "report-coverage": "yarn workspace @pomona/goods-core run report-coverage",
-    "storybook": "yarn workspace @pomona/goods-core run storybook",
-    "storybook:build": "yarn workspace @pomona/goods-core run storybook:build",
+    "storybook": "start-storybook -p 9001 -c .storybook-react -s .storybook-react/public",
+    "storybook:build": "rimraf dist-web && build-storybook -c .storybook-react -o dist-web && node ./.storybook-react/after-build",
     "test": "yarn workspace @pomona/goods-core run test",
     "test:coverage": "yarn workspace @pomona/goods-core run test:coverage",
     "validate": "lerna run validate"
@@ -31,16 +28,29 @@
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
+    "@mdx-js/loader": "^1.6.11",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@rollup/plugin-url": "^5.0.1",
+    "@storybook/addon-a11y": "^5.3.19",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-storysource": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@storybook/source-loader": "^5.3.19",
     "@types/node": "^14.0.13",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
     "eslint": "^7.3.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -53,6 +63,7 @@
     "lerna": "^3.22.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "react-docgen-typescript-loader": "^3.7.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.17.1",
     "rollup-plugin-auto-external": "^2.0.0",
@@ -60,6 +71,7 @@
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.4",
+    "storybook-addon-jsx": "^7.3.2",
     "typescript": "^3.9.5",
     "yarn": "^1.22.4"
   },

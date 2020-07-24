@@ -6,6 +6,7 @@
 lib/
 storybook-static/
 dist/
+dist-web/
 tsc-out/
 .cache/
 /packages/*/storybook-static/

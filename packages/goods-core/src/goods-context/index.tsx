@@ -8,6 +8,10 @@ interface GoodsProviderProps {
   theme?: DefaultTheme
 }
 
+export interface WithGoodsProps {
+  theme: DefaultTheme
+}
+
 export const useGoods = (): DefaultTheme => React.useContext(ThemeContext)
 
 export const GoodsProvider: React.FC<GoodsProviderProps> = ({
@@ -21,4 +25,11 @@ export const GoodsProvider: React.FC<GoodsProviderProps> = ({
       {children}
     </ThemeProvider>
   )
+}
+
+export const withGoods = <P extends WithGoodsProps>(
+  Component: React.ComponentType<P>
+): React.FC<Omit<P, keyof WithGoodsProps>> => props => {
+  const theme = useGoods()
+  return <Component {...(props as P)} theme={theme} />
 }

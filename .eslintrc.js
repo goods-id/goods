@@ -29,6 +29,7 @@ module.exports = {
     'react/jsx-wrap-multilines': 'off',
     // Cannot use `Component.displayName` pattern on class components in TS.
     'react/static-property-placement': 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {
@@ -83,6 +84,8 @@ module.exports = {
               'test-*.{ts,tsx}', // repos with multiple top-level test files
               '**/*{.,_}{test,spec}.{ts,tsx}', // tests where the extension or filename suffix denotes that it is a test
               '**/*{.,_}{stories,story}.{ts,tsx}', // storybook files
+              '**/*{.,_}{docs,doc}.{ts,tsx}', // storybook doc files
+              '**/utils/storybook.{ts,tsx}', // storybook utils
             ],
             optionalDependencies: false,
           },

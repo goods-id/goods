@@ -47,21 +47,55 @@ export type HTMLText =
   | HTMLSpanElement
 
 export interface TextCssProps {
+  /**
+   * Typography rule for mobile and/or desktop (min-width: 768px).
+   * If `rule !== big-button` or `rule !== med-small-button`,
+   * it can be used as desktop rule in case desktop rule was `undefined`.
+   * */
   rule?: MobileRule
+  /**
+   * Typography rule for desktop (min-width: 768px).
+   * */
   dRule?: DesktopRule
+  /**
+   * Font family.
+   * @default theme.fontBase
+   * @default "Rubik"
+   * */
   fontFam?: FontFamilyProperty
+  /**
+   * Font size. It will override font size value obtained from `rule` or `dRule`.
+   * `type TextBreakpoint = 'xs' | 'lg'`.
+   * @example `size={{ xs: '14px', lg: '21px' }}`: Font size 14px for mobile view and 21px for desktop view
+   * */
   size?: InBreakpoint<FontSizeProperty<string>, TextBreakpoint>
+  /**
+   * Letter spacing. It will override letter spacing value obtained from `rule` or `dRule`.
+   * */
   letterSpace?: InBreakpoint<LetterSpacingProperty<string>, TextBreakpoint>
+  /**
+   * Line height. It will override line height value obtained from `rule` or `dRule`.
+   * */
   lineHeight?: InBreakpoint<LineHeightProperty<string>, TextBreakpoint>
+  /**
+   * Font weight. It will override font weight value obtained from `rule` or `dRule`.
+   * */
   weight?: InBreakpoint<FontWeightProperty, TextBreakpoint>
+  /**
+   * Margin
+   * */
   m?: InBreakpoint<MarginProperty<string>, TextBreakpoint>
   textAlign?: InBreakpoint<TextAlignProperty, TextBreakpoint>
+  /**
+   * Font color
+   * @default theme.colors.black30
+   * */
   c?: ColorProperty
 }
 
 export interface TextProps extends TextCssProps, BaseProps<HTMLText> {}
 
-const desktopBasicSettings: DesktopBasicSettings = {
+export const desktopBasicSettings: DesktopBasicSettings = {
   title: {
     fontWeight: 300,
     fontSize: '34px',
@@ -100,7 +134,7 @@ const desktopBasicSettings: DesktopBasicSettings = {
   },
 }
 
-const mobileBasicSettings: MobileBasicSettings = {
+export const mobileBasicSettings: MobileBasicSettings = {
   title: {
     fontWeight: 500,
     fontSize: '21px',
@@ -185,7 +219,10 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
   }
 })
 
-const Text: React.MemoExoticComponent<React.ForwardRefExoticComponent<
+/**
+ * Use `Text` component to wrap your typography.
+ */
+export const Text: React.MemoExoticComponent<React.ForwardRefExoticComponent<
   TextProps & React.RefAttributes<HTMLText>
 >> = React.memo(React.forwardRef((props, ref) => <P ref={ref} {...props} />))
 
