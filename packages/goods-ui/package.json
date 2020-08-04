@@ -13,13 +13,41 @@
   "files": [
     "lib"
   ],
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+  "publishConfig": {
+    "access": "restricted"
   },
-  "dependencies": {
-    "react": "^16.13.1"
+  "scripts": {
+    "clean": "rimraf lib && rimraf tsc-out",
+    "compile": "yarn clean && yarn rollup",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prepublishOnly": "yarn compile",
+    "rollup": "rollup -c ./rollup.config.js",
+    "type-check": "tsc --emitDeclarationOnly",
+    "validate": "yarn lint && yarn type-check"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1"
+    "@commitlint/cli": "^9.0.1",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.0",
+    "@types/styled-system": "^5.1.9",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-preset-react-app": "^9.1.2",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "rollup-plugin-url": "^3.0.1",
+    "storybook-addon-jsx": "^7.3.0"
+  },
+  "dependencies": {
+    "@styled-system/should-forward-prop": "^5.1.5",
+    "csstype": "^2.6.11",
+    "styled-system": "^5.1.5",
+    "storybook/addon-knobs": "^"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
   }
 }

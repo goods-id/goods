@@ -1,5 +1,6 @@
 export * from './icon'
 export * from './color'
+export * from './basics'
 export * from './typography'
 export * from './breakpoints'
 export * from './radius'
