@@ -1,5 +1,0 @@
-export * from './anchor'
-export * from './div'
-export * from './image'
-export * from './separator'
-export * from './skeleton'

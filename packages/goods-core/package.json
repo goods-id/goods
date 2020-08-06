@@ -1,12 +1,12 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "> TODO: description",
   "author": "Pomona IT",
   "homepage": "",
   "license": "ISC",
   "main": "./lib/index.js",
-  "module": "./lib/index.es.js",
+  "module": "./lib/packages/goods-core/src/index.js",
   "types": "./lib/index.d.ts",
   "directories": {
     "lib": "lib"
@@ -49,5 +49,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1"
-  }
+  },
+  "sideEffects": false
 }

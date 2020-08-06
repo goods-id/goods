@@ -13,26 +13,36 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'cjs',
+      format: 'esm',
       sourcemap: true,
     },
     {
-      file: pkg.module,
-      format: 'es',
+      dir: 'lib',
+      format: 'esm',
+      preserveModules: true,
       sourcemap: true,
     },
   ],
+  treeshake: true,
   plugins: [
     autoExternal(),
-    resolve(),
+    url({
+      include: ['**/*.woff', '**/*.woff2'],
+      limit: Infinity,
+    }),
+    resolve({
+      browser: true,
+    }),
     commonjs(),
     typescript({
       typescript: require('typescript'),
       tsconfigDefaults: {
         compilerOptions: {
+          jsx: 'react',
+          module: 'es2015',
+          allowJs: true,
           sourceMap: true,
           declaration: true,
-          jsx: 'react',
         },
       },
     }),
@@ -46,11 +56,11 @@ export default {
           src: 'assets/png/*',
           dest: 'lib/assets/png',
         },
+        {
+          src: 'src/global-style/fonts/*',
+          dest: 'lib/packages/goods-core/src/global-style/fonts',
+        },
       ],
-    }),
-    url({
-      include: ['**/*.woff', '**/*.woff2'],
-      limit: Infinity,
     }),
   ],
 }
