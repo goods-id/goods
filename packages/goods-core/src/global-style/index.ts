@@ -10,7 +10,7 @@ export interface GlobalStyleProps {
 }
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
-  ${props => props.fontFace || defaultFontFace}
+  ${props => props.fontFace || defaultFontFace()}
 
   *,
   *::before,

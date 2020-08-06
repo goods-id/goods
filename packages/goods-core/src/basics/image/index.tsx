@@ -39,7 +39,7 @@ import {
   BorderBottomColorProperty,
   ObjectFitProperty,
 } from 'csstype'
-import { BaseProps } from '../../../goods-core/src/@types/global'
+import { BaseProps } from '../../@types/global'
 
 export interface ImageCssProps<TLength = string | 0> {
   /**

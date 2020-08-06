@@ -20,7 +20,7 @@ import {
   TransformProperty,
   DisplayProperty,
 } from 'csstype'
-import { BaseProps } from '../../../goods-core/src/@types/global'
+import { BaseProps } from '../../@types/global'
 
 export interface SkeletonCssProps<TLength = string | 0> {
   /**

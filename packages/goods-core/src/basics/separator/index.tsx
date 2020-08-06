@@ -12,7 +12,6 @@ import {
   MaxHeightProperty,
   ZIndexProperty,
   PositionProperty,
-  BottomProperty,
   BoxShadowProperty,
   BorderRadiusProperty,
   BorderProperty,

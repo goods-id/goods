@@ -42,8 +42,7 @@
   "dependencies": {
     "@styled-system/should-forward-prop": "^5.1.5",
     "csstype": "^2.6.11",
-    "styled-system": "^5.1.5",
-    "storybook/addon-knobs": "^"
+    "styled-system": "^5.1.5"
   },
   "peerDependencies": {
     "react": "^16.13.1",
