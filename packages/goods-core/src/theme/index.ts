@@ -1,6 +1,7 @@
 import colors from '../color'
 import radius from '../radius'
 import spacing from '../spacing'
+import shadow from '../shadow'
 import breakpoints from '../breakpoints'
 
 export interface Theme {
@@ -8,6 +9,7 @@ export interface Theme {
   radius: typeof radius
   spacing: typeof spacing
   breakpoints: typeof breakpoints
+  shadow: Partial<typeof shadow>
   fontBase: string
 }
 
@@ -16,6 +18,7 @@ const theme: Theme = {
   radius,
   spacing,
   breakpoints,
+  shadow,
   fontBase: 'Rubik',
 }
 
