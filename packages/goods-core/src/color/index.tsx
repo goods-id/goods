@@ -50,4 +50,33 @@ const colors = {
   ...white,
 }
 
+const colorRegExp = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
+
+export function hexToRgb(color: string): number[] {
+  if (!colorRegExp.test(color)) return [0, 0, 0]
+  const result = colorRegExp.exec(color) || []
+  return result.slice(1, 4).map(hex => parseInt(hex, 16))
+}
+
+export function hexToRgba(color: string, alpha: number): string {
+  if (!colorRegExp.test(color)) return color
+  const rgb = hexToRgb(color)
+  return `rgba(${rgb.join(', ')}, ${alpha})`
+}
+
+const luminanceFactors = [0.2126, 0.7152, 0.0722]
+
+function calculateLuminance(rgb: number[]): number {
+  return rgb.reduce<number>(
+    (sum, value, index) => sum + value * luminanceFactors[index],
+    0
+  )
+}
+
+export function getInverseBw(color: string): string {
+  if (!colorRegExp.test(color)) return color
+  const luminance = calculateLuminance(hexToRgb(color))
+  return luminance < 100 ? 'white' : 'black'
+}
+
 export default colors

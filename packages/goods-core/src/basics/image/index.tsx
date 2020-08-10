@@ -124,6 +124,7 @@ export interface ImageCssProps<TLength = string | 0> {
   overflow?: OverflowProperty
   /**
    * Display
+   * @default "flex"
    */
   d?: DisplayProperty
   /**

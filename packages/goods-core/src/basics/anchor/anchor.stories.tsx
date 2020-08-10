@@ -4,7 +4,7 @@ import { useGoods } from '../../goods-context'
 import { Div } from '../div'
 
 export default {
-  title: 'Core/Anchor',
+  title: 'Basics/Anchor',
   component: Anchor,
 }
 

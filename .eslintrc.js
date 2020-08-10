@@ -92,6 +92,7 @@ module.exports = {
         ],
         // No need to use prop types on TS files.
         'react/prop-types': 'off',
+        'react/no-array-index-key': 'off',
       },
     },
     {

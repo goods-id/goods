@@ -3,7 +3,7 @@ import { Div } from '.'
 import { useGoods } from '../../goods-context'
 
 export default {
-  title: 'Core/Div',
+  title: 'Basics/Div',
   component: Div,
 }
 
@@ -21,6 +21,7 @@ export const DivExample: React.FC = () => {
       hoverBg={colors.green90}
       cursor="pointer"
       overflow="scroll"
+      fDir="row"
     >
       <Div h="700px" w="100%">
         Goods UI - Atoms - Div

@@ -23,11 +23,12 @@ const theme: Theme = {
 }
 
 export function overrideTheme(
-  newTheme: Partial<Pick<Theme, 'colors' | 'fontBase'>>
+  newTheme: Partial<Pick<Theme, 'colors' | 'fontBase' | 'shadow'>>
 ): Theme {
   return {
     ...theme,
     colors: { ...theme.colors, ...newTheme.colors },
+    shadow: { ...theme.shadow, ...newTheme.shadow },
     ...(newTheme.fontBase && { fontBase: newTheme.fontBase }),
   }
 }

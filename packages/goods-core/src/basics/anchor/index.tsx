@@ -4,7 +4,13 @@ import { BackgroundColorProperty, ColorProperty } from 'csstype'
 import { Text, TextProps, HTMLText } from '../../typography'
 
 interface AnchorCssProps {
+  /**
+   * Hover Background Color
+   */
   hoverBg?: BackgroundColorProperty
+  /**
+   * Hover Text Color
+   */
   hoverColor?: ColorProperty
 }
 

@@ -4,7 +4,7 @@ function position(item, array = []) {
   return index === -1 ? 10000 : index
 }
 
-export function splitStoryName(name) {
+export function splitStoryName(name = '') {
   return name.split('/')
 }
 
@@ -14,13 +14,17 @@ export function sortStories(sortOrder) {
   return (a, b) => {
     const aKind = a[1].kind
     const bKind = b[1].kind
-    const [aGroup, aComponent] = splitStoryName(aKind)
-    const [bGroup, bComponent] = splitStoryName(bKind)
 
     // Preserve story sort order.
     if (aKind === bKind) {
       return 0
     }
+
+    const [aGroup, ...aComponents] = splitStoryName(aKind)
+    const [bGroup, ...bComponents] = splitStoryName(bKind)
+
+    const aComponent = aComponents.join('/')
+    const bComponent = bComponents.join('/')
 
     // Sort stories in a group.
     if (aGroup === bGroup) {

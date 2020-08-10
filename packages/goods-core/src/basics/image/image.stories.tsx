@@ -3,7 +3,7 @@ import { Image } from '.'
 import { useGoods } from '../../goods-context'
 
 export default {
-  title: 'Core/Image',
+  title: 'Basics/Image',
   component: Image,
 }
 

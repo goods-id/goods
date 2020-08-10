@@ -26,6 +26,7 @@ export interface SeparatorCssProps<TLength = string | 0> {
   w?: WidthProperty<TLength>
   /**
    * Height
+   * @default "2px"
    */
   h?: HeightProperty<TLength>
   /**
@@ -70,6 +71,7 @@ export interface SeparatorCssProps<TLength = string | 0> {
   shadow?: BoxShadowProperty
   /**
    * Radius
+   * @default "4px"
    */
   radius?: BorderRadiusProperty<TLength>
   /**

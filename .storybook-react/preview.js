@@ -3,12 +3,13 @@ import { addDecorator, addParameters } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
+import { DocsContainer } from '@storybook/addon-docs/blocks'
 import { jsxDecorator } from 'storybook-addon-jsx'
 
 import { sortStories } from './utils/story-helpers'
 import theme from './utils/story-theme'
 import { GoodsProvider } from '../packages/goods-core/src/goods-context'
+import { GoodsDocs } from '../packages/goods-core/src/utils/storybook.docs'
 
 const SORT_ORDER = {
   'Getting Started': [
@@ -17,8 +18,10 @@ const SORT_ORDER = {
     'Theme',
     'Use Goods',
     'With Goods',
+    'Global Style',
   ],
-  Core: ['Icon', 'Color', 'Typography', 'Spacing', 'Corner Radius'],
+  Core: ['Color', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
+  Basics: ['Div', 'Image', 'Skeleton', 'Separator', 'Anchor'],
   Atoms: [],
   Molecules: [],
 }
@@ -27,6 +30,7 @@ addParameters({
   viewMode: 'docs',
   options: {
     storySort: sortStories(SORT_ORDER),
+    showRoots: true,
     theme,
   },
   viewport: {
@@ -40,7 +44,7 @@ addParameters({
         </DocsContainer>
       )
     },
-    page: DocsPage,
+    page: GoodsDocs,
     extractComponentDescription: component => {
       return component?.__docgenInfo?.description
     },
@@ -52,6 +56,12 @@ addDecorator(withKnobs)
 addDecorator(jsxDecorator)
 
 const withGoods = StoryFn => {
+  React.useEffect(() => {
+    document.body.classList.add('scroll')
+    return () => {
+      document.body.classList.remove('scroll')
+    }
+  }, [])
   return (
     <GoodsProvider>
       <StoryFn />

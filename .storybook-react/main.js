@@ -15,6 +15,11 @@ const displayedHtmlProps = [
   'onMouseLeave',
   'onMouseEnter',
   'onMouseOut',
+  'size',
+  'rotate',
+  'p',
+  'm',
+  'style',
 ]
 
 module.exports = {
@@ -102,7 +107,7 @@ module.exports = {
                 return false
               }
               if (props.parent) {
-                return !/(html|dom|aria)/i.test(props.parent.name)
+                return !/(html|dom|aria|svg)/i.test(props.parent.name)
               }
               return !/aria/i.test(props.name)
             },

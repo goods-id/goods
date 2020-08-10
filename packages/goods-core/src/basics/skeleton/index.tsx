@@ -25,10 +25,12 @@ import { BaseProps } from '../../@types/global'
 export interface SkeletonCssProps<TLength = string | 0> {
   /**
    * Width
+   * @default "300px"
    */
   w?: WidthProperty<TLength>
   /**
    * Height
+   * @default "20px"
    */
   h?: HeightProperty<TLength>
   /**
@@ -57,6 +59,7 @@ export interface SkeletonCssProps<TLength = string | 0> {
   maxH?: MaxHeightProperty<TLength>
   /**
    * Background Color
+   * @default "hsl(0, 0%, 89%)"
    */
   bg?: BackgroundColorProperty
   /**
@@ -65,6 +68,7 @@ export interface SkeletonCssProps<TLength = string | 0> {
   z?: ZIndexProperty
   /**
    * Position
+   * @default "relative"
    */
   position?: PositionProperty
   /**
@@ -84,15 +88,18 @@ export interface SkeletonCssProps<TLength = string | 0> {
    */
   bottom?: BottomProperty<TLength>
   /**
-   * Shadow
+   * Radius
+   * @default "4px"
    */
   radius?: BorderRadiusProperty<TLength>
   /**
    * Transform
+   * @default "scale(1, 1)"
    */
   transform?: TransformProperty
   /**
    * Display
+   * @default "block"
    */
   d?: DisplayProperty
 }

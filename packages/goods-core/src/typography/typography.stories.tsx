@@ -32,7 +32,7 @@ export const DesktopRules: Story = () => {
   return (
     <>
       {desktopRules.map(dRule => (
-        <Text key={dRule} dRule={dRule} m={margin}>
+        <Text as="span" key={dRule} dRule={dRule} m={margin}>
           {`${dRule}:`}
           <Log value={desktopBasicSettings[dRule]} />
         </Text>
@@ -47,7 +47,7 @@ export const MobileRules: Story = () => {
   return (
     <>
       {mobileRules.map(rule => (
-        <Text key={rule} rule={rule} m={margin}>
+        <Text as="span" key={rule} rule={rule} m={margin}>
           {`${rule}:`}
           <Log value={mobileBasicSettings[rule]} />
         </Text>

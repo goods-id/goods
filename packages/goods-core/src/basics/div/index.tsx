@@ -30,6 +30,7 @@ import {
   JustifySelfProperty,
   AlignItemsProperty,
   AlignSelfProperty,
+  FlexWrapProperty,
   BorderProperty,
   BorderColorProperty,
   BorderTopProperty,
@@ -140,6 +141,7 @@ export interface DivCssProps<TLength = string | 0> {
   overflowWrap?: OverflowWrapProperty
   /**
    * Display
+   * @default "flex"
    */
   d?: DisplayProperty
   /**
@@ -148,6 +150,7 @@ export interface DivCssProps<TLength = string | 0> {
   f?: FlexProperty<TLength>
   /**
    * Flex Direction
+   * @default "column"
    */
   fDir?: FlexDirectionProperty
   /**
@@ -174,6 +177,10 @@ export interface DivCssProps<TLength = string | 0> {
    * Align Self
    */
   fASelf?: AlignSelfProperty
+  /**
+   * Flex Wrap
+   */
+  fWrap?: FlexWrapProperty
   /**
    * Border
    */
@@ -247,23 +254,34 @@ export interface DivCssProps<TLength = string | 0> {
    */
   hoverShadowColor?: BoxShadowProperty
   /**
+   * Use custom scroll bar.
+   * If `overflow === 'scroll'`, custom scroll bar is auto shown.
+   * @default false
+   */
+  isScrollBarOn?: boolean
+  /**
    * ScrollBar Width
+   * @default 8
    */
   scrollBarWidth?: WidthProperty<TLength>
   /**
    * ScrollBar Height
+   * @default 24
    */
   scrollBarHeight?: HeightProperty<TLength>
   /**
    * ScrollBar Color
+   * @default colors.blue50
    */
   scrollBarColor?: ColorProperty
   /**
    * ScrollBar Background Color
+   * @default colors.black10
    */
   scrollBarBackgroundColor?: BackgroundColorProperty
   /**
    * ScrollBar Radius
+   * @default 8
    */
   scrollBarRadius?: BorderRadiusProperty<TLength>
 }
@@ -294,13 +312,14 @@ const DivStyled = styled.div<DivCssProps>(
     transform,
     d = 'flex',
     f,
-    fDir,
+    fDir = 'column',
     fGrow,
     fShrink,
     fJustify,
     fJSelf,
     fAlign,
     fASelf,
+    fWrap,
     b,
     bColor,
     bTop,
@@ -324,6 +343,7 @@ const DivStyled = styled.div<DivCssProps>(
     scrollBarColor = colors.blue50,
     scrollBarBackgroundColor = colors.black10,
     scrollBarRadius = 8,
+    isScrollBarOn,
   }) => {
     return {
       width: w,
@@ -357,6 +377,7 @@ const DivStyled = styled.div<DivCssProps>(
       justifySelf: fJSelf,
       alignItems: fAlign,
       alignSelf: fASelf,
+      flexWrap: fWrap,
       border: b,
       borderColor: bColor,
       borderTop: bTop,
@@ -377,7 +398,7 @@ const DivStyled = styled.div<DivCssProps>(
         boxShadow: hoverShadowColor,
         borderColor: hoverBorderColor,
       },
-      ...(overflow === 'scroll' && {
+      ...((overflow === 'scroll' || isScrollBarOn) && {
         '::-webkit-scrollbar': {
           width: scrollBarWidth,
         },

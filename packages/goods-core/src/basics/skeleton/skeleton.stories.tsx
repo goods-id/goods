@@ -3,7 +3,7 @@ import { Skeleton } from '.'
 import { Div } from '../div'
 
 export default {
-  title: 'Core/Skeleton',
+  title: 'Basics/Skeleton',
   component: Skeleton,
 }
 

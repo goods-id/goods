@@ -33,6 +33,16 @@
     ]
   },
   "references": [],
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "**/lib", "src/**/*.stories.tsx"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/lib",
+    "src/**/*.stories.tsx",
+    "src/**/*.story.tsx",
+    "src/**/*.docs.tsx",
+    "src/utils/storybook.tsx"
+  ]
 }

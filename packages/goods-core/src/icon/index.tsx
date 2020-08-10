@@ -29,9 +29,9 @@ export enum IconName {
 }
 
 export enum IconSize {
-  small = '12px',
-  normal = '16px',
-  large = '24px',
+  small = '16px',
+  normal = '24px',
+  large = '32px',
 }
 
 export enum IconRotate {
@@ -42,15 +42,36 @@ export enum IconRotate {
 }
 
 interface IconRenderProps {
+  /**
+   * Icon Name
+   */
   name: keyof typeof IconName
+  /**
+   * Primary color of svg fill
+   */
   c?: string
+  /**
+   * Secondary color of svg fill
+   */
   c1?: string
 }
 
 export interface SvgProps {
+  /**
+   * Width and height of svg element
+   */
   size?: keyof typeof IconSize | number
+  /**
+   * Rotate
+   */
   rotate?: keyof typeof IconRotate | number
+  /**
+   * Padding
+   */
   p?: string
+  /**
+   * Margin
+   */
   m?: string
 }
 
@@ -372,25 +393,27 @@ const IconRender = ({
   }
 }
 
-const Icon = React.forwardRef<SVGSVGElement, IconProps>(
-  ({ name, id, c, c1, m, p, rotate, size, ...rest }, ref) => {
-    return (
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        id={id}
-        m={m}
-        p={p}
-        name={name}
-        ref={ref}
-        rotate={rotate}
-        size={size}
-        viewBox="0 0 32 32"
-        {...rest}
-      >
-        <IconRender name={name} c={c} c1={c1} />
-      </Svg>
-    )
-  }
+export const Icon = React.memo(
+  React.forwardRef<SVGSVGElement, IconProps>(
+    ({ name, id, c, c1, m, p, rotate, size, ...rest }, ref) => {
+      return (
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          id={id}
+          m={m}
+          p={p}
+          name={name}
+          ref={ref}
+          rotate={rotate}
+          size={size}
+          viewBox="0 0 32 32"
+          {...rest}
+        >
+          <IconRender name={name} c={c} c1={c1} />
+        </Svg>
+      )
+    }
+  )
 )
 
 export default Icon
