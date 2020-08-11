@@ -1,7 +1,7 @@
 import React from 'react'
 import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
-import { Separator } from '../basics/separator'
+import { Line } from '../basics/line'
 import { Image } from '../basics/image'
 import { useGoods } from '../goods-context'
 import { GoodsDocs, Section, Point } from '../utils/storybook.docs'
@@ -169,7 +169,7 @@ const TextDocs: React.FC<DocsPageProps> = props => {
               Aa
             </Text>
           </Div>
-          <Separator
+          <Line
             w="2px"
             h="216px"
             bg={colors.black30}

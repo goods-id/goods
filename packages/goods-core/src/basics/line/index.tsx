@@ -19,7 +19,7 @@ import {
 import { BaseProps } from '../../@types/global'
 import colors from '../../color'
 
-export interface SeparatorCssProps<TLength = string | 0> {
+export interface LineCssProps<TLength = string | 0> {
   /**
    * Width
    */
@@ -80,7 +80,7 @@ export interface SeparatorCssProps<TLength = string | 0> {
   b?: BorderProperty<TLength>
 }
 
-const SeparatorStyled = styled.div<SeparatorCssProps>(
+const LineStyled = styled.div<LineCssProps>(
   ({
     w,
     h = '2px',
@@ -110,18 +110,19 @@ const SeparatorStyled = styled.div<SeparatorCssProps>(
       position,
       boxShadow: shadow,
       borderRadius: radius,
+      border: '0px',
     }
   }
 )
 
 export interface SeparatorProps
-  extends SeparatorCssProps,
+  extends LineCssProps,
     BaseProps<HTMLDivElement> {}
 
-export const Separator: React.MemoExoticComponent<React.ForwardRefExoticComponent<
+export const Line: React.MemoExoticComponent<React.ForwardRefExoticComponent<
   SeparatorProps & React.RefAttributes<HTMLDivElement>
 >> = React.memo(
-  React.forwardRef((props, ref) => <SeparatorStyled ref={ref} {...props} />)
+  React.forwardRef((props, ref) => <LineStyled as="hr" ref={ref} {...props} />)
 )
 
-export default Separator
+export default Line

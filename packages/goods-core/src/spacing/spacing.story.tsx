@@ -1,7 +1,7 @@
 import React from 'react'
 import spacing, { spacingConstants, Spacing } from '.'
 import { Div } from '../basics/div'
-import { Separator } from '../basics/separator'
+import { Line } from '../basics/line'
 import { Text } from '../typography'
 import { Story } from '../utils/storybook'
 
@@ -17,8 +17,8 @@ export const SpacingExample: Story = () => {
       {spacingNames.map(name => (
         <Div key={name} m="8px 4px" p="8px" w="30%" bg="aliceblue">
           <Text rule="body">{`${name}: ${spacing(name)}`}</Text>
-          <Separator />
-          <Separator m={spacing(name, '0', '0')} />
+          <Line />
+          <Line m={spacing(name, '0', '0')} />
         </Div>
       ))}
     </Div>

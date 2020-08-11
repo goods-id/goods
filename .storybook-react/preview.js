@@ -21,7 +21,7 @@ const SORT_ORDER = {
     'Global Style',
   ],
   Core: ['Color', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
-  Basics: ['Div', 'Image', 'Skeleton', 'Separator', 'Anchor'],
+  Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor'],
   Atoms: [],
   Molecules: [],
 }
