@@ -100,7 +100,7 @@ const LineStyled = styled.div<LineCssProps>(
       width: w,
       height: h,
       padding: p,
-      margin: m,
+      margin: m || '0px',
       backgroundColor: bg,
       minWidth: minW,
       maxWidth: maxW,

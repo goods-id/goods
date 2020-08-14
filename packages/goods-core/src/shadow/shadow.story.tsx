@@ -5,9 +5,11 @@ import shadows from './index'
 import spacing from '../spacing'
 import colors from '../color'
 import { Text } from '../typography'
+import ShadowDocs from './shadow.docs'
 
 export default {
   title: 'Core/Shadow',
+  parameters: { docs: { page: ShadowDocs } },
 }
 
 const ShadowDisplay = ({ shadowStr, title }) => (

@@ -118,7 +118,7 @@ const Rules: React.FC<RulesProps> = ({
     : { fontSize: '', fontWeight: undefined, letterSpacing: '', lineHeight: '' }
 
   return (
-    <Div fDir="row" m={spacing('0', '0', 'l')} fAlign="center">
+    <Div fDir="row" m={spacing('0', '0', 'l')} fAlign="center" fWrap="wrap">
       <Div w="217px" fDir="column">
         <Text size="16px" lineHeight="24px">
           {title}
@@ -127,7 +127,7 @@ const Rules: React.FC<RulesProps> = ({
           {subtitle}
         </Text>
       </Div>
-      <Div fDir="column">
+      <Div fDir="column" minW="280px">
         <Text
           rule={rule}
           dRule={dRule}
@@ -158,7 +158,7 @@ const TextDocs: React.FC<DocsPageProps> = props => {
       {...props}
     >
       <Section title="I. Brief">
-        <Div fDir="row" fAlign="center">
+        <Div fDir="row" fAlign="center" fWrap="wrap">
           <Div>
             <Text
               weight={500}
@@ -175,7 +175,7 @@ const TextDocs: React.FC<DocsPageProps> = props => {
             bg={colors.black30}
             m={spacing('0', 'l', '0', 'xxxl')}
           />
-          <Div fDir="column">
+          <Div fDir="column" minW="300px" maxW="600px">
             <Text weight={500} size="32px" lineHeight="40px" c={colors.blue50}>
               Rubik
             </Text>
@@ -231,14 +231,14 @@ const TextDocs: React.FC<DocsPageProps> = props => {
           <Image
             src={LineHeightImg}
             alt="Line Height"
-            height="45px"
             m={spacing('xxl', '0', '0')}
+            maxW="100%"
           />
           <Image
             src={CharSpacingImg}
             alt="Character Spacing"
-            height="65px"
             m={spacing('xxl', '0', '0')}
+            maxW="100%"
           />
         </Div>
       </Section>
@@ -250,7 +250,7 @@ const TextDocs: React.FC<DocsPageProps> = props => {
           elements such as background.
         </Text>
         <Div fDir="column" m="32px 0px" fAlign="center">
-          <Image alt="Setting Guide" src={SettingGuideImg} />
+          <Image alt="Setting Guide" src={SettingGuideImg} maxW="100%" />
         </Div>
         <Point
           title="Do"

@@ -4,11 +4,13 @@ import { Div } from '../basics/div'
 import { Line } from '../basics/line'
 import { Text } from '../typography'
 import { Story } from '../utils/storybook'
+import SpacingDocs from './spacing.docs'
 
 const spacingNames = Object.keys(spacingConstants) as Spacing[]
 
 export default {
   title: 'Core/Spacing',
+  parameters: { docs: { page: SpacingDocs } },
 }
 
 export const SpacingExample: Story = () => {

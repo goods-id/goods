@@ -1,10 +1,16 @@
 import React, { useState, useCallback, useMemo, ChangeEvent, FC } from 'react'
 import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
-import { Image } from '../basics/image'
 import { Text } from '../typography'
 import { useGoods } from '../goods-context'
-import { GoodsDocs, Section, Point, Grid, Input } from '../utils/storybook.docs'
+import {
+  GoodsDocs,
+  Section,
+  Point,
+  Grid,
+  Input,
+  ImageBox,
+} from '../utils/storybook.docs'
 import { Icon, IconName } from '.'
 
 const IconDesignImg = require('../../assets/stories/icon-design.png')
@@ -67,10 +73,12 @@ const IconDocs: FC<DocsPageProps> = props => {
       excludedProps={excludedProps}
       {...props}
     >
-      <Div w="100%" fAlign="center" m={spacing('l', '0', 'xl')}>
-        <Image src={IconDesignImg} alt="Icon Design" />
-      </Div>
-      <Section title="I. Usage">
+      <ImageBox
+        imageSrc={IconDesignImg}
+        alt="Icon Design"
+        m={spacing('l', '0', 'xl')}
+      />
+      <Section title="I. Usage" noChildTab>
         <Div m={spacing('0', '0', 's', '0')}>
           <Text rule="body">Here are some terms to standarized our terms</Text>
         </Div>
@@ -85,7 +93,7 @@ const IconDocs: FC<DocsPageProps> = props => {
         <Div
           bg={colors.white30}
           w="100%"
-          h="48px"
+          minH="48px"
           radius="4px"
           fJustify="center"
           p={spacing('xs', 's')}
@@ -97,11 +105,13 @@ const IconDocs: FC<DocsPageProps> = props => {
             needs PNG (1x, 1,5x, 2x, 4x Scale)
           </Text>
         </Div>
-        <Div w="100%" fAlign="center" m={spacing('l', '0')}>
-          <Image alt="Icon Sizing" src={IconSizingImg} />
-        </Div>
+        <ImageBox
+          imageSrc={IconSizingImg}
+          alt="Icon Sizing"
+          m={spacing('l', '0')}
+        />
       </Section>
-      <Section title="II. Icon List">
+      <Section title="II. Icon List" noChildTab>
         <Div w="100%" m={spacing('0', '0', 'l')}>
           <Input
             id="search-icon"
@@ -112,7 +122,7 @@ const IconDocs: FC<DocsPageProps> = props => {
             onChange={onSearch}
           />
         </Div>
-        <Grid>
+        <Grid column={{ xs: 2, lg: 4, xl: 6 }}>
           {icons.map(name => (
             <Div
               key={name}

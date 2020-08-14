@@ -20,7 +20,7 @@ const SORT_ORDER = {
     'With Goods',
     'Global Style',
   ],
-  Core: ['Color', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
+  Core: ['Colour', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
   Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor'],
   Atoms: [],
   Molecules: [],

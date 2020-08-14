@@ -3,9 +3,11 @@ import { Div } from '../basics/div'
 import { Text } from '../typography'
 import colors, { blue, orange, black, green, red, white, getInverseBw } from '.'
 import { Story } from '../utils/storybook'
+import ColorDocs from './color.docs'
 
 export default {
-  title: 'Core/Color',
+  title: 'Core/Colour',
+  parameters: { docs: { page: ColorDocs } },
 }
 
 interface ShowColorProps {

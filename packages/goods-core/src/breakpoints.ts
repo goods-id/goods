@@ -10,7 +10,7 @@ export type Breakpoint = keyof typeof breakpointConstants
 
 export type InBreakpoint<CssType, P extends Breakpoint = Breakpoint> =
   | CssType
-  | Pick<{ [key in Breakpoint]: CssType }, P>
+  | Partial<Pick<{ [key in Breakpoint]: CssType }, P>>
 
 export const getValueInBp = <
   T extends string | number | undefined,
@@ -18,10 +18,10 @@ export const getValueInBp = <
 >(
   value: InBreakpoint<T, P>,
   breakpoint: P | P[]
-): T => {
+): T | undefined => {
   if (typeof value === 'object') {
     if (Array.isArray(breakpoint)) {
-      return breakpoint.reduce<T>(
+      return breakpoint.reduce<T | undefined>(
         (prev, bp) => prev || value[bp],
         value[breakpoint[0]]
       )

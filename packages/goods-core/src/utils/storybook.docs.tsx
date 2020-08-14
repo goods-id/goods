@@ -13,7 +13,9 @@ import {
 } from '@storybook/addon-docs/dist/blocks'
 import { Text } from '../typography'
 import { Div, DivProps } from '../basics/div'
+import { Image } from '../basics/image'
 import { useGoods } from '../goods-context'
+import { InBreakpoint, getValueInBp } from '../breakpoints'
 
 interface TitleProps {
   slot?: StringSlot
@@ -27,6 +29,7 @@ export interface GoodsDocsProps
   withoutPropsTable?: boolean
   withoutStories?: boolean
   excludedProps?: string[]
+  withoutDocsTitle?: boolean
 }
 
 const defaultExcludedProps = [
@@ -88,11 +91,12 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
     withoutPropsTable,
     excludedProps = defaultExcludedProps,
     withoutStories,
+    withoutDocsTitle,
     children,
   } = props
 
   const context = useContext(DocsContext)
-  const component = getComponent({ of: '.' }, context)
+  const component = !withoutPropsTable && getComponent({ of: '.' }, context)
 
   React.useEffect(() => {
     document.body.classList.add('scroll')
@@ -115,13 +119,15 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       )}
       {children && (
         <>
-          <Text rule="title" weight={500} m="16px 0px">
-            Documentation
-          </Text>
+          {!withoutDocsTitle && (
+            <Text rule="title" weight={500} m="16px 0px">
+              Documentation
+            </Text>
+          )}
           {children}
         </>
       )}
-      {!withoutPropsTable && component && (
+      {component && (
         <>
           <Text rule="title" weight={500} m="24px 0px">
             Props
@@ -129,14 +135,15 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
           <Props slot={propsSlot} exclude={excludedProps} />
         </>
       )}
-      <Stories slot={storiesSlot} />
+      {!withoutStories && <Stories slot={storiesSlot} />}
     </>
   )
 }
 
-interface SectionProps {
+interface SectionProps extends Omit<DivProps, 'ref'> {
   title: string
   tabSpacing?: boolean
+  noChildTab?: boolean
   children: React.ReactNode
 }
 
@@ -144,10 +151,12 @@ export const Section: React.FC<SectionProps> = ({
   title,
   tabSpacing = false,
   children,
+  noChildTab = false,
+  ...divProps
 }) => {
   const { spacing, colors } = useGoods()
   return (
-    <Div m={spacing('0', '0', 'l')} fDir="column">
+    <Div m={spacing('0', '0', 'l')} fDir="column" w="100%" {...divProps}>
       <Text
         c={colors.black40}
         rule={!tabSpacing ? 'subtitle' : 'body'}
@@ -155,7 +164,11 @@ export const Section: React.FC<SectionProps> = ({
       >
         {title}
       </Text>
-      <Div p={spacing('s', 'l')} fDir="column">
+      <Div
+        p={spacing('s', noChildTab ? '0' : tabSpacing ? 's' : 'l')}
+        w="100%"
+        fDir="column"
+      >
         {children}
       </Div>
     </Div>
@@ -175,7 +188,13 @@ export const Point: React.FC<PointProps> = ({
 }) => {
   const { colors, spacing, radius } = useGoods()
   return (
-    <Div fDir="row" fAlign="center" m={spacing('0', '0', 's')}>
+    <Div
+      fDir="row"
+      fAlign="center"
+      m={spacing('0', '0', 's')}
+      w="100%"
+      fWrap="wrap"
+    >
       {bullet && (
         <Div
           w="8px"
@@ -187,20 +206,56 @@ export const Point: React.FC<PointProps> = ({
       )}
       <Text rule="body" weight={500}>{`${title}:`}</Text>
       &nbsp;
-      <Text rule="body">{description}</Text>
+      <Text rule="body" style={{ minWidth: '280px' }}>
+        {description}
+      </Text>
     </Div>
   )
 }
 
 interface GridProps extends Omit<DivProps, 'd'> {
-  column?: number
+  column?: InBreakpoint<number>
 }
 
-export const Grid = styled(Div)<GridProps>(props => ({
-  display: 'grid',
-  width: props.w || '100%',
-  gridTemplateColumns: `repeat(${props.column || 6}, 1fr)`,
-}))
+function getGridTemplateColumns(
+  ...args: Parameters<typeof getValueInBp>
+): string {
+  const [value, bp] = args
+  return `repeat(${getValueInBp(value, bp) || 6}, 1fr)`
+}
+
+export const Grid = styled(Div)<GridProps>(props => {
+  const { column, theme } = props
+  const { breakpoints } = theme
+  return {
+    display: 'grid',
+    width: props.w || '100%',
+    gridTemplateColumns: getGridTemplateColumns(column, 'xs'),
+    [breakpoints('sm')]: {
+      gridTemplateColumns: getGridTemplateColumns(column, ['sm', 'xs']),
+    },
+    [breakpoints('md')]: {
+      gridTemplateColumns: getGridTemplateColumns(column, ['md', 'sm', 'xs']),
+    },
+    [breakpoints('lg')]: {
+      gridTemplateColumns: getGridTemplateColumns(column, [
+        'lg',
+        'md',
+        'sm',
+        'xs',
+      ]),
+    },
+    [breakpoints('xl')]: {
+      gridTemplateColumns: getGridTemplateColumns(column, [
+        'xl',
+        'lg',
+        'md',
+        'sm',
+        'xs',
+      ]),
+    },
+  }
+})
 
 export const Input = styled.input(({ theme }) => ({
   width: '100%',
@@ -209,3 +264,17 @@ export const Input = styled.input(({ theme }) => ({
   borderRadius: theme.radius('l'),
   padding: theme.spacing('xs', 's'),
 }))
+
+interface ImageBoxProps extends Omit<DivProps, 'ref'> {
+  imageSrc: string
+  alt: string
+}
+
+export const ImageBox: React.FC<ImageBoxProps> = props => {
+  const { imageSrc, alt, ...divProps } = props
+  return (
+    <Div maxW="100%" w="fit-content" fAlign="center" {...divProps}>
+      <Image alt={alt} src={imageSrc} w="100%" />
+    </Div>
+  )
+}
