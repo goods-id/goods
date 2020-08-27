@@ -209,7 +209,7 @@ export interface ImageProps
   extends ImageCssProps,
     BaseProps<HTMLImageElement> {}
 
-const ImageStyled = styled.img<ImageProps>(
+export const ImageStyled = styled.img<ImageProps>(
   ({
     w,
     h,

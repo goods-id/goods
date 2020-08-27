@@ -1,5 +1,4 @@
 import React from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { Image } from '../basics/image'
 import { Line } from '../basics/line'
@@ -21,7 +20,7 @@ function getJustify(shadowName: keyof typeof shadows): string {
   return 'flex-start'
 }
 
-const ShadowDocs: React.FC<DocsPageProps> = props => {
+const ShadowDocs: React.FC = () => {
   const { colors, shadow } = useGoods()
   return (
     <GoodsDocs
@@ -32,7 +31,6 @@ const ShadowDocs: React.FC<DocsPageProps> = props => {
         Shadow is created when an object is lifted / elevated.
         It indicates which important and created a hierarchy.
       `}
-      {...props}
     >
       <Div w="100%" fAlign="center">
         <Div w="100%" position="relative" m="66px 0px 16px">

@@ -1,5 +1,4 @@
 import React from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { Line } from '../basics/line'
 import { Image } from '../basics/image'
@@ -144,7 +143,7 @@ const Rules: React.FC<RulesProps> = ({
   )
 }
 
-const TextDocs: React.FC<DocsPageProps> = props => {
+const TextDocs: React.FC = () => {
   const { colors, spacing } = useGoods()
   return (
     <GoodsDocs
@@ -155,7 +154,6 @@ const TextDocs: React.FC<DocsPageProps> = props => {
         along with knowing what to do with each principles will boost the design and
         user experience of the product.
       `}
-      {...props}
     >
       <Section title="I. Brief">
         <Div fDir="row" fAlign="center" fWrap="wrap">

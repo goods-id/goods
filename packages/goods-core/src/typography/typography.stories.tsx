@@ -1,5 +1,6 @@
 import React from 'react'
 import { color, select, text, number } from '@storybook/addon-knobs'
+import { Story, Meta } from '@storybook/react/types-6-0'
 import {
   Text,
   desktopRules,
@@ -9,13 +10,13 @@ import {
 } from '.'
 import TextDocs from './typography.docs'
 import { useGoods } from '../goods-context'
-import { Log, Story } from '../utils/storybook'
+import { Log } from '../utils/storybook'
 
 export default {
   title: 'Core/Typography',
   component: Text,
   parameters: { docs: { page: TextDocs } },
-}
+} as Meta
 
 export const SimpleUsage: Story = () => {
   const theme = useGoods()
@@ -55,10 +56,8 @@ export const MobileRules: Story = () => {
     </>
   )
 }
-MobileRules.story = {
-  parameters: {
-    viewport: { defaultViewport: 'iphonex' },
-  },
+MobileRules.parameters = {
+  viewport: { defaultViewport: 'iphonex' },
 }
 
 export const WithKnobs: Story = () => {
@@ -79,8 +78,6 @@ export const WithKnobs: Story = () => {
   )
 }
 
-WithKnobs.story = {
-  parameters: {
-    docs: { disable: true },
-  },
+WithKnobs.parameters = {
+  docs: { disable: true },
 }

@@ -1,14 +1,15 @@
 import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
 import { Div } from '../basics/div'
 import { Text } from '../typography'
 import colors, { blue, orange, black, green, red, white, getInverseBw } from '.'
-import { Story } from '../utils/storybook'
 import ColorDocs from './color.docs'
+import { utilsStoryParameters } from '../utils/storybook'
 
 export default {
   title: 'Core/Colour',
-  parameters: { docs: { page: ColorDocs } },
-}
+  parameters: { docs: { page: ColorDocs }, ...utilsStoryParameters },
+} as Meta
 
 interface ShowColorProps {
   displayColor: string

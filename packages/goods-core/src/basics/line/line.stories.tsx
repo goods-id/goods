@@ -1,17 +1,17 @@
 import React from 'react'
 import { color, select, text } from '@storybook/addon-knobs'
-import { Line } from '.'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import { Line, LineProps } from '.'
 import { useGoods } from '../../goods-context'
 import { spacingConstants } from '../../spacing'
 import { radiusConstants } from '../../radius'
-import { Story } from '../../utils/storybook'
 
 export default {
   title: 'Basics/Line',
   component: Line,
-}
+} as Meta<LineProps>
 
-export const LineExample: Story = () => {
+export const LineExample: Story<LineProps> = () => {
   const theme = useGoods()
 
   return (
@@ -19,7 +19,7 @@ export const LineExample: Story = () => {
   )
 }
 
-export const WithKnobs: Story = () => {
+export const WithKnobs: Story<LineProps> = () => {
   const theme = useGoods()
 
   return (
@@ -33,8 +33,6 @@ export const WithKnobs: Story = () => {
   )
 }
 
-WithKnobs.story = {
-  parameters: {
-    docs: { disable: true },
-  },
+WithKnobs.parameters = {
+  docs: { disable: true },
 }

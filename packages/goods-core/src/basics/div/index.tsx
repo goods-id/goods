@@ -48,7 +48,6 @@ import {
   GlobalsNumber,
 } from 'csstype'
 import { BaseProps } from '../../@types/global'
-import colors from '../../color'
 
 export interface DivCssProps<TLength = string | 0> {
   /**
@@ -271,12 +270,10 @@ export interface DivCssProps<TLength = string | 0> {
   scrollBarHeight?: HeightProperty<TLength>
   /**
    * ScrollBar Color
-   * @default colors.blue50
    */
   scrollBarColor?: ColorProperty
   /**
    * ScrollBar Background Color
-   * @default colors.black10
    */
   scrollBarBackgroundColor?: BackgroundColorProperty
   /**
@@ -286,7 +283,7 @@ export interface DivCssProps<TLength = string | 0> {
   scrollBarRadius?: BorderRadiusProperty<TLength>
 }
 
-const DivStyled = styled.div<DivCssProps>(
+export const DivStyled = styled.div<DivCssProps>(
   ({
     w,
     h,
@@ -340,10 +337,11 @@ const DivStyled = styled.div<DivCssProps>(
     hoverTextColor,
     scrollBarWidth = 8,
     scrollBarHeight = 24,
-    scrollBarColor = colors.blue50,
-    scrollBarBackgroundColor = colors.black10,
+    scrollBarColor,
+    scrollBarBackgroundColor,
     scrollBarRadius = 8,
     isScrollBarOn,
+    theme,
   }) => {
     return {
       width: w,
@@ -403,12 +401,12 @@ const DivStyled = styled.div<DivCssProps>(
           width: scrollBarWidth,
         },
         '::-webkit-scrollbar-track': {
-          backgroundColor: scrollBarBackgroundColor,
+          backgroundColor: scrollBarBackgroundColor || theme.colors.black10,
           borderRadius: scrollBarRadius,
         },
         '::-webkit-scrollbar-thumb': {
           height: scrollBarHeight,
-          backgroundColor: scrollBarColor,
+          backgroundColor: scrollBarColor || theme.colors.blue50,
           borderRadius: scrollBarRadius,
         },
       }),

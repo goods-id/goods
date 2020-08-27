@@ -1,5 +1,4 @@
 import React from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { Image } from '../basics/image'
 import { GoodsDocs, Section } from '../utils/storybook.docs'
@@ -7,7 +6,7 @@ import { GoodsDocs, Section } from '../utils/storybook.docs'
 const RadiusDesignImg = require('../../assets/stories/corner-radius-design.png')
 const RadiusUsageImg = require('../../assets/stories/corner-radius-usage.png')
 
-const RadiusDocs: React.FC<DocsPageProps> = props => {
+const RadiusDocs: React.FC = () => {
   return (
     <GoodsDocs
       withoutPropsTable
@@ -17,7 +16,6 @@ const RadiusDocs: React.FC<DocsPageProps> = props => {
         Corner Radius is used to differentiate between a group of components to the other.
         It also helps to build memorability of shape, whether it is accessible or not.
       `}
-      {...props}
     >
       <Div w="100%" fAlign="center" m="16px 0px 40px">
         <Image alt="Corner Radius Design" src={RadiusDesignImg} w="80%" />

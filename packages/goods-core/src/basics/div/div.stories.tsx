@@ -1,31 +1,42 @@
 import React from 'react'
-import { Div } from '.'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import { Div, DivProps } from '.'
 import { useGoods } from '../../goods-context'
 
-export default {
+const storyMetaData: Meta<DivProps> = {
   title: 'Basics/Div',
   component: Div,
+  argTypes: {
+    bg: { control: 'color' },
+    c: { control: 'color' },
+  },
 }
 
-export const DivExample: React.FC = () => {
+export default storyMetaData
+
+export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {
   const { spacing, colors, radius } = useGoods()
   return (
     <Div
-      w="300px"
-      h="300px"
       bg={colors.green80}
       c={colors.white40}
       m={spacing('l')}
       p={spacing('m')}
       radius={radius('l')}
       hoverBg={colors.green90}
-      cursor="pointer"
-      overflow="scroll"
-      fDir="row"
+      {...args}
     >
       <Div h="700px" w="100%">
-        Goods UI - Atoms - Div
+        Goods Core - Atoms - Div
       </Div>
     </Div>
   )
+}
+
+DivExample.args = {
+  fDir: 'row',
+  cursor: 'pointer',
+  overflow: 'scroll',
+  w: '300px',
+  h: '300px',
 }

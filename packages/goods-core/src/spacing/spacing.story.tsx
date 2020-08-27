@@ -1,17 +1,18 @@
 import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
 import spacing, { spacingConstants, Spacing } from '.'
 import { Div } from '../basics/div'
 import { Line } from '../basics/line'
 import { Text } from '../typography'
-import { Story } from '../utils/storybook'
+import { utilsStoryParameters } from '../utils/storybook'
 import SpacingDocs from './spacing.docs'
 
 const spacingNames = Object.keys(spacingConstants) as Spacing[]
 
 export default {
   title: 'Core/Spacing',
-  parameters: { docs: { page: SpacingDocs } },
-}
+  parameters: { docs: { page: SpacingDocs }, ...utilsStoryParameters },
+} as Meta
 
 export const SpacingExample: Story = () => {
   return (

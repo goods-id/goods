@@ -1,5 +1,4 @@
 import React from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { useGoods } from '../goods-context'
 import { GoodsDocs, Section } from '../utils/storybook.docs'
@@ -113,7 +112,7 @@ const ColorPalette: React.FC<ColorPaletteProps> = props => {
   )
 }
 
-const ColorDocs: React.FC<DocsPageProps> = props => {
+const ColorDocs: React.FC = () => {
   const { spacing } = useGoods()
   return (
     <GoodsDocs
@@ -126,7 +125,6 @@ const ColorDocs: React.FC<DocsPageProps> = props => {
       withoutPropsTable
       withoutStories
       withoutDocsTitle
-      {...props}
     >
       <Section title="I. Principles" m={spacing('xl', '0', 'm')} noChildTab>
         <Text rule="body" m={spacing('xxs', '0')}>

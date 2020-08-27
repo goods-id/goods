@@ -27,7 +27,6 @@ const SORT_ORDER = {
 }
 
 addParameters({
-  viewMode: 'docs',
   options: {
     storySort: sortStories(SORT_ORDER),
     showRoots: true,
@@ -36,6 +35,7 @@ addParameters({
   viewport: {
     viewports: INITIAL_VIEWPORTS,
   },
+  actions: { argTypesRegex: '^on.*' },
   docs: {
     container: ({ children, context }) => {
       return (

@@ -1,13 +1,19 @@
 import React from 'react'
-import { Image } from '.'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import { Image, ImageProps } from '.'
 import { useGoods } from '../../goods-context'
 
-export default {
+const storyMetaData: Meta<ImageProps> = {
   title: 'Basics/Image',
   component: Image,
+  argTypes: {
+    bg: { control: 'color' },
+  },
 }
 
-export const ImageExample: React.FC = () => {
+export default storyMetaData
+
+export const ImageExample: Story<ImageProps> = ({ ref: _, ...args }) => {
   const { spacing } = useGoods()
   return (
     <Image
@@ -16,6 +22,7 @@ export const ImageExample: React.FC = () => {
       w="300px"
       p={spacing('m')}
       radius="32px"
+      {...args}
     />
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
 import { select, color, text, number } from '@storybook/addon-knobs'
 import { Icon, IconName, IconSize, IconRotate } from '.'
 import { useGoods } from '../goods-context'
 import { Div } from '../basics/div'
-import { Story } from '../utils/storybook'
 import IconDocs from './icon.docs'
 
 const iconNames = Object.values(IconName)
@@ -27,7 +27,7 @@ export default {
   title: 'Core/Icon',
   component: Icon,
   parameters: { docs: { page: IconDocs } },
-}
+} as Meta
 
 export const All: Story = () => {
   const { spacing } = useGoods()
@@ -64,8 +64,6 @@ export const WithKnobs: Story = () => {
   )
 }
 
-WithKnobs.story = {
-  parameters: {
-    docs: { disable: true },
-  },
+WithKnobs.parameters = {
+  docs: { disable: true },
 }

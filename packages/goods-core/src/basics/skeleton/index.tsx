@@ -104,7 +104,7 @@ export interface SkeletonCssProps<TLength = string | 0> {
   d?: DisplayProperty
 }
 
-const SkeletonStyled = styled.span<SkeletonCssProps>(
+export const SkeletonStyled = styled.span<SkeletonCssProps>(
   ({
     w = '300px',
     h = '20px',

@@ -1,14 +1,15 @@
 import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
 import radius, { Radius } from '.'
 import RadiusDocs from './radius.docs'
-import { Story } from '../utils/storybook'
+import { utilsStoryParameters } from '../utils/storybook'
 import { Div } from '../basics/div'
 import { Text } from '../typography'
 
 export default {
   title: 'Core/Corner Radius',
-  parameters: { docs: { page: RadiusDocs } },
-}
+  parameters: { docs: { page: RadiusDocs }, ...utilsStoryParameters },
+} as Meta
 
 const radiusNames: Radius[] = ['m', 'l', 'full']
 const radiusNameAliases = ['fixed-medium', 'fixed-large', 'auto-full']

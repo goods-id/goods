@@ -59,8 +59,6 @@ export interface TextCssProps {
   dRule?: DesktopRule
   /**
    * Font family.
-   * @default theme.fontBase
-   * @default "Rubik"
    * */
   fontFam?: FontFamilyProperty
   /**
@@ -88,7 +86,6 @@ export interface TextCssProps {
   textAlign?: InBreakpoint<TextAlignProperty, TextBreakpoint>
   /**
    * Font color
-   * @default theme.colors.black30
    * */
   c?: ColorProperty
 }
@@ -173,7 +170,8 @@ export const mobileBasicSettings: MobileBasicSettings = {
   },
 }
 
-const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
+export const TextStyled = styled.p<TextCssProps>(p => {
+  const { rule, dRule, theme, ...props } = p
   const ruleBased = rule && mobileBasicSettings[rule]
   const dRuleBased = dRule
     ? desktopBasicSettings[dRule]
@@ -224,6 +222,8 @@ const P = styled.p<TextCssProps>(({ rule, dRule, theme, ...props }) => {
  */
 export const Text: React.MemoExoticComponent<React.ForwardRefExoticComponent<
   TextProps & React.RefAttributes<HTMLText>
->> = React.memo(React.forwardRef((props, ref) => <P ref={ref} {...props} />))
+>> = React.memo(
+  React.forwardRef((props, ref) => <TextStyled ref={ref} {...props} />)
+)
 
 export default Text

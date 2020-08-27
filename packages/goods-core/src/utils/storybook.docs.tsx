@@ -2,14 +2,12 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import {
   DocsContext,
-  StringSlot,
-  defaultTitleSlot,
-  DocsPageProps,
-  Props,
+  extractTitle,
   Primary,
   Stories,
   Description,
   getComponent,
+  ArgsTable,
 } from '@storybook/addon-docs/dist/blocks'
 import { Text } from '../typography'
 import { Div, DivProps } from '../basics/div'
@@ -18,14 +16,11 @@ import { useGoods } from '../goods-context'
 import { InBreakpoint, getValueInBp } from '../breakpoints'
 
 interface TitleProps {
-  slot?: StringSlot
   version?: string
   designDesc?: string
 }
 
-export interface GoodsDocsProps
-  extends Omit<TitleProps, 'slot'>,
-    DocsPageProps {
+export interface GoodsDocsProps extends TitleProps {
   withoutPropsTable?: boolean
   withoutStories?: boolean
   excludedProps?: string[]
@@ -54,15 +49,14 @@ function getChapter(chapterName: string): string {
 }
 
 export const Title: React.FC<TitleProps> = ({
-  slot,
   version = '1.0.0',
   designDesc,
 }) => {
   const context = useContext(DocsContext)
-  const { selectedKind = '' } = context
-  const [chapterName] = selectedKind.split('/')
+  const { kind = '' } = context
+  const [chapterName] = kind.split('/')
   const theme = useGoods()
-  const text = slot ? slot(context) : defaultTitleSlot(context)
+  const text = extractTitle(context)
   return (
     <>
       <Text as="h1" rule="title">
@@ -81,11 +75,6 @@ export const Title: React.FC<TitleProps> = ({
 
 export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
   const {
-    titleSlot,
-    descriptionSlot,
-    primarySlot,
-    propsSlot,
-    storiesSlot,
     designDesc,
     version,
     withoutPropsTable,
@@ -107,14 +96,14 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
 
   return (
     <>
-      <Title slot={titleSlot} designDesc={designDesc} version={version} />
-      <Description slot={descriptionSlot} />
+      <Title designDesc={designDesc} version={version} />
+      <Description />
       {!withoutStories && (
         <>
           <Text rule="title" weight={500} m="16px 0px">
             Example
           </Text>
-          <Primary slot={primarySlot} />
+          <Primary />
         </>
       )}
       {children && (
@@ -132,10 +121,10 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
           <Text rule="title" weight={500} m="24px 0px">
             Props
           </Text>
-          <Props slot={propsSlot} exclude={excludedProps} />
+          <ArgsTable exclude={excludedProps} />
         </>
       )}
-      {!withoutStories && <Stories slot={storiesSlot} />}
+      {!withoutStories && <Stories />}
     </>
   )
 }

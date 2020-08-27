@@ -80,7 +80,7 @@ export interface LineCssProps<TLength = string | 0> {
   b?: BorderProperty<TLength>
 }
 
-const LineStyled = styled.div<LineCssProps>(
+export const LineStyled = styled.div<LineCssProps>(
   ({
     w,
     h = '2px',
@@ -124,5 +124,7 @@ export const Line: React.MemoExoticComponent<React.ForwardRefExoticComponent<
 >> = React.memo(
   React.forwardRef((props, ref) => <LineStyled as="hr" ref={ref} {...props} />)
 )
+
+export { SeparatorProps as LineProps }
 
 export default Line

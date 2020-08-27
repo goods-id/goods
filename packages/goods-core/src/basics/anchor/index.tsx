@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BackgroundColorProperty, ColorProperty } from 'csstype'
-import { Text, TextProps, HTMLText } from '../../typography'
+import { TextStyled, TextProps, HTMLText } from '../../typography'
 
 interface AnchorCssProps {
   /**
@@ -16,7 +16,8 @@ interface AnchorCssProps {
 
 export interface AnchorProps extends AnchorCssProps, TextProps {}
 
-const AnchorStyled = styled(Text)<AnchorProps>(({ hoverBg, hoverColor }) => {
+export const AnchorStyled = styled(TextStyled)<AnchorProps>(props => {
+  const { hoverBg, hoverColor } = props
   return {
     cursor: 'pointer',
     display: 'block',

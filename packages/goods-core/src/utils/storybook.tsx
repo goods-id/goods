@@ -26,3 +26,9 @@ export const Log: React.FC<LogProps> = ({ value }) => {
     </pre>
   )
 }
+
+export const utilsStoryParameters = {
+  controls: { disabled: true },
+  knobs: { disabled: true },
+  viewMode: 'docs',
+}

@@ -15,6 +15,10 @@
 
 ### Addons
 
+- [Docs](https://github.com/storybookjs/storybook/tree/master/addons/docs)
+  To write components/utils docs from designer, display component props and description.
+- [Controls](https://github.com/storybookjs/storybook/tree/master/addons/controls)
+  "Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically, without needing to code."
 - [Actions](https://github.com/storybookjs/storybook/tree/master/addons/actions)
   To simulate HTML event listener such as onClick, onMouseOver, etc.
 - [Links](https://github.com/storybookjs/storybook/tree/master/addons/links)
@@ -29,8 +33,6 @@
   To show story source in the panel. It is useful when developers want to copy example usage of a component.
 - [JSX](https://github.com/storybookjs/addon-jsx)
   To show **evaluated** jsx of a story in the panel.
-- [Docs](https://github.com/storybookjs/storybook/tree/master/addons/docs)
-  To write components/utils docs from designer, display component props and description.
 
 ### Parameters and Decorators
 
@@ -51,7 +53,6 @@
 
   ```typescript
   // typography.docs.tsx file
-  import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
   import { GoodsDocs } from '../utils/storybook.docs'
 
   const excludedProps = [
@@ -68,7 +69,7 @@
     'onMouseOut',
   ]
 
-  const TextDocs: React.FC<DocsPageProps> = props => {
+  const TextDocs: React.FC = () => {
     return (
       <GoodsDocs
         designDesc={`
@@ -79,7 +80,6 @@
           user experience of the product.
         `}
         excludedProps={excludedProps}
-        {...props}
       >
         {/* Write documentation from designer here  */}
       </GoodsDocs>
@@ -94,19 +94,18 @@
   ```typescript
   // radius.docs.tsx file
   import React from 'react'
-  import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
   import { GoodsDocs } from '../utils/storybook.docs'
 
-  const RadiusDocs: React.FC<DocsPageProps> = props => {
+  const RadiusDocs: React.FC = () => {
     return (
       <GoodsDocs
         withoutPropsTable
         withoutStories
+        withoutDocsTitle
         designDesc={`
           Corner Radius is used to differentiate between a group of components to the other.
           It also helps to build memorability of shape, whether it is accessible or not.
         `}
-        {...props}
       >
         {/* Write documentation from designer here */}
       </GoodsDocs>
@@ -123,6 +122,7 @@
   ```typescript
   // typography.stories.tsx file
   import React from 'react'
+  import { Story, Meta } from '@storybook/react/types-6-0'
   /* another import(s) (if any) */
   import { Text } from '.'
   import TextDocs from './typography.docs'
@@ -131,7 +131,7 @@
     title: 'Core/Typography',
     component: Text,
     parameters: { docs: { page: TextDocs } },
-  }
+  } as Meta
   ```
 
 **Resources**:
@@ -142,28 +142,54 @@
 ### Writing Component Stories
 
 - `export default` story meta data. Must have `title` and `component` properties.
-- At least 1 simple usage without knobs
-- At least 1 example with knobs for all defined props
-- Use `Story` (imported from `goods-core/src/utils/storybook`) to annotate story function such that it can be a react function component and can have `story` property.
+- Use `Story` (imported from `@storybook/react/types-6-0`) to annotate story function such that it can be a react function component and can have `story` property.
 
 ### Writing Util Story
 
 - Doesn't need `component` property in story meta data
-- Only 1 story function and it must be named by `' '` (space) in `story.name` property and return empty react element
 
 Example:
 
 ```typescript
 // radius.story.tsx file
 import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import radius, { Radius } from '.'
 import RadiusDocs from './radius.docs'
-import { Story } from '../utils/storybook'
+import { utilsStoryParameters } from '../utils/storybook'
+import { Div } from '../basics/div'
+import { Text } from '../typography'
 
 export default {
   title: 'Core/Corner Radius',
-  parameters: { docs: { page: RadiusDocs } },
-}
+  parameters: { docs: { page: RadiusDocs }, ...utilsStoryParameters },
+} as Meta
 
-export const radius: Story = () => <></>
-radius.story = { name: ' ' }
+const radiusNames: Radius[] = ['m', 'l', 'full']
+const radiusNameAliases = ['fixed-medium', 'fixed-large', 'auto-full']
+
+export const RadiusExample: Story = () => {
+  return (
+    <Div fDir="row" p="16px" fJustify="space-between" w="100%">
+      {radiusNames.map((name, i) => (
+        <Div
+          key={name}
+          w="150px"
+          h="100px"
+          fAlign="center"
+          fJustify="center"
+          b="1px solid black"
+          radius={radius(name)}
+        >
+          <Text rule="body" textAlign="center">
+            {name}
+          </Text>
+          <Text rule="body" weight="bold" textAlign="center">
+            {`(${radiusNameAliases[i]})`}
+          </Text>
+        </Div>
+      ))}
+    </Div>
+  )
+}
 ```

@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 import React from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { Text } from '../typography'
 import { useGoods } from '../goods-context'
@@ -106,7 +105,7 @@ const SpacingSetting: React.FC<SpacingSettingProps> = props => {
   )
 }
 
-const SpacingDocs: React.FC<DocsPageProps> = props => {
+const SpacingDocs: React.FC = () => {
   return (
     <GoodsDocs
       withoutPropsTable
@@ -118,7 +117,6 @@ const SpacingDocs: React.FC<DocsPageProps> = props => {
         Apply consistent spacing to improve the quality of the UI so that
         we can provide the best experience for users.
       `}
-      {...props}
     >
       <Section title="I. Spacing System" m="40px 0px" noChildTab>
         <Text rule="body" m="16px 0px 0px">

@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useMemo, ChangeEvent, FC } from 'react'
-import { DocsPageProps } from '@storybook/addon-docs/dist/blocks'
 import { Div } from '../basics/div'
 import { Text } from '../typography'
 import { useGoods } from '../goods-context'
@@ -46,7 +45,7 @@ const excludedProps = [
   'onBlur',
 ]
 
-const IconDocs: FC<DocsPageProps> = props => {
+const IconDocs: FC = () => {
   const { colors, spacing } = useGoods()
   const [searchKey, setSearchKey] = useState('')
 
@@ -71,7 +70,6 @@ const IconDocs: FC<DocsPageProps> = props => {
         or a feature.
       `}
       excludedProps={excludedProps}
-      {...props}
     >
       <ImageBox
         imageSrc={IconDesignImg}
