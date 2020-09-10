@@ -1,11 +1,11 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Div, DivProps } from '.'
+import { Div, DivProps, Box, BoxProps } from '.'
 import { useGoods } from '../../goods-context'
 
-const storyMetaData: Meta<DivProps> = {
+const storyMetaData: Meta<BoxProps> = {
   title: 'Basics/Div',
-  component: Div,
+  component: Box,
   argTypes: {
     bg: { control: 'color' },
     c: { control: 'color' },
@@ -39,4 +39,19 @@ DivExample.args = {
   overflow: 'scroll',
   w: '300px',
   h: '300px',
+}
+
+export const BoxExample: Story<BoxProps> = args => {
+  return (
+    <Box
+      bg="blue50"
+      c="white20"
+      w={{ xs: 1, sm: 1 / 2, lg: 700, md: '5em' }}
+      h="300px"
+      d="flex"
+      {...args}
+    >
+      Goods Core - Basics - Box
+    </Box>
+  )
 }

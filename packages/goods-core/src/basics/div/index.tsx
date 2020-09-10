@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { compose } from 'styled-system'
 import {
   WidthProperty,
   HeightProperty,
@@ -47,7 +48,9 @@ import {
   BorderBottomColorProperty,
   GlobalsNumber,
 } from 'csstype'
-import { BaseProps } from '../../@types/global'
+import { BaseProps, StyledComponentProps } from '../../@types/global'
+import { color, ColorProps } from '../../@goods-system/color'
+import { layout, LayoutProps } from '../../@goods-system/layout'
 
 export interface DivCssProps<TLength = string | 0> {
   /**
@@ -423,3 +426,9 @@ export const Div: React.MemoExoticComponent<React.ForwardRefExoticComponent<
 )
 
 export default Div
+
+export interface BoxStyledProps extends LayoutProps, ColorProps {}
+
+export const Box = styled.div<BoxStyledProps>(compose(layout, color))
+
+export type BoxProps = StyledComponentProps<'div', BoxStyledProps>

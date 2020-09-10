@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ThemeProvider, ThemeContext, DefaultTheme } from 'styled-components'
 import GlobalStyle from '../global-style'
-import defaultTheme from '../theme'
+import { goodsTheme } from '../theme'
 
 interface GoodsProviderProps {
   noGlobalStyle?: boolean
@@ -16,11 +16,11 @@ export const useGoods = (): DefaultTheme => React.useContext(ThemeContext)
 
 export const GoodsProvider: React.FC<GoodsProviderProps> = ({
   noGlobalStyle = false,
-  theme = defaultTheme,
+  theme = goodsTheme,
   children,
 }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme as DefaultTheme}>
       {!noGlobalStyle && <GlobalStyle />}
       {children}
     </ThemeProvider>
