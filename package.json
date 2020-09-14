@@ -13,6 +13,7 @@
     "packages/*"
   ],
   "scripts": {
+    "commit": "cz",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna run clean",
     "lerna": "lerna",
