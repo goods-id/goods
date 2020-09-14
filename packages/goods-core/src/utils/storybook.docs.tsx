@@ -13,7 +13,7 @@ import { Text } from '../typography'
 import { Div, DivProps } from '../basics/div'
 import { Image } from '../basics/image'
 import { useGoods } from '../goods-context'
-import { InBreakpoint, getValueInBp } from '../breakpoints'
+import { InBreakpoint, getValueInBp, createMediaQuery } from '../breakpoints'
 
 interface TitleProps {
   version?: string
@@ -55,7 +55,6 @@ export const Title: React.FC<TitleProps> = ({
   const context = useContext(DocsContext)
   const { kind = '' } = context
   const [chapterName] = kind.split('/')
-  const theme = useGoods()
   const text = extractTitle(context)
   return (
     <>
@@ -65,7 +64,7 @@ export const Title: React.FC<TitleProps> = ({
           {text}
         </Text>
       </Text>
-      <Text rule="subtitle" dRule="body-bold" m={theme.spacing('m', '0')}>
+      <Text rule="subtitle" dRule="body-bold" my="m">
         {`Version ${version}`}
       </Text>
       {designDesc && <Text rule="body">{designDesc}</Text>}
@@ -100,7 +99,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       <Description />
       {!withoutStories && (
         <>
-          <Text rule="title" weight={500} m="16px 0px">
+          <Text rule="title" weight={500} my="s">
             Example
           </Text>
           <Primary />
@@ -109,7 +108,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       {children && (
         <>
           {!withoutDocsTitle && (
-            <Text rule="title" weight={500} m="16px 0px">
+            <Text rule="title" weight={500} my="s">
               Documentation
             </Text>
           )}
@@ -118,7 +117,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       )}
       {component && (
         <>
-          <Text rule="title" weight={500} m="24px 0px">
+          <Text rule="title" weight={500} my="m">
             Props
           </Text>
           <ArgsTable exclude={excludedProps} />
@@ -143,14 +142,10 @@ export const Section: React.FC<SectionProps> = ({
   noChildTab = false,
   ...divProps
 }) => {
-  const { spacing, colors } = useGoods()
+  const { spacing } = useGoods()
   return (
     <Div m={spacing('0', '0', 'l')} fDir="column" w="100%" {...divProps}>
-      <Text
-        c={colors.black40}
-        rule={!tabSpacing ? 'subtitle' : 'body'}
-        weight={500}
-      >
+      <Text c="black40" rule={!tabSpacing ? 'subtitle' : 'body'} weight={500}>
         {title}
       </Text>
       <Div
@@ -216,17 +211,21 @@ function getGridTemplateColumns(
 export const Grid = styled(Div)<GridProps>(props => {
   const { column, theme } = props
   const { breakpoints } = theme
+  const sm = createMediaQuery(breakpoints?.sm || '')
+  const md = createMediaQuery(breakpoints?.md || '')
+  const lg = createMediaQuery(breakpoints?.lg || '')
+  const xl = createMediaQuery(breakpoints?.xl || '')
   return {
     display: 'grid',
     width: props.w || '100%',
     gridTemplateColumns: getGridTemplateColumns(column, 'xs'),
-    [breakpoints('sm')]: {
+    [sm]: {
       gridTemplateColumns: getGridTemplateColumns(column, ['sm', 'xs']),
     },
-    [breakpoints('md')]: {
+    [md]: {
       gridTemplateColumns: getGridTemplateColumns(column, ['md', 'sm', 'xs']),
     },
-    [breakpoints('lg')]: {
+    [lg]: {
       gridTemplateColumns: getGridTemplateColumns(column, [
         'lg',
         'md',
@@ -234,7 +233,7 @@ export const Grid = styled(Div)<GridProps>(props => {
         'xs',
       ]),
     },
-    [breakpoints('xl')]: {
+    [xl]: {
       gridTemplateColumns: getGridTemplateColumns(column, [
         'xl',
         'lg',

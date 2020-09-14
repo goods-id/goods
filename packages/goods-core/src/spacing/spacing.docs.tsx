@@ -87,7 +87,7 @@ const SpacingSetting: React.FC<SpacingSettingProps> = props => {
   const { colors } = useGoods()
   return (
     <Div w="100%" m="16px 0px">
-      <Text rule="body" weight="bold" m="0px 0px 16px">
+      <Text rule="body" weight="bold" mb="s">
         {title}
       </Text>
       {imageSrc && (
@@ -119,7 +119,7 @@ const SpacingDocs: React.FC = () => {
       `}
     >
       <Section title="I. Spacing System" m="40px 0px" noChildTab>
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           All spacing on Pomona components and typography use an increments of 4
           pixels. It forms the basic unit of measurement for spacing.
         </Text>
@@ -129,7 +129,7 @@ const SpacingDocs: React.FC = () => {
           w="416px"
           m="32px 0px 0px"
         />
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           Pomona UI components line heights are set in increments of 4 pixels
           and spacing is measured from the edges of the components.
         </Text>
@@ -139,12 +139,12 @@ const SpacingDocs: React.FC = () => {
           w="416px"
           m="32px 0px 0px"
         />
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           Components are sized in increments of 20 pixels to match the line
           height of content, in this case the body text. This provide harmonious
           arrangements of components and the content.
         </Text>
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           For example, the standard sizes of our receipt picture component have
           been chosen to match the line height of body text.
         </Text>
@@ -154,13 +154,13 @@ const SpacingDocs: React.FC = () => {
           w="408px"
           m="16px 0px 0px"
         />
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           To provide rooms between the end point of the content and the bottom
           of the component, we multiplied the spacing sizes between the start
           point of the content with the top of the component with 1.5, then
           modify it to fit the 8 points increment rules to get harmony.
         </Text>
-        <Text rule="body" m="16px 0px 0px">
+        <Text rule="body" mt="s">
           For example, below we have content with 24px spacing rooms, we
           multiplied it with 1.5 and get 36px. Since 36 is not an increment of
           8, we rolled back the number to 32 to fit the rules. The same
@@ -184,7 +184,7 @@ const SpacingDocs: React.FC = () => {
         </Div>
       </Section>
       <Section title="II. Spacing Settings" noChildTab>
-        <Text rule="body" m="16px 0px 24px">
+        <Text rule="body" mt="s" mb="m">
           Pomona set spacing standard sizes to define one source of truth for
           both design and engineering team while developing a product.
         </Text>

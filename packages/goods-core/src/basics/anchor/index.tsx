@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BackgroundColorProperty, ColorProperty } from 'csstype'
-import { TextStyled, TextProps, HTMLText } from '../../typography'
+import { Text, TextCssProps } from '../../typography'
+import { StyledComponentProps } from '../../@types/global'
 
 interface AnchorCssProps {
   /**
@@ -14,9 +15,9 @@ interface AnchorCssProps {
   hoverColor?: ColorProperty
 }
 
-export interface AnchorProps extends AnchorCssProps, TextProps {}
+export interface AnchorProps extends AnchorCssProps, TextCssProps {}
 
-export const AnchorStyled = styled(TextStyled)<AnchorProps>(props => {
+export const AnchorStyled = styled(Text)<AnchorProps>(props => {
   const { hoverBg, hoverColor } = props
   return {
     cursor: 'pointer',
@@ -30,7 +31,8 @@ export const AnchorStyled = styled(TextStyled)<AnchorProps>(props => {
 })
 
 export const Anchor: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  AnchorProps & React.RefAttributes<HTMLText>
+  Omit<StyledComponentProps<'a', AnchorProps>, 'as'> &
+    React.RefAttributes<HTMLAnchorElement>
 >> = React.memo(
   React.forwardRef((props, ref) => <AnchorStyled ref={ref} as="a" {...props} />)
 )

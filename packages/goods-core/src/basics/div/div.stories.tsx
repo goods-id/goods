@@ -6,13 +6,23 @@ import { useGoods } from '../../goods-context'
 const storyMetaData: Meta<BoxProps> = {
   title: 'Basics/Div',
   component: Box,
-  argTypes: {
-    bg: { control: 'color' },
-    c: { control: 'color' },
-  },
 }
 
 export default storyMetaData
+
+export const BoxExample: Story<BoxProps> = args => {
+  return <Box {...args}>Goods Core - Basics - Box</Box>
+}
+
+BoxExample.args = {
+  bg: 'black40',
+  bgAlpha: 0.3,
+  c: 'black40',
+  cAlpha: 0.99,
+  w: { xs: 1, sm: 1 / 2, lg: 700, md: '5em' },
+  h: '300px',
+  d: 'flex',
+}
 
 export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {
   const { spacing, colors, radius } = useGoods()
@@ -39,19 +49,4 @@ DivExample.args = {
   overflow: 'scroll',
   w: '300px',
   h: '300px',
-}
-
-export const BoxExample: Story<BoxProps> = args => {
-  return (
-    <Box
-      bg="blue50"
-      c="white20"
-      w={{ xs: 1, sm: 1 / 2, lg: 700, md: '5em' }}
-      h="300px"
-      d="flex"
-      {...args}
-    >
-      Goods Core - Basics - Box
-    </Box>
-  )
 }

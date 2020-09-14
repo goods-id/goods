@@ -429,6 +429,8 @@ export default Div
 
 export interface BoxStyledProps extends LayoutProps, ColorProps {}
 
-export const Box = styled.div<BoxStyledProps>(compose(layout, color))
+export const Box = styled.div<BoxStyledProps>(({ d = 'flex', ...props }) =>
+  compose(layout, color)({ d, ...props })
+)
 
 export type BoxProps = StyledComponentProps<'div', BoxStyledProps>

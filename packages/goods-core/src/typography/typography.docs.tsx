@@ -4,19 +4,19 @@ import { Line } from '../basics/line'
 import { Image } from '../basics/image'
 import { useGoods } from '../goods-context'
 import { GoodsDocs, Section, Point } from '../utils/storybook.docs'
+import { Text } from '.'
 import {
-  Text,
-  DesktopRule,
-  MobileRule,
-  desktopBasicSettings,
-  mobileBasicSettings,
-} from '.'
+  TypographyDesktopRule,
+  TypographyMobileRule,
+  typographyDesktopRuleSettings,
+  typographyMobileRuleSettings,
+} from '../@goods-system/typography'
 
 const LineHeightImg = require('../../assets/stories/line-height.png')
 const CharSpacingImg = require('../../assets/stories/character-spacing.png')
 const SettingGuideImg = require('../../assets/stories/settings-guide.png')
 
-const desktopRules: { id: DesktopRule; [key: string]: string }[] = [
+const desktopRules: { id: TypographyDesktopRule; [key: string]: string }[] = [
   {
     id: 'title',
     title: 'Title',
@@ -55,7 +55,7 @@ const desktopRules: { id: DesktopRule; [key: string]: string }[] = [
   },
 ]
 
-const mobileRules: { id: MobileRule; [key: string]: string }[] = [
+const mobileRules: { id: TypographyMobileRule; [key: string]: string }[] = [
   {
     id: 'title',
     title: 'Title',
@@ -98,8 +98,8 @@ interface RulesProps {
   title: string
   subtitle: string
   example: string
-  rule?: MobileRule
-  dRule?: DesktopRule
+  rule?: TypographyMobileRule
+  dRule?: TypographyDesktopRule
 }
 
 const Rules: React.FC<RulesProps> = ({
@@ -109,11 +109,11 @@ const Rules: React.FC<RulesProps> = ({
   rule,
   dRule,
 }) => {
-  const { colors, spacing } = useGoods()
+  const { spacing } = useGoods()
   const { fontSize, fontWeight, letterSpacing, lineHeight } = rule
-    ? mobileBasicSettings[rule]
+    ? typographyMobileRuleSettings[rule]
     : dRule
-    ? desktopBasicSettings[dRule]
+    ? typographyDesktopRuleSettings[dRule]
     : { fontSize: '', fontWeight: undefined, letterSpacing: '', lineHeight: '' }
 
   return (
@@ -122,7 +122,7 @@ const Rules: React.FC<RulesProps> = ({
         <Text size="16px" lineHeight="24px">
           {title}
         </Text>
-        <Text size="16px" weight={300} lineHeight="24px" c={colors.black20}>
+        <Text size="16px" weight={300} lineHeight="24px" c="black20">
           {subtitle}
         </Text>
       </Div>
@@ -134,7 +134,7 @@ const Rules: React.FC<RulesProps> = ({
           weight={fontWeight}
           letterSpace={letterSpacing}
           lineHeight={lineHeight}
-          c={colors.black40}
+          c="black40"
         >
           {example}
         </Text>
@@ -158,12 +158,7 @@ const TextDocs: React.FC = () => {
       <Section title="I. Brief">
         <Div fDir="row" fAlign="center" fWrap="wrap">
           <Div>
-            <Text
-              weight={500}
-              size="96px"
-              lineHeight="128px"
-              c={colors.black40}
-            >
+            <Text weight={500} size="96px" lineHeight="128px" c="black40">
               Aa
             </Text>
           </Div>
@@ -174,7 +169,7 @@ const TextDocs: React.FC = () => {
             m={spacing('0', 'l', '0', 'xxxl')}
           />
           <Div fDir="column" minW="300px" maxW="600px">
-            <Text weight={500} size="32px" lineHeight="40px" c={colors.blue50}>
+            <Text weight={500} size="32px" lineHeight="40px" c="blue50">
               Rubik
             </Text>
             <Div m={spacing('s', '0', '0')}>
@@ -241,7 +236,7 @@ const TextDocs: React.FC = () => {
         </Div>
       </Section>
       <Section title="III. Typography Rules">
-        <Text rule="body" c={colors.black40}>
+        <Text rule="body" c="black40">
           These type settings are derived from base font size of 14pt and scale
           of Major Third (1.250). These are just basic settings and can be
           derived into multiple styles by changing its color or adding other UI
@@ -281,7 +276,7 @@ const TextDocs: React.FC = () => {
               />
             ))}
             <Div m="40px 0px 0xp">
-              <Text rule="caption" c={colors.black40}>
+              <Text rule="caption" c="black40">
                 * Medium and small button label must be used on button sized
                 less than 40px
               </Text>

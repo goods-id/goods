@@ -5,6 +5,7 @@ import { Text } from '../typography'
 import colors, { blue, orange, black, green, red, white, getInverseBw } from '.'
 import ColorDocs from './color.docs'
 import { utilsStoryParameters } from '../utils/storybook'
+import { ColorProps } from '../@goods-system/color'
 
 export default {
   title: 'Core/Colour',
@@ -21,7 +22,7 @@ interface ShowColorListProps {
 }
 
 const ShowColor: React.FC<ShowColorProps> = ({ displayColor, colorName }) => {
-  const c = getInverseBw(displayColor)
+  const c = getInverseBw(displayColor) as ColorProps['c']
   return (
     <Div
       w="80%"

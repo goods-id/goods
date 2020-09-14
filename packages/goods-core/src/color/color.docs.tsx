@@ -4,6 +4,7 @@ import { useGoods } from '../goods-context'
 import { GoodsDocs, Section } from '../utils/storybook.docs'
 import { Text } from '../typography'
 import colors, { blue, orange, black, green, red, white, getInverseBw } from '.'
+import { ColorProps } from '../@goods-system/color'
 
 type Color = typeof colors
 type ColorName = keyof Color
@@ -68,7 +69,7 @@ const colorPalettes: ColorPaletteProps[] = [
 const ShowColor: React.FC<ShowColorProps> = props => {
   const { h, colorName, colorValue, isPrimary } = props
   const { spacing } = useGoods()
-  const c = getInverseBw(colorValue)
+  const c = getInverseBw(colorValue) as ColorProps['c']
   return (
     <Div
       w="100%"
@@ -127,7 +128,7 @@ const ColorDocs: React.FC = () => {
       withoutDocsTitle
     >
       <Section title="I. Principles" m={spacing('xl', '0', 'm')} noChildTab>
-        <Text rule="body" m={spacing('xxs', '0')}>
+        <Text rule="body" my="xxs">
           These guidelines are our framework upon how we use colour both inside
           and outside of our system in Pomona.
         </Text>
@@ -141,7 +142,7 @@ const ColorDocs: React.FC = () => {
         ))}
       </Section>
       <Section title="II. Colour Palette" noChildTab>
-        <Text rule="body" m={spacing('xxs', '0')}>
+        <Text rule="body" my="xxs">
           Our colour palette is built with our values and our guidelines as its
           foundation.
         </Text>

@@ -34,3 +34,7 @@ export const getValueInBp = <
 export default function breakpoints(name: Exclude<Breakpoint, 'xs'>): string {
   return `@media screen and (min-width: ${breakpointConstants[name]})`
 }
+
+export function createMediaQuery(minWidth: string): string {
+  return `@media screen and (min-width: ${minWidth})`
+}

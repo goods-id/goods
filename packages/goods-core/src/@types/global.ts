@@ -8,7 +8,7 @@ import { ConfigStyle } from 'styled-system'
 import { Theme, ThemeType } from '../theme'
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends Theme, ThemeType {}
+  export interface DefaultTheme extends Omit<Theme, 'breakpoints'>, ThemeType {}
 }
 
 export interface BaseIconProps extends React.SVGProps<SVGSVGElement> {
@@ -45,3 +45,8 @@ export type StyledComponentProps<
   as: keyof JSX.IntrinsicElements
   forwardedAs: keyof JSX.IntrinsicElements
 }
+
+export type ResponsiveValue<T, Theme extends ThemeType = ThemeType> =
+  | T
+  | null
+  | { [key in keyof Required<Theme>['breakpoints']]?: T }

@@ -45,6 +45,10 @@ module.exports = {
   ],
 
   addons: [
+    {
+      name: '@storybook/addon-docs',
+      options: { sourceLoaderOptions },
+    },
     '@storybook/addon-controls',
     {
       name: '@storybook/addon-storysource',
@@ -56,10 +60,6 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-viewport/register',
     'storybook-addon-jsx',
-    {
-      name: '@storybook/addon-docs',
-      options: { sourceLoaderOptions },
-    },
   ],
 
   typescript: {
