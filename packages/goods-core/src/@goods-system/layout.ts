@@ -16,7 +16,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive width styles.
    */
-  w?: ResponsiveValue<CSS.WidthProperty<TLength>, Theme>
+  w?: ResponsiveValue<CSS.WidthProperty<TLength> | boolean, Theme>
   /**
    * Converted it into a CSS min-width declaration.
    *
@@ -59,7 +59,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive height styles.
    */
-  h?: ResponsiveValue<CSS.HeightProperty<TLength>, Theme>
+  h?: ResponsiveValue<CSS.HeightProperty<TLength> | boolean, Theme>
   /**
    *  Converted into a CSS min-height declaration.
    *
@@ -157,7 +157,7 @@ export interface LayoutProps<
 
 const isNumber = n => typeof n === 'number' && !Number.isNaN(n)
 const getSize = (n, scale) =>
-  get(scale, n, !isNumber(n) || n > 1 ? n : `${n * 100}%`)
+  get(scale, n, n === true ? '100%' : !isNumber(n) || n > 1 ? n : `${n * 100}%`)
 
 const config: Config<LayoutProps> = {
   w: { property: 'width', transform: getSize },
