@@ -49,8 +49,20 @@ import {
   GlobalsNumber,
 } from 'csstype'
 import { BaseProps, StyledComponentProps } from '../../@types/global'
-import { color, ColorProps } from '../../@goods-system/color'
-import { layout, LayoutProps } from '../../@goods-system/layout'
+import {
+  color,
+  layout,
+  spacing,
+  flexbox,
+  position,
+  background,
+  BackgroundProps,
+  PositionProps,
+  ColorProps,
+  SpacingProps,
+  LayoutProps,
+  FlexboxProps,
+} from '../../@goods-system'
 
 export interface DivCssProps<TLength = string | 0> {
   /**
@@ -427,10 +439,24 @@ export const Div: React.MemoExoticComponent<React.ForwardRefExoticComponent<
 
 export default Div
 
-export interface BoxStyledProps extends LayoutProps, ColorProps {}
+export interface BoxStyledProps
+  extends LayoutProps,
+    ColorProps,
+    SpacingProps,
+    FlexboxProps,
+    BackgroundProps,
+    PositionProps {}
 
-export const Box = styled.div<BoxStyledProps>(({ d = 'flex', ...props }) =>
-  compose(layout, color)({ d, ...props })
+export const Box = styled.div<BoxStyledProps>(
+  ({ d = 'flex', fDir = 'column', ...props }) =>
+    compose(
+      layout,
+      color,
+      spacing,
+      flexbox,
+      background,
+      position
+    )({ d, fDir, ...props })
 )
 
 export type BoxProps = StyledComponentProps<'div', BoxStyledProps>

@@ -1,8 +1,8 @@
 import * as CSS from 'csstype'
-import { system, get, ResponsiveValue } from 'styled-system'
+import { system, get } from 'styled-system'
 
 import { ThemeType } from '../theme'
-import { Config } from '../@types/global'
+import { Config, ResponsiveValue } from '../@types/global'
 
 export interface PositionProps<
   Theme extends ThemeType = ThemeType,
