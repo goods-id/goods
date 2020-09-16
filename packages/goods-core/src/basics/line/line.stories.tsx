@@ -15,7 +15,7 @@ export const LineExample: Story<LineProps> = () => {
   const theme = useGoods()
 
   return (
-    <Line w="264px" h="1px" m="32px" bg={theme.colors.red60} radius="8px" />
+    <Line w='264px' h='1px' m='32px' bg={theme.colors.red60} radius='8px' />
   )
 }
 

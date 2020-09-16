@@ -34,7 +34,7 @@ export const Anchor: React.MemoExoticComponent<React.ForwardRefExoticComponent<
   Omit<StyledComponentProps<'a', AnchorProps>, 'as'> &
     React.RefAttributes<HTMLAnchorElement>
 >> = React.memo(
-  React.forwardRef((props, ref) => <AnchorStyled ref={ref} as="a" {...props} />)
+  React.forwardRef((props, ref) => <AnchorStyled ref={ref} as='a' {...props} />)
 )
 
 export default Anchor

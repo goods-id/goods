@@ -73,12 +73,12 @@ const IconDocs: FC = () => {
     >
       <ImageBox
         imageSrc={IconDesignImg}
-        alt="Icon Design"
+        alt='Icon Design'
         m={spacing('l', '0', 'xl')}
       />
-      <Section title="I. Usage" noChildTab>
+      <Section title='I. Usage' noChildTab>
         <Div m={spacing('0', '0', 's', '0')}>
-          <Text rule="body">Here are some terms to standarized our terms</Text>
+          <Text rule='body'>Here are some terms to standarized our terms</Text>
         </Div>
         {usageRule.map((item, key) => (
           <Point
@@ -90,32 +90,32 @@ const IconDocs: FC = () => {
         ))}
         <Div
           bg={colors.white30}
-          w="100%"
-          minH="48px"
-          radius="4px"
-          fJustify="center"
+          w='100%'
+          minH='48px'
+          radius='4px'
+          fJustify='center'
           p={spacing('xs', 's')}
           b={`1px solid ${colors.black20}`}
           m={spacing('s', '0', 'l')}
         >
-          <Text rule="body">
+          <Text rule='body'>
             Icon Format is SVG but until we set React Native SVG settings, it
             needs PNG (1x, 1,5x, 2x, 4x Scale)
           </Text>
         </Div>
         <ImageBox
           imageSrc={IconSizingImg}
-          alt="Icon Sizing"
+          alt='Icon Sizing'
           m={spacing('l', '0')}
         />
       </Section>
-      <Section title="II. Icon List" noChildTab>
-        <Div w="100%" m={spacing('0', '0', 'l')}>
+      <Section title='II. Icon List' noChildTab>
+        <Div w='100%' m={spacing('0', '0', 'l')}>
           <Input
-            id="search-icon"
-            name="search-icon"
-            placeholder="Search Icon"
-            autoComplete="off"
+            id='search-icon'
+            name='search-icon'
+            placeholder='Search Icon'
+            autoComplete='off'
             value={searchKey}
             onChange={onSearch}
           />
@@ -124,13 +124,13 @@ const IconDocs: FC = () => {
           {icons.map(name => (
             <Div
               key={name}
-              w="120px"
-              h="120px"
-              fAlign="center"
-              fJustify="center"
+              w='120px'
+              h='120px'
+              fAlign='center'
+              fJustify='center'
             >
               <Icon name={name} m={spacing('0', '0', 'm')} />
-              <Text rule="body">{name}</Text>
+              <Text rule='body'>{name}</Text>
             </Div>
           ))}
         </Grid>

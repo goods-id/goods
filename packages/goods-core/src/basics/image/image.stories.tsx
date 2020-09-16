@@ -17,11 +17,11 @@ export const ImageExample: Story<ImageProps> = ({ ref: _, ...args }) => {
   const { spacing } = useGoods()
   return (
     <Image
-      alt="gege-elisa"
-      src="https://i.pinimg.com/originals/37/5c/49/375c49ca374a122c638f84d3adb8adcd.jpg"
-      w="300px"
+      alt='gege-elisa'
+      src='https://i.pinimg.com/originals/37/5c/49/375c49ca374a122c638f84d3adb8adcd.jpg'
+      w='300px'
       p={spacing('m')}
-      radius="32px"
+      radius='32px'
       {...args}
     />
   )

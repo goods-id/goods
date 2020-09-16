@@ -17,12 +17,12 @@ const RadiusDocs: React.FC = () => {
         It also helps to build memorability of shape, whether it is accessible or not.
       `}
     >
-      <Div w="100%" fAlign="center" m="16px 0px 40px">
-        <Image alt="Corner Radius Design" src={RadiusDesignImg} w="80%" />
+      <Div w='100%' fAlign='center' m='16px 0px 40px'>
+        <Image alt='Corner Radius Design' src={RadiusDesignImg} w='80%' />
       </Div>
-      <Section title="I. Usage" noChildTab>
-        <Div w="100%" fAlign="center">
-          <Image alt="Corner Radius Usage" src={RadiusUsageImg} w="80%" />
+      <Section title='I. Usage' noChildTab>
+        <Div w='100%' fAlign='center'>
+          <Image alt='Corner Radius Usage' src={RadiusUsageImg} w='80%' />
         </Div>
       </Section>
     </GoodsDocs>

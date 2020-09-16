@@ -10,7 +10,6 @@ import {
   TypographyProps,
   TypographyRuleProps,
 } from '../@goods-system/typography'
-
 export interface TextCssProps
   extends TypographyRuleProps,
     TypographyProps,

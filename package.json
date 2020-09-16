@@ -25,7 +25,8 @@
     "storybook:deploy": "yarn run storybook:build && yarn run storybook:sync",
     "test": "yarn workspace @pomona/goods-core run test",
     "test:coverage": "yarn workspace @pomona/goods-core run test:coverage",
-    "validate": "lerna run validate"
+    "validate": "lerna run validate",
+    "prettier-fix": "prettier --write \"**/*.+(js|jsx|tsx|ts|mdx)\""
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

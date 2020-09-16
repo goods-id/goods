@@ -36,7 +36,7 @@ export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {
       hoverBg={colors.green90}
       {...args}
     >
-      <Div h="700px" w="100%">
+      <Div h='700px' w='100%'>
         Goods Core - Atoms - Div
       </Div>
     </Div>

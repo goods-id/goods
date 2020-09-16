@@ -32,7 +32,7 @@ export default {
 export const All: Story = () => {
   const { spacing } = useGoods()
   return (
-    <Div fDir="row" fWrap="wrap" fJustify="flex-start">
+    <Div fDir='row' fWrap='wrap' fJustify='flex-start'>
       {iconNames.map(name => (
         <Icon key={name} name={name} m={spacing('s')} />
       ))}

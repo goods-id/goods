@@ -10,8 +10,8 @@ export default {
 
 export const SkeletonExample: Story = () => {
   return (
-    <Div fDir="row" fAlign="center" m="32px">
-      <Skeleton m="0px 16px 0px 0px" h="50px" w="50px" radius="100%" />
+    <Div fDir='row' fAlign='center' m='32px'>
+      <Skeleton m='0px 16px 0px 0px' h='50px' w='50px' radius='100%' />
       <Skeleton />
     </Div>
   )

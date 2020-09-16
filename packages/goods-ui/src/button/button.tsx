@@ -127,21 +127,21 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
       ref
     ) => {
       return (
-        <ButtonStyled posi="relative" ref={ref} {...props}>
+        <ButtonStyled posi='relative' ref={ref} {...props}>
           {isLoading ? (
             <Spinner />
           ) : (
             <>
               <Div
-                as="span"
-                position="absolute"
-                left="16px"
+                as='span'
+                position='absolute'
+                left='16px'
                 {...prefixContainer}
               >
                 {prefix}
               </Div>
               {children}
-              <Div as="span" position="absolute" {...suffixContainer}>
+              <Div as='span' position='absolute' {...suffixContainer}>
                 {suffix}
               </Div>
             </>

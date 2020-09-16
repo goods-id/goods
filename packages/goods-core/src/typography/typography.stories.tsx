@@ -31,7 +31,7 @@ export const DesktopRules: Story<TextProps> = () => {
   return (
     <>
       {typographyDesktopRules.map(dRule => (
-        <Text as="span" key={dRule} dRule={dRule} mt="s" mx="m" mb="m">
+        <Text as='span' key={dRule} dRule={dRule} mt='s' mx='m' mb='m'>
           {`${dRule}:`}
           <Log value={typographyDesktopRuleSettings[dRule]} />
         </Text>
@@ -44,7 +44,7 @@ export const MobileRules: Story<TextProps> = () => {
   return (
     <>
       {typographyMobileRules.map(rule => (
-        <Text as="span" key={rule} rule={rule} mt="0" mx="s" mb="s">
+        <Text as='span' key={rule} rule={rule} mt='0' mx='s' mb='s'>
           {`${rule}:`}
           <Log value={typographyMobileRuleSettings[rule]} />
         </Text>

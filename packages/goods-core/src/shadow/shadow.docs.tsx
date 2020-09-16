@@ -32,47 +32,47 @@ const ShadowDocs: React.FC = () => {
         It indicates which important and created a hierarchy.
       `}
     >
-      <Div w="100%" fAlign="center">
-        <Div w="100%" position="relative" m="66px 0px 16px">
-          <Div w="100%" fDir="row" z={2}>
+      <Div w='100%' fAlign='center'>
+        <Div w='100%' position='relative' m='66px 0px 16px'>
+          <Div w='100%' fDir='row' z={2}>
             {shadowNames.map(name => (
-              <Div key={name} w="calc(100%/3)" fAlign="center">
+              <Div key={name} w='calc(100%/3)' fAlign='center'>
                 <Div
-                  maxW="calc(100% - 104px)"
-                  minW="10px"
-                  w="64px"
-                  h="40px"
+                  maxW='calc(100% - 104px)'
+                  minW='10px'
+                  w='64px'
+                  h='40px'
                   fJustify={getJustify(name)}
                 >
-                  <Div h="8px" w="100%" radius="1px" bg={colors.black10} />
+                  <Div h='8px' w='100%' radius='1px' bg={colors.black10} />
                 </Div>
                 <Div
-                  maxW="calc(100% - 64px)"
-                  w="104px"
-                  minW="60px"
-                  h="104px"
-                  p="20px"
+                  maxW='calc(100% - 64px)'
+                  w='104px'
+                  minW='60px'
+                  h='104px'
+                  p='20px'
                   bg={colors.white30}
-                  m="40px 0px"
-                  fJustify="center"
-                  radius="4px"
+                  m='40px 0px'
+                  fJustify='center'
+                  radius='4px'
                 >
                   <Div
-                    w="100%"
-                    h="0px"
-                    p="100% 0px 0px"
-                    radius="4px"
+                    w='100%'
+                    h='0px'
+                    p='100% 0px 0px'
+                    radius='4px'
                     bg={colors.white10}
                     shadow={shadow[name]}
                   />
                 </Div>
                 <Div
-                  maxW="calc(100% - 64px)"
-                  w="104px"
-                  minW="60px"
-                  fAlign="center"
+                  maxW='calc(100% - 64px)'
+                  w='104px'
+                  minW='60px'
+                  fAlign='center'
                 >
-                  <Text rule="body" textAlign="center">
+                  <Text rule='body' textAlign='center'>
                     {name}
                   </Text>
                 </Div>
@@ -80,22 +80,22 @@ const ShadowDocs: React.FC = () => {
             ))}
           </Div>
           <Line
-            position="absolute"
-            h="1px"
-            w="100%"
+            position='absolute'
+            h='1px'
+            w='100%'
             bg={colors.white40}
             style={{ top: '36px' }}
           />
         </Div>
-        <Div w="100%" fDir="row" fJustify="flex-end">
+        <Div w='100%' fDir='row' fJustify='flex-end'>
           {ilustrations.map((ilustration, index) => (
-            <Div key={index} w="calc(100%/3)" fAlign="center">
+            <Div key={index} w='calc(100%/3)' fAlign='center'>
               <Image
                 alt={`Shadow Ilustration - ${index + 1}`}
                 src={ilustration}
-                maxW="calc(100% - 22px)"
-                w="160px"
-                minW="60px"
+                maxW='calc(100% - 22px)'
+                w='160px'
+                minW='60px'
               />
             </Div>
           ))}

@@ -42,8 +42,8 @@ export type StyledComponentProps<
   // eslint-disable-next-line @typescript-eslint/ban-types
   O extends object
 > = StyledComponentPropsBase<C, DefaultTheme, O, never> & {
-  as: keyof JSX.IntrinsicElements
-  forwardedAs: keyof JSX.IntrinsicElements
+  as?: keyof JSX.IntrinsicElements
+  forwardedAs?: keyof JSX.IntrinsicElements
 }
 
 export type ResponsiveValue<T, Theme extends ThemeType = ThemeType> =

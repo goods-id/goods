@@ -86,8 +86,8 @@ const SpacingSetting: React.FC<SpacingSettingProps> = props => {
   const is16px = /16px/.test(title)
   const { colors } = useGoods()
   return (
-    <Div w="100%" m="16px 0px">
-      <Text rule="body" weight="bold" mb="s">
+    <Div w='100%' m='16px 0px'>
+      <Text rule='body' weight='bold' mb='s'>
         {title}
       </Text>
       {imageSrc && (
@@ -95,12 +95,12 @@ const SpacingSetting: React.FC<SpacingSettingProps> = props => {
           imageSrc={imageSrc}
           alt={title}
           w={imageWidth}
-          m="0px 0px 16px"
+          m='0px 0px 16px'
           bg={is16px ? colors.blue10 : ''}
           p={is16px ? '8px' : ''}
         />
       )}
-      <Text rule="body">{description}</Text>
+      <Text rule='body'>{description}</Text>
     </Div>
   )
 }
@@ -118,87 +118,87 @@ const SpacingDocs: React.FC = () => {
         we can provide the best experience for users.
       `}
     >
-      <Section title="I. Spacing System" m="40px 0px" noChildTab>
-        <Text rule="body" mt="s">
+      <Section title='I. Spacing System' m='40px 0px' noChildTab>
+        <Text rule='body' mt='s'>
           All spacing on Pomona components and typography use an increments of 4
           pixels. It forms the basic unit of measurement for spacing.
         </Text>
         <ImageBox
           imageSrc={require('../../assets/stories/spacing-system-1.png')}
-          alt="Spacing Example"
-          w="416px"
-          m="32px 0px 0px"
+          alt='Spacing Example'
+          w='416px'
+          m='32px 0px 0px'
         />
-        <Text rule="body" mt="s">
+        <Text rule='body' mt='s'>
           Pomona UI components line heights are set in increments of 4 pixels
           and spacing is measured from the edges of the components.
         </Text>
         <ImageBox
           imageSrc={require('../../assets/stories/spacing-system-2.png')}
-          alt="Line Height 20px"
-          w="416px"
-          m="32px 0px 0px"
+          alt='Line Height 20px'
+          w='416px'
+          m='32px 0px 0px'
         />
-        <Text rule="body" mt="s">
+        <Text rule='body' mt='s'>
           Components are sized in increments of 20 pixels to match the line
           height of content, in this case the body text. This provide harmonious
           arrangements of components and the content.
         </Text>
-        <Text rule="body" mt="s">
+        <Text rule='body' mt='s'>
           For example, the standard sizes of our receipt picture component have
           been chosen to match the line height of body text.
         </Text>
         <ImageBox
           imageSrc={require('../../assets/stories/spacing-system-3.png')}
-          alt="Line Height 20px Example"
-          w="408px"
-          m="16px 0px 0px"
+          alt='Line Height 20px Example'
+          w='408px'
+          m='16px 0px 0px'
         />
-        <Text rule="body" mt="s">
+        <Text rule='body' mt='s'>
           To provide rooms between the end point of the content and the bottom
           of the component, we multiplied the spacing sizes between the start
           point of the content with the top of the component with 1.5, then
           modify it to fit the 8 points increment rules to get harmony.
         </Text>
-        <Text rule="body" mt="s">
+        <Text rule='body' mt='s'>
           For example, below we have content with 24px spacing rooms, we
           multiplied it with 1.5 and get 36px. Since 36 is not an increment of
           8, we rolled back the number to 32 to fit the rules. The same
           principles are used on the second example below.
         </Text>
-        <Div fDir="row" w="100%" fJustify="space-between" fWrap="wrap">
+        <Div fDir='row' w='100%' fJustify='space-between' fWrap='wrap'>
           <ImageBox
             imageSrc={require('../../assets/stories/spacing-system-4.png')}
-            alt="Spacing between End Point and Bottom Example 1"
-            w="418px"
-            minW="58%"
-            m="16px 0px 0px"
+            alt='Spacing between End Point and Bottom Example 1'
+            w='418px'
+            minW='58%'
+            m='16px 0px 0px'
           />
           <ImageBox
             imageSrc={require('../../assets/stories/spacing-system-5.png')}
-            alt="Spacing between End Point and Bottom Example 2"
-            w="292px"
-            minW="40%"
-            m="16px 0px 0px"
+            alt='Spacing between End Point and Bottom Example 2'
+            w='292px'
+            minW='40%'
+            m='16px 0px 0px'
           />
         </Div>
       </Section>
-      <Section title="II. Spacing Settings" noChildTab>
-        <Text rule="body" mt="s" mb="m">
+      <Section title='II. Spacing Settings' noChildTab>
+        <Text rule='body' mt='s' mb='m'>
           Pomona set spacing standard sizes to define one source of truth for
           both design and engineering team while developing a product.
         </Text>
-        <Section title="A. Atoms" tabSpacing>
+        <Section title='A. Atoms' tabSpacing>
           {spacingSettings.map(item => (
             <SpacingSetting key={item.title} {...item} />
           ))}
         </Section>
-        <Section title="B. Organisms" tabSpacing>
+        <Section title='B. Organisms' tabSpacing>
           <SpacingSetting
-            title="Cards"
-            description="We use the XXS (8px) to provide rooms between 2 cards."
+            title='Cards'
+            description='We use the XXS (8px) to provide rooms between 2 cards.'
             imageSrc={require('../../assets/stories/spacing-setting-7.png')}
-            imageWidth="252px"
+            imageWidth='252px'
           />
         </Section>
       </Section>

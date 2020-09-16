@@ -16,12 +16,12 @@ export const ButtonExample: Story<ButtonProps> = ({ ...args }) => {
     <Button
       w
       h
-      m="xxxl"
-      py="xs"
-      px="m"
-      c="black40"
-      bg="orange70"
-      prefix={<Icon name="search" c={colors.black40} />}
+      m='xxxl'
+      py='xs'
+      px='m'
+      c='black40'
+      bg='orange70'
+      prefix={<Icon name='search' c={colors.black40} />}
       {...args}
     >
       This New Button

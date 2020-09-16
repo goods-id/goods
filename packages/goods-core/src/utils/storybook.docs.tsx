@@ -58,16 +58,16 @@ export const Title: React.FC<TitleProps> = ({
   const text = extractTitle(context)
   return (
     <>
-      <Text as="h1" rule="title">
+      <Text as='h1' rule='title'>
         <span>{getChapter(chapterName)}</span>
-        <Text as="span" rule="title" weight={500}>
+        <Text as='span' rule='title' weight={500}>
           {text}
         </Text>
       </Text>
-      <Text rule="subtitle" dRule="body-bold" my="m">
+      <Text rule='subtitle' dRule='body-bold' my='m'>
         {`Version ${version}`}
       </Text>
-      {designDesc && <Text rule="body">{designDesc}</Text>}
+      {designDesc && <Text rule='body'>{designDesc}</Text>}
     </>
   )
 }
@@ -99,7 +99,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       <Description />
       {!withoutStories && (
         <>
-          <Text rule="title" weight={500} my="s">
+          <Text rule='title' weight={500} my='s'>
             Example
           </Text>
           <Primary />
@@ -108,7 +108,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       {children && (
         <>
           {!withoutDocsTitle && (
-            <Text rule="title" weight={500} my="s">
+            <Text rule='title' weight={500} my='s'>
               Documentation
             </Text>
           )}
@@ -117,7 +117,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
       )}
       {component && (
         <>
-          <Text rule="title" weight={500} my="m">
+          <Text rule='title' weight={500} my='m'>
             Props
           </Text>
           <ArgsTable exclude={excludedProps} />
@@ -144,14 +144,14 @@ export const Section: React.FC<SectionProps> = ({
 }) => {
   const { spacing } = useGoods()
   return (
-    <Div m={spacing('0', '0', 'l')} fDir="column" w="100%" {...divProps}>
-      <Text c="black40" rule={!tabSpacing ? 'subtitle' : 'body'} weight={500}>
+    <Div m={spacing('0', '0', 'l')} fDir='column' w='100%' {...divProps}>
+      <Text c='black40' rule={!tabSpacing ? 'subtitle' : 'body'} weight={500}>
         {title}
       </Text>
       <Div
         p={spacing('s', noChildTab ? '0' : tabSpacing ? 's' : 'l')}
-        w="100%"
-        fDir="column"
+        w='100%'
+        fDir='column'
       >
         {children}
       </Div>
@@ -173,24 +173,24 @@ export const Point: React.FC<PointProps> = ({
   const { colors, spacing, radius } = useGoods()
   return (
     <Div
-      fDir="row"
-      fAlign="center"
+      fDir='row'
+      fAlign='center'
       m={spacing('0', '0', 's')}
-      w="100%"
-      fWrap="wrap"
+      w='100%'
+      fWrap='wrap'
     >
       {bullet && (
         <Div
-          w="8px"
-          h="8px"
+          w='8px'
+          h='8px'
           radius={radius('full')}
           bg={colors.black40}
           m={spacing('0', 'xxs', '0', '0')}
         />
       )}
-      <Text rule="body" weight={500}>{`${title}:`}</Text>
+      <Text rule='body' weight={500}>{`${title}:`}</Text>
       &nbsp;
-      <Text rule="body" style={{ minWidth: '280px' }}>
+      <Text rule='body' style={{ minWidth: '280px' }}>
         {description}
       </Text>
     </Div>
@@ -261,8 +261,8 @@ interface ImageBoxProps extends Omit<DivProps, 'ref'> {
 export const ImageBox: React.FC<ImageBoxProps> = props => {
   const { imageSrc, alt, ...divProps } = props
   return (
-    <Div maxW="100%" w="fit-content" fAlign="center" {...divProps}>
-      <Image alt={alt} src={imageSrc} w="100%" />
+    <Div maxW='100%' w='fit-content' fAlign='center' {...divProps}>
+      <Image alt={alt} src={imageSrc} w='100%' />
     </Div>
   )
 }

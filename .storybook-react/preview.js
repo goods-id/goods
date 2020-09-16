@@ -22,8 +22,7 @@ const SORT_ORDER = {
   ],
   Core: ['Colour', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
   Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor'],
-  Atoms: [],
-  Molecules: [],
+  Component: ['Input'],
 }
 
 addParameters({

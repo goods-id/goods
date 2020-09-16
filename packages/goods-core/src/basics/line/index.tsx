@@ -122,7 +122,7 @@ export interface SeparatorProps
 export const Line: React.MemoExoticComponent<React.ForwardRefExoticComponent<
   SeparatorProps & React.RefAttributes<HTMLDivElement>
 >> = React.memo(
-  React.forwardRef((props, ref) => <LineStyled as="hr" ref={ref} {...props} />)
+  React.forwardRef((props, ref) => <LineStyled as='hr' ref={ref} {...props} />)
 )
 
 export { SeparatorProps as LineProps }

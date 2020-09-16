@@ -1,2 +1,4 @@
 /package.json
 /packages/*/package.json
+/dist-web
+/packages/**/lib

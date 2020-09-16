@@ -25,19 +25,19 @@ const ShowColor: React.FC<ShowColorProps> = ({ displayColor, colorName }) => {
   const c = getInverseBw(displayColor) as ColorProps['c']
   return (
     <Div
-      w="80%"
-      fDir="row"
-      fJustify="space-between"
+      w='80%'
+      fDir='row'
+      fJustify='space-between'
       bg={displayColor}
-      radius="8px"
-      m="16px 0px 0px"
-      p="12px"
+      radius='8px'
+      m='16px 0px 0px'
+      p='12px'
       b={`1px solid black`}
     >
-      <Text rule="body" c={c}>
+      <Text rule='body' c={c}>
         {colorName}
       </Text>
-      <Text rule="body" c={c}>
+      <Text rule='body' c={c}>
         {displayColor}
       </Text>
     </Div>
@@ -47,7 +47,7 @@ const ShowColor: React.FC<ShowColorProps> = ({ displayColor, colorName }) => {
 const ShowColorList: React.FC<ShowColorListProps> = ({ colorList }) => {
   const colorNames = Object.keys(colorList)
   return (
-    <Div w="100%" fAlign="center">
+    <Div w='100%' fAlign='center'>
       {colorNames.map(name => (
         <ShowColor key={name} displayColor={colorList[name]} colorName={name} />
       ))}

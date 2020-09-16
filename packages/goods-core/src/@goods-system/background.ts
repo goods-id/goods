@@ -14,7 +14,7 @@ export interface BackgroundProps<
   bgPosi?: ResponsiveValue<CSS.BackgroundPositionProperty<TLength>, Theme>
   bgRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty, Theme>
   bgClip?: ResponsiveValue<CSS.BackgroundClipProperty, Theme>
-  bgAttach: ResponsiveValue<CSS.BackgroundAttachmentProperty, Theme>
+  bgAttach?: ResponsiveValue<CSS.BackgroundAttachmentProperty, Theme>
 }
 
 const config: Config<BackgroundProps> = {

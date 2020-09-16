@@ -15,21 +15,21 @@ export default {
 
 const ShadowDisplay = ({ shadowStr, title }) => (
   <Div
-    w="100px"
-    h="100px"
+    w='100px'
+    h='100px'
     shadow={shadowStr}
     bg={colors.white10}
-    fAlign="center"
-    fJustify="center"
+    fAlign='center'
+    fJustify='center'
   >
     <Text>{title}</Text>
   </Div>
 )
 
 export const ShadowExample: Story = () => (
-  <Div fDir="row" p={spacing('s')} fJustify="space-between" bg={colors.white30}>
-    <ShadowDisplay shadowStr={shadows.flat} title="Flat" />
-    <ShadowDisplay shadowStr={shadows.low} title="Low" />
-    <ShadowDisplay shadowStr={shadows.high} title="High" />
+  <Div fDir='row' p={spacing('s')} fJustify='space-between' bg={colors.white30}>
+    <ShadowDisplay shadowStr={shadows.flat} title='Flat' />
+    <ShadowDisplay shadowStr={shadows.low} title='Low' />
+    <ShadowDisplay shadowStr={shadows.high} title='High' />
   </Div>
 )

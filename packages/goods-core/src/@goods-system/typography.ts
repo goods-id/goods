@@ -157,11 +157,11 @@ export interface TypographyProps<
   /**
    * Font size. It will override font size value obtained from `rule` or `dRule`.
    *
-   * Example - `size={{ xs: '14px', lg: '21px' }}`. Font size 14px for mobile view and 21px for desktop view
-   * @example size={{ xs: '14px', lg: '21px' }}
+   * Example - `fSize={{ xs: '14px', lg: '21px' }}`. Font size 14px for mobile view and 21px for desktop view
+   * @example fSize={{ xs: '14px', lg: '21px' }}
    * @description Font size 14px for mobile view and 21px for desktop view
    * */
-  size?: ResponsiveValue<CSS.FontSizeProperty<TLength>, Theme>
+  fSize?: ResponsiveValue<CSS.FontSizeProperty<TLength>, Theme>
   /**
    * Letter spacing. It will override letter spacing value obtained from `rule` or `dRule`.
    *
@@ -220,7 +220,7 @@ const addImportant = (name: keyof TypographyProps) =>
 
 const config: Config<TypographyProps> = {
   fontFam: { property: 'fontFamily' },
-  size: { property: 'fontSize', transform: addImportant('size') },
+  fSize: { property: 'fontSize', transform: addImportant('fSize') },
   letterSpace: {
     property: 'letterSpacing',
     transform: addImportant('letterSpace'),

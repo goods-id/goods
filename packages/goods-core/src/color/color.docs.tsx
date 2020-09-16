@@ -72,18 +72,18 @@ const ShowColor: React.FC<ShowColorProps> = props => {
   const c = getInverseBw(colorValue) as ColorProps['c']
   return (
     <Div
-      w="100%"
-      fDir="row"
-      fJustify="space-between"
-      fAlign="center"
+      w='100%'
+      fDir='row'
+      fJustify='space-between'
+      fAlign='center'
       p={spacing('s')}
       bg={colorValue}
       h={h}
     >
-      <Text rule="caption" c={c}>
+      <Text rule='caption' c={c}>
         {`${colorName}${isPrimary ? '*' : ''}`}
       </Text>
-      <Text rule="caption" c={c}>
+      <Text rule='caption' c={c}>
         {colorValue}
       </Text>
     </Div>
@@ -96,9 +96,9 @@ const ColorPalette: React.FC<ColorPaletteProps> = props => {
   const numOfColors = colorArray.length
   const primaryHeight = `${256 - (numOfColors - 1) * 48}px`
   return (
-    <Div w="calc(100%/3 - 48px)" minW="192px" p={spacing('l', 's', '0')}>
-      <Div w="100%" p={spacing('0', '0', 's')}>
-        <Text rule="body">{name}</Text>
+    <Div w='calc(100%/3 - 48px)' minW='192px' p={spacing('l', 's', '0')}>
+      <Div w='100%' p={spacing('0', '0', 's')}>
+        <Text rule='body'>{name}</Text>
       </Div>
       {colorArray.map(({ key, value }) => (
         <ShowColor
@@ -127,32 +127,32 @@ const ColorDocs: React.FC = () => {
       withoutStories
       withoutDocsTitle
     >
-      <Section title="I. Principles" m={spacing('xl', '0', 'm')} noChildTab>
-        <Text rule="body" my="xxs">
+      <Section title='I. Principles' m={spacing('xl', '0', 'm')} noChildTab>
+        <Text rule='body' my='xxs'>
           These guidelines are our framework upon how we use colour both inside
           and outside of our system in Pomona.
         </Text>
         {principles.map(item => (
-          <Div key={item.title} w="100%" m={spacing('s', '0', '0')}>
-            <Text rule="body" weight="bold">
+          <Div key={item.title} w='100%' m={spacing('s', '0', '0')}>
+            <Text rule='body' weight='bold'>
               {item.title}
             </Text>
-            <Text rule="body">{item.description}</Text>
+            <Text rule='body'>{item.description}</Text>
           </Div>
         ))}
       </Section>
-      <Section title="II. Colour Palette" noChildTab>
-        <Text rule="body" my="xxs">
+      <Section title='II. Colour Palette' noChildTab>
+        <Text rule='body' my='xxs'>
           Our colour palette is built with our values and our guidelines as its
           foundation.
         </Text>
-        <Div w="100%" m={spacing('s', '0', '0')}>
-          <Text rule="body" weight="bold">
+        <Div w='100%' m={spacing('s', '0', '0')}>
+          <Text rule='body' weight='bold'>
             Note
           </Text>
-          <Text rule="body">Colour with (*) symbol is a primary colour</Text>
+          <Text rule='body'>Colour with (*) symbol is a primary colour</Text>
         </Div>
-        <Div w="100%" fDir="row" fJustify="space-between" fWrap="wrap">
+        <Div w='100%' fDir='row' fJustify='space-between' fWrap='wrap'>
           {colorPalettes.map(item => (
             <ColorPalette key={item.name} {...item} />
           ))}
