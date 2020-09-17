@@ -20,5 +20,7 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "workbench.colorCustomizations": {},
   "deno.enable": false,
-  "html.autoClosingTags": true
+  "html.autoClosingTags": true,
+  "extensions.ignoreRecommendations": false,
+  "files.autoSave": "off"
 }

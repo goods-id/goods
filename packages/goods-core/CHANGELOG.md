@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2020-09-17)
+
+
+### Bug Fixes
+
+* global style, theme, and typography ([#68](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/issues/68)) ([2ad8183](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/commit/2ad8183c784fd13eb9dd2c123b24274e93b24590))
+
+
+### Features
+
+* **goods system:** add grids props ([cd108f3](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/commit/cd108f37354126435a16456d725b6e4e6be9ebf6))
+* Flexbox Props ([#89](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/issues/89)) ([d0d1c68](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/commit/d0d1c68a4d6eb13dbe474cae990368a5ddecf8fd))
+* **@goods-system:** typography and spacing-margin ([#87](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/issues/87)) ([b28544a](https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/commit/b28544ace1463d7f6cac4fc5bd7768a28b39e136))
+
+
+
+
+
 # 1.2.0 (2020-09-17)
 
 

@@ -11,7 +11,16 @@ const storyMetaData: Meta<BoxProps> = {
 export default storyMetaData
 
 export const BoxExample: Story<BoxProps> = args => {
-  return <Box {...args}>Goods Core - Basics - Box</Box>
+  return (
+    <Box {...args}>
+      <Box bg='blue50' c='black10'>
+        Atta Halilintar
+      </Box>
+      <Box bg='orange90' c='black10'>
+        Aurel Hermansyah
+      </Box>
+    </Box>
+  )
 }
 
 BoxExample.args = {
@@ -21,11 +30,12 @@ BoxExample.args = {
   cAlpha: 0.99,
   w: { xs: 1, sm: 1 / 2, lg: 700, md: '5em' },
   h: '300px',
-  d: 'flex',
+  d: 'grid',
   radius: 'full',
   fAlign: 'center',
   fJustify: 'center',
   shadow: 'high',
+  gap: '4px',
 }
 
 export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {
