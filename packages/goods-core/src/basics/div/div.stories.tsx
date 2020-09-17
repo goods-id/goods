@@ -22,6 +22,10 @@ BoxExample.args = {
   w: { xs: 1, sm: 1 / 2, lg: 700, md: '5em' },
   h: '300px',
   d: 'flex',
+  radius: 'full',
+  fAlign: 'center',
+  fJustify: 'center',
+  shadow: 'high',
 }
 
 export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {

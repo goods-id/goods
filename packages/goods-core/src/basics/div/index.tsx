@@ -56,12 +56,16 @@ import {
   flexbox,
   position,
   background,
+  border,
+  shadow,
   BackgroundProps,
   PositionProps,
   ColorProps,
   SpacingProps,
   LayoutProps,
   FlexboxProps,
+  BorderProps,
+  ShadowProps,
 } from '../../@goods-system'
 
 export interface DivCssProps<TLength = string | 0> {
@@ -445,6 +449,8 @@ export interface BoxStyledProps
     SpacingProps,
     FlexboxProps,
     BackgroundProps,
+    BorderProps,
+    ShadowProps,
     PositionProps {}
 
 export const Box = styled.div<BoxStyledProps>(
@@ -455,7 +461,9 @@ export const Box = styled.div<BoxStyledProps>(
       spacing,
       flexbox,
       background,
-      position
+      position,
+      border,
+      shadow
     )({ d, fDir, ...props })
 )
 
