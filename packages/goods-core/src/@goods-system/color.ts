@@ -1,8 +1,6 @@
-import * as CSS from 'csstype'
-import { system, ConfigStyle, get } from 'styled-system'
-
+import { system, ConfigStyle, get } from '@styled-system/core'
 import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
+import { Config, ResponsiveValue, GlobalsNumber } from '../@types/global'
 import colors, { hexToRgba } from '../color'
 
 export interface ColorProps<Theme extends ThemeType = ThemeType> {
@@ -10,7 +8,7 @@ export interface ColorProps<Theme extends ThemeType = ThemeType> {
    * Text Color.
    * Can use color name defined in theme, color hex, color rgb, color rgba, or css globals
    * */
-  c?: ResponsiveValue<keyof Required<Theme>['colors'] | CSS.Globals, Theme>
+  c?: ResponsiveValue<keyof Required<Theme>['colors'] | GlobalsNumber, Theme>
   /**
    * Alpha value for text color.
    * If `cAlpha` is a number from 0 to 1, it will convert `c` (text color) to rgba value.
@@ -21,7 +19,7 @@ export interface ColorProps<Theme extends ThemeType = ThemeType> {
    * Background Color.
    * Can use color name defined in theme, color hex, color rgb, color rgba, or css globals
    * */
-  bg?: ResponsiveValue<keyof Required<Theme>['colors'] | CSS.Globals, Theme>
+  bg?: ResponsiveValue<keyof Required<Theme>['colors'] | GlobalsNumber, Theme>
   /**
    * Alpha value for background color.
    * If `bgAlpha` is a number from 0 to 1,
@@ -35,7 +33,7 @@ export interface ColorProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)
    */
-  opacity?: ResponsiveValue<CSS.GlobalsNumber, Theme>
+  opacity?: ResponsiveValue<number, Theme>
 }
 
 const addAlpha = (alphaKey: 'cAlpha' | 'bgAlpha') =>

@@ -1,5 +1,5 @@
-import * as CSS from 'csstype'
-import { system } from 'styled-system'
+import { Property as CSS } from 'csstype'
+import { system } from '@styled-system/core'
 
 import { ThemeType } from '../theme'
 import { Config, ResponsiveValue } from '../@types/global'
@@ -8,13 +8,56 @@ export interface BackgroundProps<
   Theme extends ThemeType = ThemeType,
   TLength = string | number
 > {
-  bgs?: ResponsiveValue<CSS.BackgroundProperty<TLength>, Theme>
-  bgImage?: ResponsiveValue<CSS.BackgroundImageProperty, Theme>
-  bgSize?: ResponsiveValue<CSS.BackgroundSizeProperty<TLength>, Theme>
-  bgPosi?: ResponsiveValue<CSS.BackgroundPositionProperty<TLength>, Theme>
-  bgRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty, Theme>
-  bgClip?: ResponsiveValue<CSS.BackgroundClipProperty, Theme>
-  bgAttach?: ResponsiveValue<CSS.BackgroundAttachmentProperty, Theme>
+  /**
+   * **Background**
+   *
+   * The background shorthand CSS property sets all background style properties at once, such as color, image, origin and size, or repeat method.
+   * */
+  bgs?: ResponsiveValue<CSS.Background<TLength>, Theme>
+  /**
+   * **Background Image**
+   *
+   * The **`background-image`** CSS property sets one or more background images on an element.
+   */
+  bgImage?: ResponsiveValue<CSS.BackgroundImage, Theme>
+  /**
+   * **Background Size**
+   *
+   * CSS property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
+   * */
+  bgSize?: ResponsiveValue<CSS.BackgroundSize<TLength>, Theme>
+  /**
+   * **Background Posistion**
+   *
+   * CSS property sets the initial horizontal position for each background image. The position is relative to the position layer set by `background-origin`.
+   *
+   * **Syntax**: `[ center | [ [ left | right | x-start | x-end ]? <length-percentage>? ]! ]#`
+   * */
+  bgPosi?: ResponsiveValue<CSS.BackgroundPosition<TLength>, Theme>
+  /**
+   * **Background Repeat**
+   *
+   * CSS property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all.
+   *
+   * **Syntax**: `repeat | repeat-x | repeat-y | no-repeat | initial | inherit`
+   * */
+  bgRepeat?: ResponsiveValue<CSS.BackgroundRepeat, Theme>
+  /**
+   * **Background Clip**
+   *
+   * CSS property sets whether an element's background `<color>` or `<image>` extends underneath its border.
+   *
+   * **Syntax**: `border-box | padding-box | content-box | initial | inherit`
+   * */
+  bgClip?: ResponsiveValue<CSS.BackgroundClip, Theme>
+  /**
+   * Background Attachment
+   *
+   * CSS property sets whether a background image's position is fixed within the viewport, or scrolls with its containing block.
+   *
+   * **Syntax**: `scroll | fixed | local | initial | inherit`
+   * */
+  bgAttach?: ResponsiveValue<CSS.BackgroundAttachment, Theme>
 }
 
 const config: Config<BackgroundProps> = {

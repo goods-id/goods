@@ -17,6 +17,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "@styled-system/core": "^5.1.1",
+    "@styled-system/variant": "^5.1.5",
+    "csstype": "^3.0.3",
     "react": "^16.13.1"
   },
   "devDependencies": {

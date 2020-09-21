@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { compose } from 'styled-system'
+import { compose } from '@styled-system/core'
 import { StyledComponentProps } from '../@types/global'
 import { merge, sort } from '../@goods-system/core'
 import { margin, MarginProps } from '../@goods-system/spacing'
@@ -10,6 +10,7 @@ import {
   TypographyProps,
   TypographyRuleProps,
 } from '../@goods-system/typography'
+
 export interface TextCssProps
   extends TypographyRuleProps,
     TypographyProps,

@@ -1,23 +1,22 @@
-import * as CSS from 'csstype'
-import { system } from 'styled-system'
-import { Config, ResponsiveValue } from '../@types/global'
-
+import { Property as CSS } from 'csstype'
+import { system } from '@styled-system/core'
+import { Config, ResponsiveValue, GlobalsNumber } from '../@types/global'
 import { ThemeType } from '../theme'
 
 export interface FlexboxProps<
   Theme extends ThemeType = ThemeType,
   TLength = string | number
 > {
-  f?: ResponsiveValue<CSS.FlexProperty<TLength>, Theme>
-  fDir?: ResponsiveValue<CSS.FlexDirectionProperty, Theme>
-  fGrow?: ResponsiveValue<CSS.GlobalsNumber, Theme>
-  fShrink?: ResponsiveValue<CSS.GlobalsNumber, Theme>
-  fJustify?: ResponsiveValue<CSS.JustifyContentProperty, Theme>
-  fJSelf?: ResponsiveValue<CSS.JustifySelfProperty, Theme>
-  fAlign?: ResponsiveValue<CSS.AlignItemsProperty, Theme>
-  fASelf?: ResponsiveValue<CSS.AlignSelfProperty, Theme>
-  fWrap?: ResponsiveValue<CSS.FlexWrapProperty, Theme>
-  order?: ResponsiveValue<CSS.GlobalsNumber, Theme>
+  f?: ResponsiveValue<CSS.Flex<TLength>, Theme>
+  fDir?: ResponsiveValue<CSS.FlexDirection, Theme>
+  fGrow?: ResponsiveValue<GlobalsNumber, Theme>
+  fShrink?: ResponsiveValue<GlobalsNumber, Theme>
+  fJustify?: ResponsiveValue<CSS.JustifyContent, Theme>
+  fJSelf?: ResponsiveValue<CSS.JustifySelf, Theme>
+  fAlign?: ResponsiveValue<CSS.AlignItems, Theme>
+  fASelf?: ResponsiveValue<CSS.AlignSelf, Theme>
+  fWrap?: ResponsiveValue<CSS.FlexWrap, Theme>
+  order?: ResponsiveValue<GlobalsNumber, Theme>
 }
 
 const config: Config<FlexboxProps> = {

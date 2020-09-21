@@ -1,54 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { compose } from 'styled-system'
+import { compose } from '@styled-system/core'
+import { Property as CSS } from 'csstype'
 import {
-  WidthProperty,
-  HeightProperty,
-  MarginProperty,
-  PaddingProperty,
-  MinWidthProperty,
-  MinHeightProperty,
-  MaxWidthProperty,
-  MaxHeightProperty,
-  BackgroundColorProperty,
-  ColorProperty,
-  ZIndexProperty,
-  PositionProperty,
-  TopProperty,
-  LeftProperty,
-  RightProperty,
-  BottomProperty,
-  BoxShadowProperty,
-  BorderRadiusProperty,
-  CursorProperty,
-  TransformProperty,
-  OverflowProperty,
-  OverflowWrapProperty,
-  DisplayProperty,
-  FlexProperty,
-  FlexDirectionProperty,
-  JustifyContentProperty,
-  JustifySelfProperty,
-  AlignItemsProperty,
-  AlignSelfProperty,
-  FlexWrapProperty,
-  BorderProperty,
-  BorderColorProperty,
-  BorderTopProperty,
-  BorderTopWidthProperty,
-  BorderTopColorProperty,
-  BorderLeftProperty,
-  BorderLeftWidthProperty,
-  BorderLeftColorProperty,
-  BorderRightProperty,
-  BorderRightWidthProperty,
-  BorderRightColorProperty,
-  BorderBottomProperty,
-  BorderBottomWidthProperty,
-  BorderBottomColorProperty,
+  BaseProps,
+  StyledComponentProps,
   GlobalsNumber,
-} from 'csstype'
-import { BaseProps, StyledComponentProps } from '../../@types/global'
+} from '../../@types/global'
 import {
   color,
   layout,
@@ -74,205 +32,205 @@ export interface DivCssProps<TLength = string | 0> {
   /**
    * Width
    */
-  w?: WidthProperty<TLength>
+  w?: CSS.Width<TLength>
   /**
    * Height
    */
-  h?: HeightProperty<TLength>
+  h?: CSS.Height<TLength>
   /**
    * Margin
    */
-  m?: MarginProperty<TLength>
+  m?: CSS.Margin<TLength>
   /**
    * Padding
    */
-  p?: PaddingProperty<TLength>
+  p?: CSS.Padding<TLength>
   /**
    * Min Width
    */
-  minW?: MinWidthProperty<TLength>
+  minW?: CSS.MinWidth<TLength>
   /**
    * Max Width
    */
-  maxW?: MaxWidthProperty<TLength>
+  maxW?: CSS.MaxWidth<TLength>
   /**
    * Min Height
    */
-  minH?: MinHeightProperty<TLength>
+  minH?: CSS.MinHeight<TLength>
   /**
    * Max Height
    */
-  maxH?: MaxHeightProperty<TLength>
+  maxH?: CSS.MaxHeight<TLength>
   /**
    * Background Color
    */
-  bg?: BackgroundColorProperty
+  bg?: CSS.BackgroundColor
   /**
    *  Color
    */
-  c?: ColorProperty
+  c?: CSS.Color
   /**
    * Z Index
    */
-  z?: ZIndexProperty
+  z?: CSS.ZIndex
   /**
    * Position
    */
-  position?: PositionProperty
+  posi?: CSS.Position
   /**
    * Top
    */
-  top?: TopProperty<TLength>
+  top?: CSS.Top<TLength>
   /**
    * Left
    */
-  left?: LeftProperty<TLength>
+  left?: CSS.Left<TLength>
   /**
    * Right
    */
-  right?: RightProperty<TLength>
+  right?: CSS.Right<TLength>
   /**
    * Bottom
    */
-  bottom?: BottomProperty<TLength>
+  bottom?: CSS.Bottom<TLength>
   /**
    * Shadow
    */
-  shadow?: BoxShadowProperty
+  boxShadow?: CSS.BoxShadow
   /**
    * Radius
    */
-  radius?: BorderRadiusProperty<TLength>
+  radius?: CSS.BorderRadius<TLength>
   /**
    * Cursor
    */
-  cursor?: CursorProperty
+  cursor?: CSS.Cursor
   /**
    * Transform
    */
-  transform?: TransformProperty
+  transform?: CSS.Transform
   /**
    * Overflow
    */
-  overflow?: OverflowProperty
+  overflow?: CSS.Overflow
   /**
    * Overflow Wrap
    */
-  overflowWrap?: OverflowWrapProperty
+  overflowWrap?: CSS.OverflowWrap
   /**
    * Display
    * @default "flex"
    */
-  d?: DisplayProperty
+  d?: CSS.Display
   /**
    * Flex
    */
-  f?: FlexProperty<TLength>
+  f?: CSS.Flex<TLength>
   /**
    * Flex Direction
    * @default "column"
    */
-  fDir?: FlexDirectionProperty
+  fDir?: CSS.FlexDirection
   /**
    * Flex Grow
    */
   fGrow?: GlobalsNumber
   /**
-   * Flex Shrink
+   * Flex Shrinkx
    */
   fShrink?: GlobalsNumber
   /**
    * Justify Content
    */
-  fJustify?: JustifyContentProperty
+  fJustify?: CSS.JustifyContent
   /**
    * Justify Self
    */
-  fJSelf?: JustifySelfProperty
+  fJSelf?: CSS.JustifySelf
   /**
    * Align Items
    */
-  fAlign?: AlignItemsProperty
+  fAlign?: CSS.AlignItems
   /**
    * Align Self
    */
-  fASelf?: AlignSelfProperty
+  fASelf?: CSS.AlignSelf
   /**
    * Flex Wrap
    */
-  fWrap?: FlexWrapProperty
+  fWrap?: CSS.FlexWrap
   /**
    * Border
    */
-  b?: BorderProperty<TLength>
+  b?: CSS.Border<TLength>
   /**
    * Border Color
    */
-  bColor?: BorderColorProperty
+  bColor?: CSS.BorderColor
   /**
    * Border Top
    */
-  bTop?: BorderTopProperty<TLength>
+  bTop?: CSS.BorderTop<TLength>
   /**
    * Border Top Color
    */
-  bTopColor?: BorderTopColorProperty
+  bTopColor?: CSS.BorderTopColor
   /**
    * Border Top Width
    */
-  bTopWidth?: BorderTopWidthProperty<TLength>
+  bTopWidth?: CSS.BorderTopWidth<TLength>
   /**
    * Border Left
    */
-  bLeft?: BorderLeftProperty<TLength>
+  bLeft?: CSS.BorderLeft<TLength>
   /**
    * Border Left Color
    */
-  bLeftColor?: BorderLeftColorProperty
+  bLeftColor?: CSS.BorderLeftColor
   /**
    * Border Left Width
    */
-  bLeftWidth?: BorderLeftWidthProperty<TLength>
+  bLeftWidth?: CSS.BorderLeftWidth<TLength>
   /**
    * Border Right
    */
-  bRight?: BorderRightProperty<TLength>
+  bRight?: CSS.BorderRight<TLength>
   /**
    * Border Right Color
    */
-  bRightColor?: BorderRightColorProperty
+  bRightColor?: CSS.BorderRightColor
   /**
    * Border Right Width
    */
-  bRightWidth?: BorderRightWidthProperty<TLength>
+  bRightWidth?: CSS.BorderRightWidth<TLength>
   /**
    * Border Bottom
    */
-  bBottom?: BorderBottomProperty<TLength>
+  bBottom?: CSS.BorderBottom<TLength>
   /**
    * Border Bottom Color
    */
-  bBottomColor?: BorderBottomColorProperty
+  bBottomColor?: CSS.BorderBottomColor
   /**
    * Border Bottom Width
    */
-  bBottomWidth?: BorderBottomWidthProperty<TLength>
+  bBottomWidth?: CSS.BorderBottomWidth<TLength>
   /**
    * Hover Background Color
    */
-  hoverBg?: BackgroundColorProperty
+  hoverBg?: CSS.BackgroundColor
   /**
    * Hover Border Color
    */
-  hoverBorderColor?: BorderColorProperty
+  hoverBorderColor?: CSS.BorderColor
   /**
    * Hover Text Color
    */
-  hoverTextColor?: ColorProperty
+  hoverTextColor?: CSS.Color
   /**
    * Hover Box Shadow Color
    */
-  hoverShadowColor?: BoxShadowProperty
+  hoverShadowColor?: CSS.BoxShadow
   /**
    * Use custom scroll bar.
    * If `overflow === 'scroll'`, custom scroll bar is auto shown.
@@ -283,25 +241,25 @@ export interface DivCssProps<TLength = string | 0> {
    * ScrollBar Width
    * @default 8
    */
-  scrollBarWidth?: WidthProperty<TLength>
+  scrollBarWidth?: CSS.Width<TLength>
   /**
    * ScrollBar Height
    * @default 24
    */
-  scrollBarHeight?: HeightProperty<TLength>
+  scrollBarHeight?: CSS.Height<TLength>
   /**
    * ScrollBar Color
    */
-  scrollBarColor?: ColorProperty
+  scrollBarColor?: CSS.Color
   /**
    * ScrollBar Background Color
    */
-  scrollBarBackgroundColor?: BackgroundColorProperty
+  scrollBarBackgroundColor?: CSS.BackgroundColor
   /**
    * ScrollBar Radius
    * @default 8
    */
-  scrollBarRadius?: BorderRadiusProperty<TLength>
+  scrollBarRadius?: CSS.BorderRadius<TLength>
 }
 
 export const DivStyled = styled.div<DivCssProps>(
@@ -317,12 +275,12 @@ export const DivStyled = styled.div<DivCssProps>(
     bg,
     c,
     z,
-    position,
+    posi,
     top,
     left,
     right,
     bottom,
-    shadow,
+    boxShadow,
     radius,
     cursor,
     overflow,
@@ -376,12 +334,12 @@ export const DivStyled = styled.div<DivCssProps>(
       backgroundColor: bg,
       color: c,
       zIndex: z,
-      position,
+      position: posi,
       top,
       left,
       right,
       bottom,
-      boxShadow: shadow,
+      boxShadow,
       borderRadius: radius,
       cursor,
       overflow,

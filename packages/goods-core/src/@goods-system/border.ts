@@ -1,51 +1,53 @@
-import * as CSS from 'csstype'
-import { system } from 'styled-system'
-
+import { Property as CSS } from 'csstype'
+import { system } from '@styled-system/core'
 import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
+import { Config, ResponsiveValue, GlobalsNumber } from '../@types/global'
 import { radiusConstants } from '../radius'
 
 export interface BorderProps<
   Theme extends ThemeType = ThemeType,
   TLength = string | number
 > {
-  b?: ResponsiveValue<CSS.BorderProperty<TLength>, Theme>
-  bC?: ResponsiveValue<CSS.BorderColorProperty, Theme>
-  bS?: ResponsiveValue<CSS.BorderStyleProperty, Theme>
-  bW?: ResponsiveValue<CSS.BorderWidthProperty<TLength>, Theme>
-  bTop?: ResponsiveValue<CSS.BorderTopProperty<TLength>, Theme>
-  bTopC?: ResponsiveValue<CSS.BorderTopColorProperty, Theme>
-  bTopS?: ResponsiveValue<CSS.BorderTopStyleProperty, Theme>
-  bTopW?: ResponsiveValue<CSS.BorderTopWidthProperty<TLength>, Theme>
-  bLeft?: ResponsiveValue<CSS.BorderLeftProperty<TLength>, Theme>
-  bLeftC?: ResponsiveValue<CSS.BorderLeftColorProperty, Theme>
-  bLeftS?: ResponsiveValue<CSS.BorderLeftStyleProperty, Theme>
-  bLeftW?: ResponsiveValue<CSS.BorderLeftWidthProperty<TLength>, Theme>
-  bRight?: ResponsiveValue<CSS.BorderRightProperty<TLength>, Theme>
-  bRightC?: ResponsiveValue<CSS.BorderRightColorProperty, Theme>
-  bRightS?: ResponsiveValue<CSS.BorderRightStyleProperty, Theme>
-  bRightW?: ResponsiveValue<CSS.BorderRightWidthProperty<TLength>, Theme>
-  bBottom?: ResponsiveValue<CSS.BorderBottomProperty<TLength>, Theme>
-  bBottomC?: ResponsiveValue<CSS.BorderBottomColorProperty, Theme>
-  bBottomS?: ResponsiveValue<CSS.BorderBottomStyleProperty, Theme>
-  bBottomW?: ResponsiveValue<CSS.BorderBottomWidthProperty<TLength>, Theme>
+  b?: ResponsiveValue<CSS.Border<TLength>, Theme>
+  bC?: ResponsiveValue<CSS.BorderColor, Theme>
+  bS?: ResponsiveValue<CSS.BorderStyle, Theme>
+  bW?: ResponsiveValue<CSS.BorderWidth<TLength>, Theme>
+  bTop?: ResponsiveValue<CSS.BorderTop<TLength>, Theme>
+  bTopC?: ResponsiveValue<CSS.BorderTopColor, Theme>
+  bTopS?: ResponsiveValue<CSS.BorderTopStyle, Theme>
+  bTopW?: ResponsiveValue<CSS.BorderTopWidth<TLength>, Theme>
+  bLeft?: ResponsiveValue<CSS.BorderLeft<TLength>, Theme>
+  bLeftC?: ResponsiveValue<CSS.BorderLeftColor, Theme>
+  bLeftS?: ResponsiveValue<CSS.BorderLeftStyle, Theme>
+  bLeftW?: ResponsiveValue<CSS.BorderLeftWidth<TLength>, Theme>
+  bRight?: ResponsiveValue<CSS.BorderRight<TLength>, Theme>
+  bRightC?: ResponsiveValue<CSS.BorderRightColor, Theme>
+  bRightS?: ResponsiveValue<CSS.BorderRightStyle, Theme>
+  bRightW?: ResponsiveValue<CSS.BorderRightWidth<TLength>, Theme>
+  bBottom?: ResponsiveValue<CSS.BorderBottom<TLength>, Theme>
+  bBottomC?: ResponsiveValue<CSS.BorderBottomColor, Theme>
+  bBottomS?: ResponsiveValue<CSS.BorderBottomStyle, Theme>
+  bBottomW?: ResponsiveValue<CSS.BorderBottomWidth<TLength>, Theme>
   bTopRightRad?: ResponsiveValue<
-    keyof Required<Theme>['radii'] | CSS.Globals,
+    keyof Required<Theme>['radii'] | GlobalsNumber,
     Theme
   >
   bTopLeftRad?: ResponsiveValue<
-    keyof Required<Theme>['radii'] | CSS.Globals,
+    keyof Required<Theme>['radii'] | GlobalsNumber,
     Theme
   >
   bBotRightRad?: ResponsiveValue<
-    keyof Required<Theme>['radii'] | CSS.Globals,
+    keyof Required<Theme>['radii'] | GlobalsNumber,
     Theme
   >
   bBotLeftRad?: ResponsiveValue<
-    keyof Required<Theme>['radii'] | CSS.Globals,
+    keyof Required<Theme>['radii'] | GlobalsNumber,
     Theme
   >
-  radius?: ResponsiveValue<keyof Required<Theme>['radii'] | CSS.Globals, Theme>
+  radius?: ResponsiveValue<
+    keyof Required<Theme>['radii'] | GlobalsNumber,
+    Theme
+  >
 }
 
 const config: Config<BorderProps> = {

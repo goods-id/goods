@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { compose } from 'styled-system'
+import { compose } from '@styled-system/core'
 import {
   layout,
   LayoutProps,
@@ -11,7 +11,7 @@ import {
   position,
   PositionProps,
 } from '../../../goods-core/src/@goods-system'
-import { Div, DivCssProps } from '../../../goods-core/src/basics'
+import { Box, BoxProps } from '../../../goods-core/src/basics'
 
 const Spinner = styled.div`
   width: 24px;
@@ -105,9 +105,9 @@ export interface ButtonProps
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
   isLoading?: boolean
   prefix?: React.ReactNode
-  prefixContainer?: DivCssProps
+  prefixContainer?: BoxProps
   suffix?: React.ReactNode
-  suffixContainer?: DivCssProps
+  suffixContainer?: BoxProps
 }
 
 export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
@@ -132,18 +132,13 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
             <Spinner />
           ) : (
             <>
-              <Div
-                as='span'
-                position='absolute'
-                left='16px'
-                {...prefixContainer}
-              >
+              <Box as='span' posi='absolute' left='16px' {...prefixContainer}>
                 {prefix}
-              </Div>
+              </Box>
               {children}
-              <Div as='span' position='absolute' {...suffixContainer}>
+              <Box as='span' posi='absolute' {...suffixContainer}>
                 {suffix}
-              </Div>
+              </Box>
             </>
           )}
         </ButtonStyled>

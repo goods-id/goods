@@ -1,9 +1,11 @@
 import * as React from 'react'
 import styled, { InterpolationValue } from 'styled-components'
-import { border, BorderProps, compose } from 'styled-system'
+import { compose } from '@styled-system/core'
 import { Box, BoxProps } from '../../../goods-core/src/basics/div'
 import { Text } from '../../../goods-core/src/typography'
 import {
+  border,
+  BorderProps,
   spacing,
   SpacingProps,
   layout,

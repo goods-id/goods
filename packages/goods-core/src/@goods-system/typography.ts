@@ -1,5 +1,5 @@
-import * as CSS from 'csstype'
-import { system, get, ConfigStyle } from 'styled-system'
+import { Property as CSS } from 'csstype'
+import { system, get, ConfigStyle } from '@styled-system/core'
 import { CSSObject, DefaultTheme } from 'styled-components'
 
 import { ThemeType } from '../theme'
@@ -153,7 +153,7 @@ export interface TypographyProps<
   /**
    * Font family.
    * */
-  fontFam?: ResponsiveValue<CSS.FontFamilyProperty, Theme>
+  fontFam?: ResponsiveValue<CSS.FontFamily, Theme>
   /**
    * Font size. It will override font size value obtained from `rule` or `dRule`.
    *
@@ -161,7 +161,7 @@ export interface TypographyProps<
    * @example fSize={{ xs: '14px', lg: '21px' }}
    * @description Font size 14px for mobile view and 21px for desktop view
    * */
-  fSize?: ResponsiveValue<CSS.FontSizeProperty<TLength>, Theme>
+  fSize?: ResponsiveValue<CSS.FontSize<TLength>, Theme>
   /**
    * Letter spacing. It will override letter spacing value obtained from `rule` or `dRule`.
    *
@@ -169,7 +169,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing)
    * */
-  letterSpace?: ResponsiveValue<CSS.LetterSpacingProperty<TLength>, Theme>
+  letterSpace?: ResponsiveValue<CSS.LetterSpacing<TLength>, Theme>
   /**
    * Line height. It will override line height value obtained from `rule` or `dRule`.
    *
@@ -180,7 +180,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height)
    * */
-  lineHeight?: ResponsiveValue<CSS.LineHeightProperty<TLength>, Theme>
+  lineHeight?: ResponsiveValue<CSS.LineHeight<TLength>, Theme>
   /**
    * Font weight. It will override font weight value obtained from `rule` or `dRule`.
    *
@@ -190,20 +190,20 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight)
    * */
-  weight?: ResponsiveValue<CSS.FontWeightProperty, Theme>
+  weight?: ResponsiveValue<CSS.FontWeight, Theme>
   /**
    * The text-align CSS property specifies the horizontal alignment of an inline or table-cell box.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
    */
-  textAlign?: ResponsiveValue<CSS.TextAlignProperty, Theme>
+  textAlign?: ResponsiveValue<CSS.TextAlign, Theme>
   /**
    * The font-style CSS property specifies whether a font should be styled with a normal, italic,
    * or oblique face from its font-family.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style)
    */
-  fontStyle?: ResponsiveValue<CSS.FontStyleProperty, Theme>
+  fontStyle?: ResponsiveValue<CSS.FontStyle, Theme>
 }
 
 const addImportant = (name: keyof TypographyProps) =>

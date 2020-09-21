@@ -1,5 +1,4 @@
-import { Theme as StyledSystemTheme } from 'styled-system'
-
+import { ThemeStyledSystem as StyledSystemTheme } from '../@types/global'
 import colors from '../color'
 import radius, { radiusConstants } from '../radius'
 import spacing, { spacingConstants } from '../spacing'

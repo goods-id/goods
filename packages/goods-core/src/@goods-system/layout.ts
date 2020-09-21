@@ -1,5 +1,5 @@
-import * as CSS from 'csstype'
-import { system, get } from 'styled-system'
+import { Property as CSS } from 'csstype'
+import { system, get } from '@styled-system/core'
 
 import { ThemeType } from '../theme'
 import { Config, ResponsiveValue } from '../@types/global'
@@ -16,7 +16,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive width styles.
    */
-  w?: ResponsiveValue<CSS.WidthProperty<TLength> | boolean, Theme>
+  w?: ResponsiveValue<CSS.Width<TLength> | boolean, Theme>
   /**
    * Converted it into a CSS min-width declaration.
    *
@@ -30,7 +30,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive min-width styles.
    */
-  minW?: ResponsiveValue<CSS.MinWidthProperty<TLength>, Theme>
+  minW?: ResponsiveValue<CSS.MinWidth<TLength>, Theme>
   /**
    * Converted into a CSS max-width declaration.
    *
@@ -44,7 +44,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive max-width styles.
    */
-  maxW?: ResponsiveValue<CSS.MaxWidthProperty<TLength>, Theme>
+  maxW?: ResponsiveValue<CSS.MaxWidth<TLength>, Theme>
   /**
    * Converted into a CSS height declaration.
    *
@@ -59,7 +59,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive height styles.
    */
-  h?: ResponsiveValue<CSS.HeightProperty<TLength> | boolean, Theme>
+  h?: ResponsiveValue<CSS.Height<TLength> | boolean, Theme>
   /**
    *  Converted into a CSS min-height declaration.
    *
@@ -74,7 +74,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive min-height styles.
    */
-  minH?: ResponsiveValue<CSS.MinHeightProperty<TLength>, Theme>
+  minH?: ResponsiveValue<CSS.MinHeight<TLength>, Theme>
   /**
    *  Converted into a CSS max-height declaration.
    *
@@ -89,7 +89,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive max-height styles.
    */
-  maxH?: ResponsiveValue<CSS.MaxHeightProperty<TLength>, Theme>
+  maxH?: ResponsiveValue<CSS.MaxHeight<TLength>, Theme>
   /**
    *   Converted into CSS height and width declarations.
    *
@@ -98,7 +98,7 @@ export interface LayoutProps<
    *   - String values are passed as raw CSS values.
    *   - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive width and height styles.
    */
-  s?: ResponsiveValue<CSS.HeightProperty<TLength>, Theme>
+  s?: ResponsiveValue<CSS.Height<TLength>, Theme>
   /**
    * Converted into a CSS display declaration
    *
@@ -111,7 +111,7 @@ export interface LayoutProps<
    * - String values are passed as raw CSS values.
    * - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive display styles.
    */
-  d?: ResponsiveValue<CSS.DisplayProperty, Theme>
+  d?: ResponsiveValue<CSS.Display, Theme>
   /**
    * Converted into a CSS vertical-align declaration
    *
@@ -122,7 +122,7 @@ export interface LayoutProps<
    * - String values are passed as raw CSS values.
    * - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive vertical-align styles.
    */
-  vAlign?: ResponsiveValue<CSS.VerticalAlignProperty<TLength>, Theme>
+  vAlign?: ResponsiveValue<CSS.VerticalAlign<TLength>, Theme>
   /**
    * The overflow CSS property sets what to do when an element's content is too big to fit in its block
    * formatting context. It is a shorthand for overflow-x and overflow-y.
@@ -132,7 +132,7 @@ export interface LayoutProps<
    * - String values are passed as raw CSS values.
    * - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive overflow styles.
    */
-  overflow?: ResponsiveValue<CSS.OverflowProperty, Theme>
+  overflow?: ResponsiveValue<CSS.Overflow, Theme>
   /**
    * The overflow-x CSS property sets what shows when content overflows a block-level element's left
    * and right edges. This may be nothing, a scroll bar, or the overflow content.
@@ -142,7 +142,7 @@ export interface LayoutProps<
    * - String values are passed as raw CSS values.
    * - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive overflow-x styles.
    */
-  overflowX?: ResponsiveValue<CSS.OverflowXProperty, Theme>
+  overflowX?: ResponsiveValue<CSS.OverflowX, Theme>
   /**
    * The overflow-y CSS property sets what shows when content overflows a block-level element's top
    * and bottom edges. This may be nothing, a scroll bar, or the overflow content.
@@ -152,7 +152,7 @@ export interface LayoutProps<
    * - String values are passed as raw CSS values.
    * - And object with keys `xs`, `sm`, `md`, `lg`, or `xl` are converted to responsive overflow-y styles.
    */
-  overflowY?: ResponsiveValue<CSS.OverflowYProperty, Theme>
+  overflowY?: ResponsiveValue<CSS.OverflowY, Theme>
 }
 
 const isNumber = n => typeof n === 'number' && !Number.isNaN(n)

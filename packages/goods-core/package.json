@@ -32,7 +32,7 @@
     "@types/react": "^16.9.38",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.0",
-    "@types/styled-system": "^5.1.9",
+    "@types/styled-system__core": "^5.1.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-react-app": "^9.1.2",
@@ -41,9 +41,9 @@
     "storybook-addon-jsx": "^7.3.0"
   },
   "dependencies": {
-    "@styled-system/should-forward-prop": "^5.1.5",
-    "csstype": "^2.6.11",
-    "styled-system": "^5.1.5"
+    "@styled-system/core": "^5.1.1",
+    "@styled-system/variant": "^5.1.1",
+    "csstype": "^3.0.3"
   },
   "peerDependencies": {
     "react": "^16.13.1",
