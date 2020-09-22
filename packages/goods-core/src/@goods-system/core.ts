@@ -27,3 +27,7 @@ export const sort = (obj: Record<string, unknown>): any => {
     })
   return next
 }
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const isNumber = (n): boolean =>
+  typeof n === 'number' && !Number.isNaN(n)

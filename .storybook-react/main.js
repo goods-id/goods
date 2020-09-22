@@ -54,7 +54,7 @@ module.exports = {
       name: '@storybook/addon-storysource',
       options: sourceLoaderOptions,
     },
-    '@storybook/addon-actions',
+    // '@storybook/addon-actions',
     '@storybook/addon-knobs',
     '@storybook/addon-links',
     '@storybook/addon-a11y',

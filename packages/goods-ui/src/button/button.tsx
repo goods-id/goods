@@ -1,7 +1,12 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import { compose } from '@styled-system/core'
+import styled, { InterpolationValue } from 'styled-components'
+import { compose, ConfigStyle, get, system } from '@styled-system/core'
+import { Icon, IconProps } from '../../../goods-core/src/icon'
 import {
+  border,
+  BorderProps,
+  flexbox,
+  FlexboxProps,
   layout,
   LayoutProps,
   spacing,
@@ -10,8 +15,16 @@ import {
   ColorProps,
   position,
   PositionProps,
+  shadow,
+  ShadowProps,
+  typography,
+  TypographyProps,
+  background,
+  BackgroundProps,
+  merge,
 } from '../../../goods-core/src/@goods-system'
 import { Box, BoxProps } from '../../../goods-core/src/basics'
+import { Config, ResponsiveValue } from '../../../goods-core/src/@types/global'
 
 const Spinner = styled.div`
   width: 24px;
@@ -84,30 +97,127 @@ const Spinner = styled.div`
   }
 `
 
+const sizeRuleConstant = {
+  smallest: '24px',
+  small: '32px',
+  normal: '48px',
+}
+
+type SizeRule = keyof typeof sizeRuleConstant
+
 export interface ButtonStyledProps
   extends LayoutProps,
     SpacingProps,
     ColorProps,
-    PositionProps {}
+    PositionProps,
+    BorderProps,
+    FlexboxProps,
+    ShadowProps,
+    TypographyProps,
+    BackgroundProps {
+  buttonSize: ResponsiveValue<SizeRule | number>
+}
 
-const ButtonStyled = styled.button<ButtonStyledProps>(props => ({
-  ...compose(layout, spacing, color, position)(props),
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  ':hover': {
-    background: props.bg,
+const getRule = (n, scale, props: ButtonStyledProps) =>
+  get(scale, n, n in sizeRuleConstant ? sizeRuleConstant[n] : n || props?.minH)
+
+const configButton: Config<Pick<ButtonStyledProps, 'buttonSize'>> = {
+  buttonSize: {
+    property: 'minHeight',
+    transform: getRule as ConfigStyle['transform'],
   },
-}))
+}
+
+const buttonRule = system(configButton)
+
+const ButtonStyled = styled.button<ButtonStyledProps>(
+  ({
+    buttonSize = 'normal',
+    radius = 'm',
+    bg = 'blue50',
+    b = 'none',
+    c = 'white10',
+    d = 'flex',
+    fAlign = 'center',
+    fJustify = 'center',
+    fSize = '14px',
+    weight = 'bold',
+    lineHeight = '20px',
+    letterSpace = '0.5px',
+    bgPosi = 'center',
+    ...props
+  }) => {
+    const defaultStyle: InterpolationValue = {
+      cursor: 'pointer',
+      outline: 'none',
+      transition: 'background 0.8s',
+      '&:hover': {
+        // filter: 'brightness(80%)',
+        background:
+          '#47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%',
+      },
+      '&:active': {
+        // filter: 'brightness(50%)',
+        backgroundColor: '#6eb9f7',
+        backgroundSize: '100%',
+        transition: 'background 0s',
+      },
+      '&:disabled': {
+        filter: 'opacity(35%)',
+        cursor: 'not-allowed',
+      },
+    }
+    const style = compose(
+      layout,
+      spacing,
+      color,
+      position,
+      flexbox,
+      border,
+      shadow,
+      typography,
+      background,
+      buttonRule
+    )({
+      buttonSize,
+      radius,
+      bg,
+      b,
+      c,
+      d,
+      fAlign,
+      fJustify,
+      fontFam: props?.theme?.fontBase || 'Rubik',
+      fSize,
+      weight,
+      lineHeight,
+      letterSpace,
+      bgPosi,
+      ...props,
+    })
+    return merge(defaultStyle, style)
+  }
+)
+
+interface IconButtonProps {
+  icName: IconProps['name']
+  icSize?: IconProps['size']
+  icColor?: IconProps['c']
+  icRotate?: IconProps['rotate']
+}
 
 export interface ButtonProps
   extends ButtonStyledProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
   isLoading?: boolean
-  prefix?: React.ReactNode
+  prefix?: IconButtonProps | React.ReactNode
   prefixContainer?: BoxProps
-  suffix?: React.ReactNode
+  suffix?: React.ReactNode | IconButtonProps
   suffixContainer?: BoxProps
+}
+
+const isIconButtonProps = (params): params is IconButtonProps => {
+  return typeof params === 'object' && 'icName' in params
 }
 
 export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
@@ -132,13 +242,40 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
             <Spinner />
           ) : (
             <>
-              <Box as='span' posi='absolute' left='16px' {...prefixContainer}>
-                {prefix}
-              </Box>
+              {prefix && (
+                <Box as='span' posi='absolute' left='16px' {...prefixContainer}>
+                  {isIconButtonProps(prefix) ? (
+                    <Icon
+                      name={prefix?.icName}
+                      c={prefix?.icColor}
+                      rotate={prefix?.icRotate}
+                      size={prefix?.icSize}
+                    />
+                  ) : (
+                    prefix
+                  )}
+                </Box>
+              )}
               {children}
-              <Box as='span' posi='absolute' {...suffixContainer}>
-                {suffix}
-              </Box>
+              {suffix && (
+                <Box
+                  as='span'
+                  posi='absolute'
+                  right='16px'
+                  {...suffixContainer}
+                >
+                  {isIconButtonProps(suffix) ? (
+                    <Icon
+                      name={suffix?.icName}
+                      c={suffix?.icColor}
+                      rotate={suffix?.icRotate}
+                      size={suffix?.icSize}
+                    />
+                  ) : (
+                    suffix
+                  )}
+                </Box>
+              )}
             </>
           )}
         </ButtonStyled>
@@ -148,5 +285,3 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
 )
 
 Button.displayName = 'Button'
-
-export default Button
