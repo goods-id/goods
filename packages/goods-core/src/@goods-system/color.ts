@@ -15,7 +15,10 @@ export interface ColorProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/color)
    * */
-  c?: ResponsiveValue<keyof Required<Theme>['colors'] | GlobalsNumber, Theme>
+  c?: ResponsiveValue<
+    keyof Required<Theme>['colors'] | GlobalsNumber | 'transparent',
+    Theme
+  >
   /**
    * **Alpha value for text color**
    *
@@ -32,7 +35,10 @@ export interface ColorProps<Theme extends ThemeType = ThemeType> {
    *
    * **Syntax**: `'blue50' | '#0000ff' | 'rgba(0, 0, 255, 0.4)' | 'rgb(0, 0, 255)' | 'inherit' | 'blue'`
    * */
-  bg?: ResponsiveValue<keyof Required<Theme>['colors'] | GlobalsNumber, Theme>
+  bg?: ResponsiveValue<
+    keyof Required<Theme>['colors'] | GlobalsNumber | 'transparent',
+    Theme
+  >
   /**
    * **Alpha value for background color**
    *

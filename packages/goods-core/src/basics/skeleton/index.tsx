@@ -1,25 +1,6 @@
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
-import {
-  WidthProperty,
-  HeightProperty,
-  MarginProperty,
-  PaddingProperty,
-  MinWidthProperty,
-  MinHeightProperty,
-  MaxWidthProperty,
-  MaxHeightProperty,
-  BackgroundColorProperty,
-  ZIndexProperty,
-  PositionProperty,
-  TopProperty,
-  LeftProperty,
-  RightProperty,
-  BottomProperty,
-  BorderRadiusProperty,
-  TransformProperty,
-  DisplayProperty,
-} from 'csstype'
+import { Property as CSS } from 'csstype'
 import { BaseProps } from '../../@types/global'
 
 export interface SkeletonCssProps<TLength = string | 0> {
@@ -27,81 +8,81 @@ export interface SkeletonCssProps<TLength = string | 0> {
    * Width
    * @default "300px"
    */
-  w?: WidthProperty<TLength>
+  w?: CSS.Width<TLength>
   /**
    * Height
    * @default "20px"
    */
-  h?: HeightProperty<TLength>
+  h?: CSS.Height<TLength>
   /**
    * Margin
    */
-  m?: MarginProperty<TLength>
+  m?: CSS.Margin<TLength>
   /**
    * Padding
    */
-  p?: PaddingProperty<TLength>
+  p?: CSS.Padding<TLength>
   /**
    * Min Width
    */
-  minW?: MinWidthProperty<TLength>
+  minW?: CSS.MinWidth<TLength>
   /**
    * Max Width
    */
-  maxW?: MaxWidthProperty<TLength>
+  maxW?: CSS.MaxWidth<TLength>
   /**
    * Min Height
    */
-  minH?: MinHeightProperty<TLength>
+  minH?: CSS.MinHeight<TLength>
   /**
    * Max Height
    */
-  maxH?: MaxHeightProperty<TLength>
+  maxH?: CSS.MaxHeight<TLength>
   /**
    * Background Color
    * @default "hsl(0, 0%, 89%)"
    */
-  bg?: BackgroundColorProperty
+  bg?: CSS.BackgroundColor
   /**
    * Z Index
    */
-  z?: ZIndexProperty
+  z?: CSS.ZIndex
   /**
    * Position
    * @default "relative"
    */
-  position?: PositionProperty
+  position?: CSS.Position
   /**
    * Top
    */
-  top?: TopProperty<TLength>
+  top?: CSS.Top<TLength>
   /**
    * Left
    */
-  left?: LeftProperty<TLength>
+  left?: CSS.Left<TLength>
   /**
    * Right
    */
-  right?: RightProperty<TLength>
+  right?: CSS.Right<TLength>
   /**
    * Bottom
    */
-  bottom?: BottomProperty<TLength>
+  bottom?: CSS.Bottom<TLength>
   /**
    * Radius
    * @default "4px"
    */
-  radius?: BorderRadiusProperty<TLength>
+  radius?: CSS.BorderRadius<TLength>
   /**
    * Transform
    * @default "scale(1, 1)"
    */
-  transform?: TransformProperty
+  transform?: CSS.Transform
   /**
    * Display
    * @default "block"
    */
-  d?: DisplayProperty
+  d?: CSS.Display
 }
 
 export const SkeletonStyled = styled.span<SkeletonCssProps>(

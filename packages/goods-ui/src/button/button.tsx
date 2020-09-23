@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { InterpolationValue } from 'styled-components'
+import styled, { DefaultTheme, InterpolationValue } from 'styled-components'
 import { compose, ConfigStyle, get, system } from '@styled-system/core'
 import { Icon, IconProps } from '../../../goods-core/src/icon'
 import {
@@ -23,84 +23,14 @@ import {
   BackgroundProps,
   merge,
 } from '../../../goods-core/src/@goods-system'
-import { Box, BoxProps } from '../../../goods-core/src/basics'
+import { Box, BoxProps, Spinner } from '../../../goods-core/src/basics'
 import { Config, ResponsiveValue } from '../../../goods-core/src/@types/global'
-
-const Spinner = styled.div`
-  width: 24px;
-  height: 24px;
-  clear: both;
-  border-radius: 50%;
-  position: relative;
-  opacity: 1;
-  &::before,
-  &::after {
-    content: '';
-    border: 1px black solid;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-  }
-  &::before {
-    transform: scale(1, 1);
-    opacity: 1;
-    -webkit-animation: spWaveBe 0.6s infinite linear;
-    animation: spWaveBe 0.6s infinite linear;
-  }
-  &::after {
-    transform: scale(0, 0);
-    opacity: 0;
-    -webkit-animation: spWaveAf 0.6s infinite linear;
-    animation: spWaveAf 0.6s infinite linear;
-  }
-  @-webkit-keyframes spWaveAf {
-    from {
-      -webkit-transform: scale(0.5, 0.5);
-      opacity: 0;
-    }
-    to {
-      -webkit-transform: scale(1, 1);
-      opacity: 1;
-    }
-  }
-  @keyframes spWaveAf {
-    from {
-      transform: scale(0.5, 0.5);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1, 1);
-      opacity: 1;
-    }
-  }
-  @-webkit-keyframes spWaveBe {
-    from {
-      -webkit-transform: scale(1, 1);
-      opacity: 1;
-    }
-    to {
-      -webkit-transform: scale(1.5, 1.5);
-      opacity: 0;
-    }
-  }
-  @keyframes spWaveBe {
-    from {
-      -webkit-transform: scale(1, 1);
-      opacity: 1;
-    }
-    to {
-      -webkit-transform: scale(1.5, 1.5);
-      opacity: 0;
-    }
-  }
-`
+import { colors, useGoods } from '../../../goods-core/src'
 
 const sizeRuleConstant = {
-  smallest: '24px',
-  small: '32px',
-  normal: '48px',
+  small: '24px',
+  medium: '32px',
+  big: '48px',
 }
 
 type SizeRule = keyof typeof sizeRuleConstant
@@ -115,7 +45,7 @@ export interface ButtonStyledProps
     ShadowProps,
     TypographyProps,
     BackgroundProps {
-  buttonSize: ResponsiveValue<SizeRule | number>
+  buttonSize?: ResponsiveValue<SizeRule | number>
 }
 
 const getRule = (n, scale, props: ButtonStyledProps) =>
@@ -130,9 +60,14 @@ const configButton: Config<Pick<ButtonStyledProps, 'buttonSize'>> = {
 
 const buttonRule = system(configButton)
 
+const getRippleColor = (col, theme: DefaultTheme) => {
+  const colorConst = theme?.colors || colors
+  return col in colorConst ? colorConst[col] : col
+}
+
 const ButtonStyled = styled.button<ButtonStyledProps>(
   ({
-    buttonSize = 'normal',
+    buttonSize = 'big',
     radius = 'm',
     bg = 'blue50',
     b = 'none',
@@ -152,13 +87,14 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
       outline: 'none',
       transition: 'background 0.8s',
       '&:hover': {
-        // filter: 'brightness(80%)',
-        background:
-          '#47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%',
+        background: `${getRippleColor(
+          bg,
+          props?.theme
+        )}  radial-gradient(circle, rgba(0, 0, 0, 0.03) 1%, rgba(255, 255, 255, 0.05) 1%) center/15000%`,
+        filter: 'opacity(80%)',
       },
       '&:active': {
-        // filter: 'brightness(50%)',
-        backgroundColor: '#6eb9f7',
+        // backgroundColor: '#09A000',
         backgroundSize: '100%',
         transition: 'background 0s',
       },
@@ -210,6 +146,7 @@ export interface ButtonProps
   extends ButtonStyledProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
   isLoading?: boolean
+  loadingColor?: keyof typeof colors | string
   prefix?: IconButtonProps | React.ReactNode
   prefixContainer?: BoxProps
   suffix?: React.ReactNode | IconButtonProps
@@ -232,18 +169,20 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
         suffix,
         suffixContainer,
         isLoading,
+        loadingColor,
         ...props
       },
       ref
     ) => {
+      const theme = useGoods()
       return (
         <ButtonStyled posi='relative' ref={ref} {...props}>
           {isLoading ? (
-            <Spinner />
+            <Spinner color={getRippleColor(loadingColor, theme)} />
           ) : (
             <>
               {prefix && (
-                <Box as='span' posi='absolute' left='16px' {...prefixContainer}>
+                <Box as='span' {...prefixContainer}>
                   {isIconButtonProps(prefix) ? (
                     <Icon
                       name={prefix?.icName}
@@ -258,12 +197,7 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
               )}
               {children}
               {suffix && (
-                <Box
-                  as='span'
-                  posi='absolute'
-                  right='16px'
-                  {...suffixContainer}
-                >
+                <Box as='span' {...suffixContainer}>
                   {isIconButtonProps(suffix) ? (
                     <Icon
                       name={suffix?.icName}
