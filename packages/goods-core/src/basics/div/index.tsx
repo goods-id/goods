@@ -19,6 +19,7 @@ import {
   grid,
   list,
   table,
+  motion,
   BackgroundProps,
   PositionProps,
   ColorProps,
@@ -30,6 +31,7 @@ import {
   GridProps,
   ListProps,
   TableProps,
+  MotionProps,
 } from '../../@goods-system'
 
 export interface DivCssProps<TLength = string | 0> {
@@ -418,6 +420,7 @@ export interface BoxStyledProps
     PositionProps,
     GridProps,
     ListProps,
+    MotionProps,
     TableProps {}
 
 export const Box = styled.div<BoxStyledProps>(
@@ -433,6 +436,7 @@ export const Box = styled.div<BoxStyledProps>(
       shadow,
       grid,
       list,
+      motion,
       table
     )({ d, fDir, ...props })
 )

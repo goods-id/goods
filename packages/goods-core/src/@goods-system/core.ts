@@ -1,8 +1,6 @@
-export const merge = (
-  a: Record<string, unknown>,
-  b: Record<string, unknown>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): any => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+export const merge = (a: any, b: any): any => {
   let result = { ...a, ...b }
   Object.keys(a).forEach(key => {
     if (a[key] && typeof b[key] === 'object') {
@@ -12,7 +10,6 @@ export const merge = (
   return result
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const sort = (obj: Record<string, unknown>): any => {
   const next = {}
   Object.keys(obj)
@@ -28,6 +25,5 @@ export const sort = (obj: Record<string, unknown>): any => {
   return next
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const isNumber = (n): boolean =>
   typeof n === 'number' && !Number.isNaN(n)

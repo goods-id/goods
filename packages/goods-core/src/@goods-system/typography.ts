@@ -116,8 +116,10 @@ export const typographyMobileRuleSettings: TypographyRuleSettings = {
 export interface TypographyRuleProps<Theme extends ThemeType = ThemeType> {
   /**
    * Typography rule for mobile and/or desktop `(min-width: theme.breakpoints.lg)`.
+   *
    * If `rule !== big-button` or `rule !== med-small-button`,
    * it can be used as desktop rule in case desktop rule was `undefined`.
+   *
    * If `rule = { xs: 'title', lg: 'subtitle' }`,
    * `"title"` will be a typography rule for mobile view, and `"subtitle"` will be a typography rule for desktop view
    * */
@@ -151,29 +153,41 @@ export interface TypographyProps<
   TLength = string | number
 > {
   /**
-   * Font family.
+   * **Font family**
+   *
+   * The **font-family** CSS property specifies a prioritized list of one or more font family names and/or generic family names for the selected element.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
    * */
   fontFam?: ResponsiveValue<CSS.FontFamily, Theme>
   /**
-   * Font size. It will override font size value obtained from `rule` or `dRule`.
+   * **Font size**
    *
-   * Example - `fSize={{ xs: '14px', lg: '21px' }}`. Font size 14px for mobile view and 21px for desktop view
-   * @example fSize={{ xs: '14px', lg: '21px' }}
-   * @description Font size 14px for mobile view and 21px for desktop view
+   * It will override font size value obtained from `rule` or `dRule`.
+   *
+   * The **font-size** CSS property sets the size of the font. Changing the font size also updates the sizes of the font size-relative <length> units, such as em, ex, and so forth.
+   *
+   * **Example**: `fSize={{ xs: '14px', lg: '21px' }}`. Font size 14px for mobile view and 21px for desktop view
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size)
    * */
   fSize?: ResponsiveValue<CSS.FontSize<TLength>, Theme>
   /**
-   * Letter spacing. It will override letter spacing value obtained from `rule` or `dRule`.
+   * **Letter spacing**
    *
-   * The letter-spacing CSS property sets the spacing behavior between text characters.
+   * It will override letter spacing value obtained from `rule` or `dRule`.
+   *
+   * The **letter-spacing** CSS property sets the spacing behavior between text characters.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing)
    * */
   letterSpace?: ResponsiveValue<CSS.LetterSpacing<TLength>, Theme>
   /**
-   * Line height. It will override line height value obtained from `rule` or `dRule`.
+   * **Line height**
    *
-   * The line-height CSS property sets the amount of space used for lines, such as in text. On block-level elements,
+   * It will override line height value obtained from `rule` or `dRule`.
+   *
+   * The **line-height** CSS property sets the amount of space used for lines, such as in text. On block-level elements,
    * it specifies the minimum height of line boxes within the element.
    *
    * On non-replaced inline elements, it specifies the height that is used to calculate line box height.
@@ -182,9 +196,11 @@ export interface TypographyProps<
    * */
   lineHeight?: ResponsiveValue<CSS.LineHeight<TLength>, Theme>
   /**
-   * Font weight. It will override font weight value obtained from `rule` or `dRule`.
+   * **Font weight**
    *
-   * The font-weight CSS property specifies the weight (or boldness) of the font.
+   * It will override font weight value obtained from `rule` or `dRule`.
+   *
+   * The **font-weight** CSS property specifies the weight (or boldness) of the font.
    *
    * The font weights available to you will depend on the font-family you are using. Some fonts are only available in normal and bold.
    *
@@ -192,13 +208,17 @@ export interface TypographyProps<
    * */
   weight?: ResponsiveValue<CSS.FontWeight, Theme>
   /**
-   * The text-align CSS property specifies the horizontal alignment of an inline or table-cell box.
+   * **Text Align**
+   *
+   * The **text-align** CSS property specifies the horizontal alignment of an inline or table-cell box.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
    */
   textAlign?: ResponsiveValue<CSS.TextAlign, Theme>
   /**
-   * The font-style CSS property specifies whether a font should be styled with a normal, italic,
+   * **Font Style**
+   *
+   * The **font-style** CSS property specifies whether a font should be styled with a normal, italic,
    * or oblique face from its font-family.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style)

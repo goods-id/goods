@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
+import { createGlobalStyle } from 'styled-components'
 import { Div, DivProps, Box, BoxProps } from '.'
 import { useGoods } from '../../goods-context'
 
@@ -36,6 +37,107 @@ BoxExample.args = {
   fJustify: 'center',
   shadow: 'high',
   gap: '4px',
+  gTempCol: 'repeat(auto-fit, 200px)',
+}
+
+export const BoxTransitioned: Story<BoxProps> = args => {
+  const [isChanged, setIsChanged] = useState(false)
+
+  const toggle = useCallback(() => {
+    setIsChanged(prev => !prev)
+  }, [])
+
+  return (
+    <Box w='500px' maxW={1} h='300px' posi='relative'>
+      <Box
+        s={isChanged ? '100px' : '300px'}
+        top={isChanged ? '50%' : '0px'}
+        left={isChanged ? '50%' : '0px'}
+        bg={isChanged ? 'green50' : 'blue60'}
+        c={isChanged ? 'black40' : 'white10'}
+        transform={isChanged ? 'rotate(315deg)' : 'none'}
+        {...args}
+        onClick={toggle}
+        dangerouslySetInnerHTML={{ __html: 'Pencet aku 😉' }}
+      />
+    </Box>
+  )
+}
+
+BoxTransitioned.args = {
+  posi: 'absolute',
+  fAlign: 'center',
+  fJustify: 'center',
+  p: 'xs',
+  radius: 'full',
+  tProperty: 'all',
+  tDuration: 2000,
+  tTimingFunction: 'cubic-bezier(.51,.41,.17,1.79)',
+  style: { cursor: 'pointer', textAlign: 'center' },
+}
+
+const BoxAnimatedKeyframe = createGlobalStyle`
+  @keyframes bounce {
+    0%, 100% {
+      top: 0px;
+      left: 0px;
+    }
+    10%, 90% {
+      top: 50px;
+      left: 0px;
+    }
+    50% {
+      top: 50%;
+      left: 0px;
+    }
+    70% {
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+`
+
+export const BoxAnimated: Story<BoxProps> = args => {
+  const [playState, setPlayState] = useState<'running' | 'paused'>('running')
+
+  const toggle = useCallback(() => {
+    setPlayState(prev => (prev === 'running' ? 'paused' : 'running'))
+  }, [])
+
+  return (
+    <Box w='500px' maxW={1} h='700px' posi='relative'>
+      <BoxAnimatedKeyframe />
+      <Box
+        {...args}
+        onClick={toggle}
+        aPlayState={playState}
+        dangerouslySetInnerHTML={{
+          __html:
+            playState === 'running'
+              ? 'Tangkap aku 🤪'
+              : 'Berhasil 😎🎉 <br /> Main lagi ▶️',
+        }}
+      />
+    </Box>
+  )
+}
+
+BoxAnimated.args = {
+  posi: 'absolute',
+  s: '200px',
+  bg: 'green50',
+  c: 'black40',
+  p: 'm',
+  radius: 'full',
+  fAlign: 'center',
+  fJustify: 'center',
+  aName: 'bounce',
+  aDuration: 4000,
+  aIterCount: 'infinite',
+  aTimingFunction: 'cubic-bezier(.51,.41,.17,1.79)',
+  aDir: 'alternate',
+  aFillMode: 'backwards',
+  style: { cursor: 'pointer', textAlign: 'center' },
 }
 
 export const DivExample: Story<DivProps> = ({ ref: _, ...args }) => {

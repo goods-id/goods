@@ -3,13 +3,20 @@ import { system, get } from '@styled-system/core'
 
 import { ThemeType } from '../theme'
 import { Config, ResponsiveValue } from '../@types/global'
+import { isNumber } from './core'
 
 export interface LayoutProps<
   Theme extends ThemeType = ThemeType,
   TLength = string | number
 > {
   /**
-   * Converted it into a CSS width declaration.
+   * **Width**
+   *
+   * The **width** CSS property sets an element's width.
+   * By default, it sets the width of the content area, but if box-sizing is set to border-box,
+   * it sets the width of the border area.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/width)
    *
    *   - Numbers from 0-1 are converted to percentage widths.
    *   - Numbers greater than 1 are converted to pixel values.
@@ -18,9 +25,9 @@ export interface LayoutProps<
    */
   w?: ResponsiveValue<CSS.Width<TLength> | boolean, Theme>
   /**
-   * Converted it into a CSS min-width declaration.
+   * **Min Width**
    *
-   * The min-width CSS property sets the minimum width of an element.
+   * The **min-width** CSS property sets the minimum width of an element.
    * It prevents the used value of the width property from becoming smaller than the value specified for min-width.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/min-width)
@@ -32,9 +39,9 @@ export interface LayoutProps<
    */
   minW?: ResponsiveValue<CSS.MinWidth<TLength>, Theme>
   /**
-   * Converted into a CSS max-width declaration.
+   * **Max Width**
    *
-   * The max-width CSS property sets the maximum width of an element.
+   * The **max-width** CSS property sets the maximum width of an element.
    * It prevents the used value of the width property from becoming larger than the value specified by max-width.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/max-width)
@@ -46,9 +53,9 @@ export interface LayoutProps<
    */
   maxW?: ResponsiveValue<CSS.MaxWidth<TLength>, Theme>
   /**
-   * Converted into a CSS height declaration.
+   * **Height**
    *
-   *  The height CSS property specifies the height of an element.
+   *  The **height** CSS property specifies the height of an element.
    *  By default, the property defines the height of the content area.
    *  If box-sizing is set to border-box, however, it instead determines the height of the border area.
    *
@@ -61,9 +68,9 @@ export interface LayoutProps<
    */
   h?: ResponsiveValue<CSS.Height<TLength> | boolean, Theme>
   /**
-   *  Converted into a CSS min-height declaration.
+   *  **Min Height**
    *
-   *  The min-height CSS property sets the minimum height of an element.
+   *  The **min-height** CSS property sets the minimum height of an element.
    *  It prevents the used value of the height property from becoming smaller
    *  than the value specified for min-height.
    *
@@ -76,9 +83,9 @@ export interface LayoutProps<
    */
   minH?: ResponsiveValue<CSS.MinHeight<TLength>, Theme>
   /**
-   *  Converted into a CSS max-height declaration.
+   *  **Max Height**
    *
-   *  The max-height CSS property sets the maximum height of an element.
+   *  The **max-height** CSS property sets the maximum height of an element.
    *  It prevents the used value of the height property from becoming larger than
    *  the value specified for max-height.
    *
@@ -91,7 +98,7 @@ export interface LayoutProps<
    */
   maxH?: ResponsiveValue<CSS.MaxHeight<TLength>, Theme>
   /**
-   *   Converted into CSS height and width declarations.
+   *   **Width** and **Height**
    *
    *   - Numbers from 0-1 are converted to both percentage widths and heights.
    *   - Numbers greater than 1 are converted to pixel values.
@@ -100,9 +107,9 @@ export interface LayoutProps<
    */
   s?: ResponsiveValue<CSS.Height<TLength>, Theme>
   /**
-   * Converted into a CSS display declaration
+   * **Display**
    *
-   * The display CSS property defines the display type of an element, which consists of the two basic qualities
+   * The **display** CSS property defines the display type of an element, which consists of the two basic qualities
    * of how an element generates boxes — the outer display type defining how the box participates in flow layout,
    * and the inner display type defining how the children of the box are laid out.
    *
@@ -113,9 +120,9 @@ export interface LayoutProps<
    */
   d?: ResponsiveValue<CSS.Display, Theme>
   /**
-   * Converted into a CSS vertical-align declaration
+   * **Vertical Align**
    *
-   * The vertical-align CSS property specifies sets vertical alignment of an inline or table-cell box.
+   * The **vertical-align** CSS property specifies sets vertical alignment of an inline or table-cell box.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)
    *
@@ -124,7 +131,9 @@ export interface LayoutProps<
    */
   vAlign?: ResponsiveValue<CSS.VerticalAlign<TLength>, Theme>
   /**
-   * The overflow CSS property sets what to do when an element's content is too big to fit in its block
+   * **Overflow**
+   *
+   * The **overflow** CSS property sets what to do when an element's content is too big to fit in its block
    * formatting context. It is a shorthand for overflow-x and overflow-y.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
@@ -134,7 +143,9 @@ export interface LayoutProps<
    */
   overflow?: ResponsiveValue<CSS.Overflow, Theme>
   /**
-   * The overflow-x CSS property sets what shows when content overflows a block-level element's left
+   * **Overflow X**
+   *
+   * The **overflow-x** CSS property sets what shows when content overflows a block-level element's left
    * and right edges. This may be nothing, a scroll bar, or the overflow content.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x)
@@ -144,7 +155,9 @@ export interface LayoutProps<
    */
   overflowX?: ResponsiveValue<CSS.OverflowX, Theme>
   /**
-   * The overflow-y CSS property sets what shows when content overflows a block-level element's top
+   * **Overflow Y**
+   *
+   * The **overflow-y** CSS property sets what shows when content overflows a block-level element's top
    * and bottom edges. This may be nothing, a scroll bar, or the overflow content.
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y)
@@ -155,7 +168,6 @@ export interface LayoutProps<
   overflowY?: ResponsiveValue<CSS.OverflowY, Theme>
 }
 
-const isNumber = n => typeof n === 'number' && !Number.isNaN(n)
 const getSize = (n, scale) =>
   get(scale, n, n === true ? '100%' : !isNumber(n) || n > 1 ? n : `${n * 100}%`)
 
