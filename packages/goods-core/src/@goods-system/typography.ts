@@ -153,6 +153,97 @@ export interface TypographyProps<
   TLength = string | number
 > {
   /**
+   * **Text Overflow**
+   *
+   * The **text-overflow** CSS property sets how hidden overflow
+   * content is signaled to users. It can be clipped, display an
+   * ellipsis ('…'), or display a custom string.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow)
+   * */
+  textOver?: ResponsiveValue<CSS.TextOverflow, Theme>
+  /**
+   * **Text Decoration**
+   *
+   * The **text-decoration** CSS property sets the appearance of
+   * decorative lines on text. It is a shorthand for text-decoration-line,
+   * text-decoration-color, text-decoration-style, and the newer
+   * text-decoration-thickness property.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration)
+   * */
+  textDecor?: ResponsiveValue<CSS.TextDecoration<TLength>, Theme>
+  /**
+   * **Word Spacing**
+   *
+   * The **word-spacing** CSS property sets the length of space
+   * between words and between tags.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing)
+   * */
+  wordSpace?: ResponsiveValue<CSS.WordSpacing<TLength>, Theme>
+  /**
+   * **Word Wrap**
+   *
+   * The **overflow-wrap** CSS property applies to inline elements,
+   * setting whether the browser should insert line breaks within
+   * an otherwise unbreakable string to prevent text from overflowing
+   * its line box.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap)
+   * */
+  wordWrap?: ResponsiveValue<CSS.WordWrap, Theme>
+  /**
+   * **Word Break**
+   *
+   * The **word-break** CSS property sets whether line breaks
+   * appear wherever the text would otherwise overflow its
+   * content box.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break)
+   * */
+  wordBreak?: ResponsiveValue<CSS.WordBreak, Theme>
+  /**
+   * **White Space**
+   *
+   * The **white-space** CSS property sets how white space
+   * inside an element is handled.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/line-break)
+   * */
+  whiteSpace?: ResponsiveValue<CSS.WhiteSpace, Theme>
+  /**
+   * **Line Clamp**
+   *
+   * The **-webkit-line-clamp** CSS property allows limiting of
+   * the contents of a block container to the specified number of
+   * lines.
+
+   * It only works in combination with the display property set
+   * to -webkit-box or -webkit-inline-box and the -webkit-box-orient
+   * property set to vertical.
+   *
+   * In most cases you will also want to set overflow to hidden,
+   * otherwise the contents won't be clipped but an ellipsis will
+   * still be shown after the specified number of lines.
+   *
+   * When applied to anchor elements, the truncating can happen
+   * in the middle of the text, not necessarily at the end.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp)
+   * */
+  lineClamp?: ResponsiveValue<CSS.LineClamp, Theme>
+  /**
+   * **Line Break**
+   *
+   * The **line-break** CSS property sets how to break lines of
+   * Chinese, Japanese, or Korean (CJK) text when working with
+   * punctuation and symbols.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/line-break)
+   * */
+  lineBreak?: ResponsiveValue<CSS.LineBreak, Theme>
+  /**
    * **Font family**
    *
    * The **font-family** CSS property specifies a prioritized list of one or more font family names and/or generic family names for the selected element.
@@ -239,6 +330,14 @@ const addImportant = (name: keyof TypographyProps) =>
   }) as ConfigStyle['transform']
 
 const config: Config<TypographyProps> = {
+  textOver: { property: 'textOverflow' },
+  textDecor: { property: 'textDecoration' },
+  wordSpace: true,
+  wordWrap: true,
+  wordBreak: true,
+  whiteSpace: true,
+  lineClamp: true,
+  lineBreak: true,
   fontFam: { property: 'fontFamily' },
   fSize: { property: 'fontSize', transform: addImportant('fSize') },
   letterSpace: {
