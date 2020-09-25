@@ -16,7 +16,7 @@ export const InputExample: Story<InputProps> = args => {
 
 InputExample.args = {
   w: true,
-  label: 'Label Tex',
+  label: 'Label Text',
   placeholder: 'Placeholder Text',
   supText: 'Support Text',
   type: 'text',
@@ -207,6 +207,19 @@ export const Textarea: Story<InputProps> = args => {
   const { colors } = useGoods()
   return (
     <Box w p='s'>
+      <Box w mb='xs'>
+        <Text>Initial / Empty</Text>
+        <Input
+          as='textarea'
+          resize='none'
+          {...args}
+          label='Label Text'
+          suffix={<Icon name='search' c={colors.black20} />}
+          placeholder='Placeholder Text'
+          supText='Support Text'
+          type='Text'
+        />
+      </Box>
       <Box w mb='xs'>
         <Text>Initial / Empty</Text>
         <Input

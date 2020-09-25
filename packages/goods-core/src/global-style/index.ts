@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     box-sizing: border-box;
   }
   * {
+    margin: 0;
+    padding: 0;
+  }
+  * {
     color: inherit;
     font-family: '${props => props.theme.fontBase || 'Rubik'}';
   }

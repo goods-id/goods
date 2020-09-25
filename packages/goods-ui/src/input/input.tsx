@@ -167,6 +167,21 @@ export const InputStyled = styled.input<InputStyledProps>(
         visibility: isLabeled ? 'hidden' : 'visible',
         ...placeholderStyle,
       },
+      '::-webkit-input-placeholder': {
+        visibility: isLabeled ? 'hidden' : 'visible',
+        ...placeholderStyle,
+      },
+      '::-ms-input-placeholder': {
+        visibility: isLabeled ? 'hidden' : 'visible',
+        ...placeholderStyle,
+      },
+      '::-moz-placeholder': {
+        opacity: isLabeled ? 0 : 1,
+        ...placeholderStyle,
+      },
+      '&:focus::-moz-placeholder': {
+        opacity: 1,
+      },
       '&:focus::placeholder': {
         visibility: 'visible',
       },
@@ -343,6 +358,7 @@ export const Input: React.MemoExoticComponent<React.ForwardRefExoticComponent<
             minH={label ? '48px' : '40px'}
             rows={rows}
             pt={as === 'textarea' ? 's' : undefined}
+            bW={as === 'textarea' ? '0px' : undefined}
             {...props}
             pb={label ? 'xxxs' : props.pb}
             prefix={prefix ? 'true' : ''}
