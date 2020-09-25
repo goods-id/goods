@@ -2,7 +2,12 @@ import styled from 'styled-components'
 import { compose } from '@styled-system/core'
 import { StyledComponentProps } from '../@types/global'
 import { merge, sort } from '../@goods-system/core'
-import { margin, MarginProps } from '../@goods-system/spacing'
+import {
+  margin,
+  MarginProps,
+  padding,
+  PaddingProps,
+} from '../@goods-system/spacing'
 import { color, ColorProps } from '../@goods-system/color'
 import {
   typography,
@@ -15,14 +20,16 @@ export interface TextCssProps
   extends TypographyRuleProps,
     TypographyProps,
     MarginProps,
-    ColorProps {}
+    ColorProps,
+    PaddingProps {}
 
 export const Text = styled.p<TextCssProps>(({ c = 'black30', ...props }) => {
   const stylesRule = typographyRule(props)
   const styles = compose(
     typography,
     margin,
-    color
+    color,
+    padding
   )({ c, fontFam: props.theme?.fontBase || 'Rubik', ...props })
   return sort(merge(stylesRule, styles))
 })

@@ -22,6 +22,7 @@ const displayedHtmlProps = [
   'style',
   'href',
   'target',
+  'disabled',
 ]
 
 const sourceLoaderOptions = {

@@ -2,6 +2,7 @@ import { Property as CSS } from 'csstype'
 import { system } from '@styled-system/core'
 import { ThemeType } from '../theme'
 import { Config, ResponsiveValue, GlobalsNumber } from '../@types/global'
+import colors from '../color'
 import { radiusConstants } from '../radius'
 
 export interface BorderProps<
@@ -9,23 +10,35 @@ export interface BorderProps<
   TLength = string | number
 > {
   b?: ResponsiveValue<CSS.Border<TLength>, Theme>
-  bC?: ResponsiveValue<CSS.BorderColor, Theme>
+  bC?: ResponsiveValue<CSS.BorderColor | keyof Required<Theme>['colors'], Theme>
   bS?: ResponsiveValue<CSS.BorderStyle, Theme>
   bW?: ResponsiveValue<CSS.BorderWidth<TLength>, Theme>
   bTop?: ResponsiveValue<CSS.BorderTop<TLength>, Theme>
-  bTopC?: ResponsiveValue<CSS.BorderTopColor, Theme>
+  bTopC?: ResponsiveValue<
+    CSS.BorderTopColor | keyof Required<Theme>['colors'],
+    Theme
+  >
   bTopS?: ResponsiveValue<CSS.BorderTopStyle, Theme>
   bTopW?: ResponsiveValue<CSS.BorderTopWidth<TLength>, Theme>
   bLeft?: ResponsiveValue<CSS.BorderLeft<TLength>, Theme>
-  bLeftC?: ResponsiveValue<CSS.BorderLeftColor, Theme>
+  bLeftC?: ResponsiveValue<
+    CSS.BorderLeftColor | keyof Required<Theme>['colors'],
+    Theme
+  >
   bLeftS?: ResponsiveValue<CSS.BorderLeftStyle, Theme>
   bLeftW?: ResponsiveValue<CSS.BorderLeftWidth<TLength>, Theme>
   bRight?: ResponsiveValue<CSS.BorderRight<TLength>, Theme>
-  bRightC?: ResponsiveValue<CSS.BorderRightColor, Theme>
+  bRightC?: ResponsiveValue<
+    CSS.BorderRightColor | keyof Required<Theme>['colors'],
+    Theme
+  >
   bRightS?: ResponsiveValue<CSS.BorderRightStyle, Theme>
   bRightW?: ResponsiveValue<CSS.BorderRightWidth<TLength>, Theme>
   bBottom?: ResponsiveValue<CSS.BorderBottom<TLength>, Theme>
-  bBottomC?: ResponsiveValue<CSS.BorderBottomColor, Theme>
+  bBottomC?: ResponsiveValue<
+    CSS.BorderBottomColor | keyof Required<Theme>['colors'],
+    Theme
+  >
   bBottomS?: ResponsiveValue<CSS.BorderBottomStyle, Theme>
   bBottomW?: ResponsiveValue<CSS.BorderBottomWidth<TLength>, Theme>
   bTopRightRad?: ResponsiveValue<
@@ -56,6 +69,8 @@ const config: Config<BorderProps> = {
   },
   bC: {
     property: 'borderColor',
+    scale: 'colors',
+    defaultScale: colors,
   },
   bW: {
     property: 'borderWidth',
@@ -68,6 +83,8 @@ const config: Config<BorderProps> = {
   },
   bTopC: {
     property: 'borderTopColor',
+    scale: 'colors',
+    defaultScale: colors,
   },
   bTopW: {
     property: 'borderTopWidth',
@@ -80,6 +97,8 @@ const config: Config<BorderProps> = {
   },
   bLeftC: {
     property: 'borderLeftColor',
+    scale: 'colors',
+    defaultScale: colors,
   },
   bLeftW: {
     property: 'borderLeftWidth',
@@ -92,6 +111,8 @@ const config: Config<BorderProps> = {
   },
   bBottomC: {
     property: 'borderBottomColor',
+    scale: 'colors',
+    defaultScale: colors,
   },
   bBottomW: {
     property: 'borderBottomWidth',
@@ -104,6 +125,8 @@ const config: Config<BorderProps> = {
   },
   bRightC: {
     property: 'borderRightColor',
+    scale: 'colors',
+    defaultScale: colors,
   },
   bRightW: {
     property: 'borderRightWidth',
