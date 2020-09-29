@@ -1,8 +1,18 @@
 import * as React from 'react'
+import { Property as CSS } from 'csstype'
 import styled, { DefaultTheme, InterpolationValue } from 'styled-components'
-import { compose, ConfigStyle, get, system } from '@styled-system/core'
-import { Icon, IconProps } from '../../../goods-core/src/icon'
 import {
+  compose,
+  get,
+  system,
+  merge,
+  Config,
+  ResponsiveValue,
+  TransformFn,
+  ColorName,
+} from '@styled-system/core'
+import {
+  Icon,
   border,
   BorderProps,
   flexbox,
@@ -21,11 +31,13 @@ import {
   TypographyProps,
   background,
   BackgroundProps,
-  merge,
-} from '../../../goods-core/src/@goods-system'
-import { Box, BoxProps, Spinner } from '../../../goods-core/src/basics'
-import { Config, ResponsiveValue } from '../../../goods-core/src/@types/global'
-import { colors, useGoods } from '../../../goods-core/src'
+  Box,
+  BoxProps,
+  Spinner,
+  colors,
+  useGoods,
+} from '@pomona/goods-core'
+import { isIconButtonProps, IconButtonProps } from '../@types/global'
 
 const sizeRuleConstant = {
   small: '24px',
@@ -48,13 +60,13 @@ export interface ButtonStyledProps
   buttonSize?: ResponsiveValue<SizeRule | number>
 }
 
-const getRule = (n, scale, props: ButtonStyledProps) =>
+const getRule: TransformFn<ButtonStyledProps> = (n, scale, props) =>
   get(scale, n, n in sizeRuleConstant ? sizeRuleConstant[n] : n || props?.minH)
 
 const configButton: Config<Pick<ButtonStyledProps, 'buttonSize'>> = {
   buttonSize: {
     property: 'minHeight',
-    transform: getRule as ConfigStyle['transform'],
+    transform: getRule,
   },
 }
 
@@ -64,6 +76,19 @@ const getRippleColor = (col, theme: DefaultTheme) => {
   const colorConst = theme?.colors || colors
   return col in colorConst ? colorConst[col] : col
 }
+
+const styleFn = compose<ButtonStyledProps>(
+  layout,
+  spacing,
+  color,
+  position,
+  flexbox,
+  border,
+  shadow,
+  typography,
+  background,
+  buttonRule
+)
 
 const ButtonStyled = styled.button<ButtonStyledProps>(
   ({
@@ -103,18 +128,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
         cursor: 'not-allowed',
       },
     }
-    const style = compose(
-      layout,
-      spacing,
-      color,
-      position,
-      flexbox,
-      border,
-      shadow,
-      typography,
-      background,
-      buttonRule
-    )({
+    const style = styleFn({
       buttonSize,
       radius,
       bg,
@@ -135,26 +149,15 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
   }
 )
 
-interface IconButtonProps {
-  icName: IconProps['name']
-  icSize?: IconProps['size']
-  icColor?: IconProps['c']
-  icRotate?: IconProps['rotate']
-}
-
 export interface ButtonProps
   extends ButtonStyledProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
   isLoading?: boolean
-  loadingColor?: keyof typeof colors | string
+  loadingColor?: CSS.Color | ColorName
   prefix?: IconButtonProps | React.ReactNode
   prefixContainer?: BoxProps
   suffix?: React.ReactNode | IconButtonProps
   suffixContainer?: BoxProps
-}
-
-const isIconButtonProps = (params): params is IconButtonProps => {
-  return typeof params === 'object' && 'icName' in params
 }
 
 export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<

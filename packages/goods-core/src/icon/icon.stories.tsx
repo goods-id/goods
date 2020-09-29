@@ -41,7 +41,7 @@ export const All: Story = () => {
 }
 
 export const WithKnobs: Story = () => {
-  const { colors, spacing } = useGoods()
+  const { colors, spacing } = useGoods() || {}
   const namedSize = select('named', iconSizes, 'normal', 'size')
   const numberedSize = number('numbered', 24, { min: 0, step: 1 }, 'size')
   const namedRotate = select('named', iconRotates, 'up', 'rotate')
@@ -54,8 +54,8 @@ export const WithKnobs: Story = () => {
   return (
     <Icon
       name={select('name', iconNames, IconName.home)}
-      c={color('c', colors.blue50)}
-      c1={color('c1', colors.red60)}
+      c={color('c', colors?.blue50 || '')}
+      c1={color('c1', colors?.red60 || '')}
       m={text('m', spacing('s'))}
       p={text('p', spacing('0'))}
       size={namedSize || numberedSize}

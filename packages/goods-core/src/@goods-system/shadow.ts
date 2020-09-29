@@ -1,12 +1,16 @@
-import { Globals } from 'csstype'
-import { system } from '@styled-system/core'
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
+import { Property as CSS } from 'csstype'
+import {
+  system,
+  ThemeType,
+  Config,
+  ResponsiveValue,
+  ShadowName,
+} from '@styled-system/core'
 import shadowConstant from '../shadow'
 
 export interface ShadowProps<Theme extends ThemeType = ThemeType> {
-  shadow?: ResponsiveValue<keyof Required<Theme>['shadows'] | Globals, Theme>
-  tShadow?: ResponsiveValue<keyof Required<Theme>['shadows'] | Globals, Theme>
+  shadow?: ResponsiveValue<ShadowName<Theme> | CSS.BoxShadow, Theme>
+  tShadow?: ResponsiveValue<ShadowName<Theme> | CSS.TextShadow, Theme>
 }
 
 const config: Config<ShadowProps> = {

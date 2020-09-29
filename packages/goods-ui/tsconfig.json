@@ -5,7 +5,12 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["dom", "es2015", "es2016", "es2017"],
+    "lib": [
+      "dom",
+      "es2015",
+      "es2016",
+      "es2017"
+    ],
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -21,16 +26,20 @@
     "suppressImplicitAnyIndexErrors": true,
     "esModuleInterop": true,
     "target": "es2015",
-    "typeRoots": ["@types", "node_modules/@types", "../../node_modules/@types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "../**/node_modules/@types",
+      "../../node_modules/@types",
+      "../../node_modules/**/@types"
+    ]
   },
   "references": [],
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ],
   "exclude": [
-    "node_modules",
-    "**/lib",
-    "src/**/*.stories.tsx",
-    "src/**/*.story.tsx",
-    "src/**/*.docs.tsx",
-    "src/utils/storybook.tsx"
+    "./node_modules",
+    "**/lib"
   ]
 }

@@ -1,8 +1,13 @@
 import { Property as CSS } from 'csstype'
-import { system, get } from '@styled-system/core'
+import {
+  system,
+  get,
+  Config,
+  ResponsiveValue,
+  ThemeType,
+  TransformFn,
+} from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
 import { isNumber } from './core'
 
 export interface LayoutProps<
@@ -168,8 +173,12 @@ export interface LayoutProps<
   overflowY?: ResponsiveValue<CSS.OverflowY, Theme>
 }
 
-const getSize = (n, scale) =>
-  get(scale, n, n === true ? '100%' : !isNumber(n) || n > 1 ? n : `${n * 100}%`)
+const getSize: TransformFn<LayoutProps> = (n, scale) =>
+  get(
+    scale,
+    n,
+    n === true ? '100%' : !isNumber(n) || n > 1 || n < -1 ? n : `${n * 100}%`
+  )
 
 const config: Config<LayoutProps> = {
   w: { property: 'width', transform: getSize },
@@ -186,4 +195,4 @@ const config: Config<LayoutProps> = {
   overflowY: true,
 }
 
-export const layout = system(config)
+export const layout = system<LayoutProps>(config)

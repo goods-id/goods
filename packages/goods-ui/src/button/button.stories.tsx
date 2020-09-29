@@ -1,6 +1,6 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box, useGoods } from '../../../goods-core/src'
+import { Box, useGoods } from '@pomona/goods-core'
 import { Button, ButtonProps } from './button'
 
 const storyMetaData: Meta<ButtonProps> = {
@@ -38,7 +38,7 @@ export const Basic: Story<ButtonProps> = () => {
       </Box>
       <Box w fDir='row'>
         <Box w p='m'>
-          <Button b={`1px solid ${colors.blue50}`} bg='white10' c='blue50'>
+          <Button b={`1px solid ${colors?.blue50}`} bg='white10' c='blue50'>
             Outline
           </Button>
         </Box>
@@ -47,7 +47,7 @@ export const Basic: Story<ButtonProps> = () => {
             prefixContainer={{ m: 'xxxs' }}
             prefix={{
               icName: 'home',
-              icColor: colors.white10,
+              icColor: colors?.white10,
               icSize: 'small',
             }}
           >
@@ -85,14 +85,14 @@ export const Primary: Story<ButtonProps> = () => {
       </Box>
       <Box w fDir='row'>
         <Box w p='m'>
-          <Button b={`1px solid ${colors.orange90}`} bg='white10' c='orange90'>
+          <Button b={`1px solid ${colors?.orange90}`} bg='white10' c='orange90'>
             Outline
           </Button>
         </Box>
         <Box w p='m'>
           <Button
             bg='orange90'
-            prefix={{ icName: 'search', icColor: colors.white10 }}
+            prefix={{ icName: 'search', icColor: colors?.white10 }}
           >
             Icon
           </Button>
@@ -132,7 +132,7 @@ export const Plain: Story<ButtonProps> = () => {
       </Box>
       <Box w fDir='row'>
         <Box w p='m'>
-          <Button b={`1px solid ${colors.blue50}`} bg='transparent' c='blue50'>
+          <Button b={`1px solid ${colors?.blue50}`} bg='transparent' c='blue50'>
             Outline
           </Button>
         </Box>
@@ -140,7 +140,7 @@ export const Plain: Story<ButtonProps> = () => {
           <Button
             bg='transparent'
             c='blue50'
-            prefix={{ icName: 'search', icColor: colors.blue50 }}
+            prefix={{ icName: 'search', icColor: colors?.blue50 }}
           >
             Icon
           </Button>
@@ -176,14 +176,14 @@ export const Destructive: Story<ButtonProps> = () => {
       </Box>
       <Box w fDir='row'>
         <Box w p='m'>
-          <Button b={`1px solid ${colors.red60}`} bg='white10' c='red60'>
+          <Button b={`1px solid ${colors?.red60}`} bg='white10' c='red60'>
             Outline
           </Button>
         </Box>
         <Box w p='m'>
           <Button
             bg='red60'
-            prefix={{ icName: 'search', icColor: colors.white10 }}
+            prefix={{ icName: 'search', icColor: colors?.white10 }}
           >
             Icon
           </Button>

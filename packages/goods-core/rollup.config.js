@@ -8,7 +8,8 @@ import copy from 'rollup-plugin-copy'
 import url from '@rollup/plugin-url'
 import pkg from './package.json'
 
-export default {
+/** @type {import('rollup').RollupOptions} */
+const config = {
   input: './src/index.ts',
   output: [
     {
@@ -21,6 +22,7 @@ export default {
       format: 'esm',
       preserveModules: true,
       sourcemap: true,
+      preserveModulesRoot: 'src',
     },
   ],
   treeshake: true,
@@ -44,6 +46,14 @@ export default {
           sourceMap: true,
           declaration: true,
         },
+        exclude: [
+          'node_modules',
+          '**/lib',
+          'src/**/*.stories.tsx',
+          'src/**/*.story.tsx',
+          'src/**/*.docs.tsx',
+          'src/utils/storybook.tsx',
+        ],
       },
     }),
     copy({
@@ -58,9 +68,11 @@ export default {
         },
         {
           src: 'src/global-style/fonts/*',
-          dest: 'lib/packages/goods-core/src/global-style/fonts',
+          dest: 'lib/global-style/fonts',
         },
       ],
     }),
   ],
 }
+
+export default config

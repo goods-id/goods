@@ -1,7 +1,7 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
+import { Icon, Text, useGoods, Box } from '@pomona/goods-core'
 import { Input, InputProps } from './input'
-import { Icon, Text, useGoods, Box } from '../../../goods-core/src'
 
 const storyMetaData: Meta<InputProps> = {
   title: 'Component/Input',
@@ -86,7 +86,7 @@ export const BasicPrefixSuffix: Story<InputProps> = args => {
               Rp
             </Text>
           }
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           label='Label Text'
           placeholder='Placeholder Text'
           supText='Support Text'
@@ -102,7 +102,7 @@ export const BasicPrefixSuffix: Story<InputProps> = args => {
               Rp
             </Text>
           }
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           label='Label Text'
           placeholder='Placeholder Text'
           supText='Support Text'
@@ -119,7 +119,7 @@ export const BasicPrefixSuffix: Story<InputProps> = args => {
               Rp
             </Text>
           }
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           isError
           label='Label Text'
           placeholder='Placeholder Text'
@@ -137,7 +137,7 @@ export const BasicPrefixSuffix: Story<InputProps> = args => {
               Rp
             </Text>
           }
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           disabled
           label='Label Text'
           placeholder='Placeholder Text'
@@ -158,7 +158,7 @@ export const BasicNoLabel: Story<InputProps> = args => {
         <Text>Initial / Empty</Text>
         <Input
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           placeholder='Placeholder Text'
           supText='Support Text'
           type='Text'
@@ -168,7 +168,7 @@ export const BasicNoLabel: Story<InputProps> = args => {
         <Text>Filled</Text>
         <Input
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           placeholder='Placeholder Text'
           supText='Support Text'
           type='Text'
@@ -179,7 +179,7 @@ export const BasicNoLabel: Story<InputProps> = args => {
         <Text>Error</Text>
         <Input
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           isError
           placeholder='Placeholder Text'
           supText='Support Text'
@@ -191,7 +191,7 @@ export const BasicNoLabel: Story<InputProps> = args => {
         <Text>Disabled</Text>
         <Input
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          suffix={<Icon name='search' c={colors?.black20} />}
           disabled
           placeholder='Placeholder Text'
           supText='Support Text'
@@ -214,7 +214,7 @@ export const Textarea: Story<InputProps> = args => {
           resize='none'
           {...args}
           label='Label Text'
-          suffix={<Icon name='search' c={colors.black20} />}
+          prefix={<Icon name='search' c={colors?.black20} />}
           placeholder='Placeholder Text'
           supText='Support Text'
           type='Text'
@@ -226,7 +226,8 @@ export const Textarea: Story<InputProps> = args => {
           as='textarea'
           resize='none'
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          label='Label Text'
+          prefix={<Icon name='search' c={colors?.black20} />}
           placeholder='Placeholder Text'
           supText='Support Text'
           type='Text'
@@ -238,7 +239,8 @@ export const Textarea: Story<InputProps> = args => {
           as='textarea'
           resize='none'
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          label='Label Text'
+          prefix={<Icon name='search' c={colors?.black20} />}
           placeholder='Placeholder Text'
           supText='Support Text'
           type='Text'
@@ -251,7 +253,8 @@ export const Textarea: Story<InputProps> = args => {
           as='textarea'
           resize='none'
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          label='Label Text'
+          prefix={<Icon name='search' c={colors?.black20} />}
           isError
           placeholder='Placeholder Text'
           supText='Support Text'
@@ -265,7 +268,8 @@ export const Textarea: Story<InputProps> = args => {
           as='textarea'
           resize='none'
           {...args}
-          suffix={<Icon name='search' c={colors.black20} />}
+          label='Label Text'
+          prefix={<Icon name='search' c={colors?.black20} />}
           disabled
           placeholder='Placeholder Text'
           supText='Support Text'

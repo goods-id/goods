@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     margin: 0px;
     width: 100%;
     padding: 0px auto;
-    background: ${props => props.theme.colors.white20};
+    background: ${props => props.theme.colors?.white20};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -78,7 +78,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   .scroll::-webkit-scrollbar-track {
     width: 6px;
     border-radius: 3px;
-    background-color: ${props => props.theme.colors.white30};
+    background-color: ${props => props.theme.colors?.white30};
   }
   .scroll::-webkit-scrollbar {
     width: 6px;
@@ -87,7 +87,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     width: 6px;
     height: 20%;
     border-radius: 3px;
-    background-color: ${props => props.theme.colors.blue50};
+    background-color: ${props => props.theme.colors?.blue50};
   }
 
   *:focus {

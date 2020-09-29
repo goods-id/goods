@@ -4,11 +4,11 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
-import copy from 'rollup-plugin-copy'
 import url from '@rollup/plugin-url'
 import pkg from './package.json'
 
-export default {
+/** @type {import('rollup').RollupOptions} */
+const config = {
   input: './src/index.ts',
   output: [
     {
@@ -21,6 +21,7 @@ export default {
       format: 'esm',
       preserveModules: true,
       sourcemap: true,
+      preserveModulesRoot: 'src',
     },
   ],
   treeshake: true,
@@ -44,23 +45,16 @@ export default {
           sourceMap: true,
           declaration: true,
         },
+        exclude: [
+          './node_modules',
+          '**/lib',
+          './src/**/*.stories.tsx',
+          './src/**/*.story.tsx',
+          './src/**/*.docs.tsx',
+        ],
       },
-    }),
-    copy({
-      targets: [
-        {
-          src: 'assets/svg/*',
-          dest: 'lib/assets/svg',
-        },
-        {
-          src: 'assets/png/*',
-          dest: 'lib/assets/png',
-        },
-        {
-          src: 'src/global-style/fonts/*',
-          dest: 'lib/packages/goods-core/src/global-style/fonts',
-        },
-      ],
     }),
   ],
 }
+
+export default config

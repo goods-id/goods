@@ -2,7 +2,6 @@
 import React from 'react'
 import { Div } from '../basics/div'
 import { Text } from '../typography'
-import { useGoods } from '../goods-context'
 import { GoodsDocs, Section, ImageBox } from '../utils/storybook.docs'
 
 interface SpacingSettingProps {
@@ -84,7 +83,6 @@ const spacingSettings: SpacingSettingProps[] = [
 const SpacingSetting: React.FC<SpacingSettingProps> = props => {
   const { title, imageSrc, description, imageWidth } = props
   const is16px = /16px/.test(title)
-  const { colors } = useGoods()
   return (
     <Div w='100%' m='16px 0px'>
       <Text rule='body' weight='bold' mb='s'>
@@ -96,7 +94,7 @@ const SpacingSetting: React.FC<SpacingSettingProps> = props => {
           alt={title}
           w={imageWidth}
           m='0px 0px 16px'
-          bg={is16px ? colors.blue10 : ''}
+          bg={is16px ? 'blue10' : ''}
           p={is16px ? '8px' : ''}
         />
       )}

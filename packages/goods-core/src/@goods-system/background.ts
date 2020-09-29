@@ -1,19 +1,13 @@
 import { Property as CSS } from 'csstype'
-import { system } from '@styled-system/core'
+import { system, Config, ResponsiveValue, ThemeType } from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
-
-export interface BackgroundProps<
-  Theme extends ThemeType = ThemeType,
-  TLength = string | number
-> {
+export interface BackgroundProps<Theme extends ThemeType = ThemeType> {
   /**
    * **Background**
    *
    * The background shorthand CSS property sets all background style properties at once, such as color, image, origin and size, or repeat method.
    * */
-  bgs?: ResponsiveValue<CSS.Background<TLength>, Theme>
+  bgs?: ResponsiveValue<CSS.Background, Theme>
   /**
    * **Background Image**
    *
@@ -25,7 +19,7 @@ export interface BackgroundProps<
    *
    * CSS property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
    * */
-  bgSize?: ResponsiveValue<CSS.BackgroundSize<TLength>, Theme>
+  bgSize?: ResponsiveValue<CSS.BackgroundSize, Theme>
   /**
    * **Background Posistion**
    *
@@ -33,7 +27,7 @@ export interface BackgroundProps<
    *
    * **Syntax**: `[ center | [ [ left | right | x-start | x-end ]? <length-percentage>? ]! ]#`
    * */
-  bgPosi?: ResponsiveValue<CSS.BackgroundPosition<TLength>, Theme>
+  bgPosi?: ResponsiveValue<CSS.BackgroundPosition, Theme>
   /**
    * **Background Repeat**
    *
@@ -70,4 +64,4 @@ const config: Config<BackgroundProps> = {
   bgAttach: { property: 'backgroundAttachment' },
 }
 
-export const background = system(config)
+export const background = system<BackgroundProps>(config)

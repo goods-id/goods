@@ -1,7 +1,5 @@
 import { Property as CSS } from 'csstype'
-import { system } from '@styled-system/core'
-import { Config, ResponsiveValue } from '../@types/global'
-import { ThemeType } from '../theme'
+import { system, Config, ResponsiveValue, ThemeType } from '@styled-system/core'
 
 export interface ListProps<Theme extends ThemeType = ThemeType> {
   /**
@@ -57,4 +55,4 @@ const config: Config<ListProps> = {
   listType: { property: 'listStyleType' },
 }
 
-export const list = system(config)
+export const list = system<ListProps>(config)

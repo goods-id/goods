@@ -1,6 +1,5 @@
 import React from 'react'
 import { Div } from '../basics/div'
-import { useGoods } from '../goods-context'
 import { GoodsDocs, Section } from '../utils/storybook.docs'
 import { Text } from '../typography'
 import colors, { blue, orange, black, green, red, white, getInverseBw } from '.'
@@ -53,7 +52,7 @@ function createColorArray(color: Partial<Color>): Colors {
   const colorNames = Object.keys(color) as ColorName[]
   return colorNames.map<Colors[number]>(name => ({
     key: name,
-    value: color[name],
+    value: color[name] || '',
   }))
 }
 
@@ -68,7 +67,6 @@ const colorPalettes: ColorPaletteProps[] = [
 
 const ShowColor: React.FC<ShowColorProps> = props => {
   const { h, colorName, colorValue, isPrimary } = props
-  const { spacing } = useGoods()
   const c = getInverseBw(colorValue) as ColorProps['c']
   return (
     <Div
@@ -76,7 +74,7 @@ const ShowColor: React.FC<ShowColorProps> = props => {
       fDir='row'
       fJustify='space-between'
       fAlign='center'
-      p={spacing('s')}
+      p='s'
       bg={colorValue}
       h={h}
     >
@@ -92,12 +90,11 @@ const ShowColor: React.FC<ShowColorProps> = props => {
 
 const ColorPalette: React.FC<ColorPaletteProps> = props => {
   const { colors: colorArray, primary, name } = props
-  const { spacing } = useGoods()
   const numOfColors = colorArray.length
   const primaryHeight = `${256 - (numOfColors - 1) * 48}px`
   return (
-    <Div w='calc(100%/3 - 48px)' minW='192px' p={spacing('l', 's', '0')}>
-      <Div w='100%' p={spacing('0', '0', 's')}>
+    <Div w='calc(100%/3 - 48px)' minW='192px' mt='l' mr='s'>
+      <Div w='100%' pb='s'>
         <Text rule='body'>{name}</Text>
       </Div>
       {colorArray.map(({ key, value }) => (
@@ -114,7 +111,6 @@ const ColorPalette: React.FC<ColorPaletteProps> = props => {
 }
 
 const ColorDocs: React.FC = () => {
-  const { spacing } = useGoods()
   return (
     <GoodsDocs
       designDesc={`
@@ -127,13 +123,13 @@ const ColorDocs: React.FC = () => {
       withoutStories
       withoutDocsTitle
     >
-      <Section title='I. Principles' m={spacing('xl', '0', 'm')} noChildTab>
+      <Section title='I. Principles' mt='xl' mb='m' noChildTab>
         <Text rule='body' my='xxs'>
           These guidelines are our framework upon how we use colour both inside
           and outside of our system in Pomona.
         </Text>
         {principles.map(item => (
-          <Div key={item.title} w='100%' m={spacing('s', '0', '0')}>
+          <Div key={item.title} w='100%' mt='s'>
             <Text rule='body' weight='bold'>
               {item.title}
             </Text>
@@ -146,7 +142,7 @@ const ColorDocs: React.FC = () => {
           Our colour palette is built with our values and our guidelines as its
           foundation.
         </Text>
-        <Div w='100%' m={spacing('s', '0', '0')}>
+        <Div w='100%' mt='s'>
           <Text rule='body' weight='bold'>
             Note
           </Text>

@@ -1,129 +1,60 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { StyledComponentProps } from 'styled-components'
+import { ThemeType, compose } from '@styled-system/core'
 import {
-  WidthProperty,
-  HeightProperty,
-  MarginProperty,
-  PaddingProperty,
-  BackgroundColorProperty,
-  MinWidthProperty,
-  MinHeightProperty,
-  MaxWidthProperty,
-  MaxHeightProperty,
-  ZIndexProperty,
-  PositionProperty,
-  BoxShadowProperty,
-  BorderRadiusProperty,
-  BorderProperty,
-} from 'csstype'
-import { BaseProps } from '../../@types/global'
-import colors from '../../color'
+  BorderProps,
+  border,
+  ColorProps,
+  color,
+  LayoutProps,
+  layout,
+  PositionProps,
+  position,
+  ShadowProps,
+  shadow,
+  SpacingProps,
+  spacing,
+} from '../../@goods-system'
 
-export interface LineCssProps<TLength = string | 0> {
-  /**
-   * Width
-   */
-  w?: WidthProperty<TLength>
-  /**
-   * Height
-   * @default "2px"
-   */
-  h?: HeightProperty<TLength>
-  /**
-   * Margin
-   */
-  m?: MarginProperty<TLength>
-  /**
-   * Padding
-   */
-  p?: PaddingProperty<TLength>
-  /**
-   * Background Color
-   */
-  bg?: BackgroundColorProperty
-  /**
-   * Min Width
-   */
-  minW?: MinWidthProperty<TLength>
-  /**
-   * Max Width
-   */
-  maxW?: MaxWidthProperty<TLength>
-  /**
-   * Min Height
-   */
-  minH?: MinHeightProperty<TLength>
-  /**
-   * Max Height
-   */
-  maxH?: MaxHeightProperty<TLength>
-  /**
-   * Z Index
-   */
-  z?: ZIndexProperty
-  /**
-   * Position
-   */
-  position?: PositionProperty
-  /**
-   * Shadow
-   */
-  shadow?: BoxShadowProperty
-  /**
-   * Radius
-   * @default "4px"
-   */
-  radius?: BorderRadiusProperty<TLength>
-  /**
-   * Border
-   */
-  b?: BorderProperty<TLength>
-}
+export interface LineCssProps<T extends ThemeType = ThemeType>
+  extends BorderProps<T>,
+    ColorProps<T>,
+    LayoutProps<T>,
+    PositionProps<T>,
+    ShadowProps<T>,
+    SpacingProps<T> {}
 
-export const LineStyled = styled.div<LineCssProps>(
-  ({
-    w,
-    h = '2px',
-    m,
-    p,
-    minW,
-    maxW,
-    minH,
-    maxH,
-    z,
-    bg = colors.black10,
-    position,
-    shadow,
-    radius = '4px',
-  }) => {
-    return {
-      width: w,
-      height: h,
-      padding: p,
-      margin: m || '0px',
-      backgroundColor: bg,
-      minWidth: minW,
-      maxWidth: maxW,
-      minHeight: minH,
-      maxHeight: maxH,
-      zIndex: z,
-      position,
-      boxShadow: shadow,
-      borderRadius: radius,
-      border: '0px',
-    }
+const styleFn = compose<LineCssProps>(
+  border,
+  color,
+  layout,
+  position,
+  shadow,
+  spacing
+)
+
+export const LineStyled = styled.hr<LineCssProps>(
+  ({ h = '2px', m = '0', bg = 'black10', radius = '4px', ...props }) => {
+    return styleFn({ h, m, bg, radius, ...props })
   }
 )
 
-export interface SeparatorProps
-  extends LineCssProps,
-    BaseProps<HTMLDivElement> {}
+LineStyled.displayName = 'LineStyled'
+
+export type SeparatorProps = StyledComponentProps<
+  'hr',
+  ThemeType,
+  LineCssProps,
+  never
+>
 
 export const Line: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  SeparatorProps & React.RefAttributes<HTMLDivElement>
+  SeparatorProps & React.RefAttributes<HTMLHRElement>
 >> = React.memo(
-  React.forwardRef((props, ref) => <LineStyled as='hr' ref={ref} {...props} />)
+  React.forwardRef((props, ref) => <LineStyled ref={ref} {...props} />)
 )
+
+Line.displayName = 'Line'
 
 export { SeparatorProps as LineProps }
 

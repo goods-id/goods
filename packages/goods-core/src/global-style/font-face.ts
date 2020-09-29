@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable global-require */
 
-const fontFace = () => {
+const fontFace = (): string => {
   const RubikLight = require('./fonts/rubik-300.woff')
   const RubikReg = require('./fonts/rubik-400.woff')
   const RubikMed = require('./fonts/rubik-500.woff')

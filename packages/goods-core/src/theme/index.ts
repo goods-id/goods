@@ -7,6 +7,17 @@ import spacing, { spacingConstants } from '../spacing'
 import shadow from '../shadow'
 import breakpoints, { breakpointConstants } from '../breakpoints'
 
+export const zIndices = {
+  mobileStepper: 1000,
+  speedDial: 1050,
+  appBar: 1100,
+  backdrop: 1150,
+  drawer: 1200,
+  modal: 1300,
+  snackbar: 1400,
+  tooltip: 1500,
+}
+
 export type TLengthStyledSystem = string | 0 | number
 
 export interface ThemeStyledSystem<TLength = TLengthStyledSystem> {
@@ -33,7 +44,13 @@ export interface ThemeStyledSystem<TLength = TLengthStyledSystem> {
 
 export interface Theme {
   colors: Partial<typeof colors>
+  /**
+   * @deprecated
+   */
   radius: typeof radius
+  /**
+   * @deprecated
+   */
   spacing: typeof spacing
   breakpoints: typeof breakpoints
   shadow: Partial<typeof shadow>
@@ -46,6 +63,7 @@ export interface ThemeType extends ThemeStyledSystem {
   space?: typeof spacingConstants
   radii?: typeof radiusConstants
   shadows?: typeof shadow
+  zIndices?: typeof zIndices
   fontBase?: string
 }
 
@@ -55,6 +73,7 @@ export const goodsTheme: ThemeType & Partial<Omit<Theme, 'breakpoints'>> = {
   space: spacingConstants,
   radii: radiusConstants,
   shadows: shadow,
+  zIndices,
   fontBase: 'Rubik',
   radius,
   spacing,
@@ -98,6 +117,9 @@ const theme: Theme = {
   fontBase: 'Rubik',
 }
 
+/**
+ * @deprecated
+ */
 export function overrideTheme(
   newTheme: Partial<Pick<Theme, 'colors' | 'fontBase' | 'shadow'>>
 ): Theme {

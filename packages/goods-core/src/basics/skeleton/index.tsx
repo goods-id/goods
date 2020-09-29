@@ -1,135 +1,69 @@
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
-import { Property as CSS } from 'csstype'
-import { BaseProps } from '../../@types/global'
+import styled, {
+  css,
+  keyframes,
+  StyledComponentPropsWithAs,
+} from 'styled-components'
+import { compose, ThemeType } from '@styled-system/core'
+import {
+  BorderProps,
+  border,
+  ColorProps,
+  color,
+  LayoutProps,
+  layout,
+  TransformProps,
+  transform,
+  PositionProps,
+  position,
+  SpacingProps,
+  spacing,
+} from '../../@goods-system'
 
-export interface SkeletonCssProps<TLength = string | 0> {
-  /**
-   * Width
-   * @default "300px"
-   */
-  w?: CSS.Width<TLength>
-  /**
-   * Height
-   * @default "20px"
-   */
-  h?: CSS.Height<TLength>
-  /**
-   * Margin
-   */
-  m?: CSS.Margin<TLength>
-  /**
-   * Padding
-   */
-  p?: CSS.Padding<TLength>
-  /**
-   * Min Width
-   */
-  minW?: CSS.MinWidth<TLength>
-  /**
-   * Max Width
-   */
-  maxW?: CSS.MaxWidth<TLength>
-  /**
-   * Min Height
-   */
-  minH?: CSS.MinHeight<TLength>
-  /**
-   * Max Height
-   */
-  maxH?: CSS.MaxHeight<TLength>
-  /**
-   * Background Color
-   * @default "hsl(0, 0%, 89%)"
-   */
-  bg?: CSS.BackgroundColor
-  /**
-   * Z Index
-   */
-  z?: CSS.ZIndex
-  /**
-   * Position
-   * @default "relative"
-   */
-  position?: CSS.Position
-  /**
-   * Top
-   */
-  top?: CSS.Top<TLength>
-  /**
-   * Left
-   */
-  left?: CSS.Left<TLength>
-  /**
-   * Right
-   */
-  right?: CSS.Right<TLength>
-  /**
-   * Bottom
-   */
-  bottom?: CSS.Bottom<TLength>
-  /**
-   * Radius
-   * @default "4px"
-   */
-  radius?: CSS.BorderRadius<TLength>
-  /**
-   * Transform
-   * @default "scale(1, 1)"
-   */
-  transform?: CSS.Transform
-  /**
-   * Display
-   * @default "block"
-   */
-  d?: CSS.Display
-}
+export interface SkeletonCssProps<T extends ThemeType = ThemeType>
+  extends BorderProps<T>,
+    ColorProps<T>,
+    LayoutProps<T>,
+    TransformProps<T>,
+    PositionProps<T>,
+    SpacingProps<T> {}
+
+const styleFn = compose<SkeletonCssProps>(
+  border,
+  color,
+  layout,
+  transform,
+  position,
+  spacing
+)
 
 export const SkeletonStyled = styled.span<SkeletonCssProps>(
   ({
     w = '300px',
     h = '20px',
-    m,
-    p,
-    minW,
-    maxW,
-    minH,
-    maxH,
     bg = 'hsl(0, 0%, 89%)',
-    z,
-    position = 'relative',
-    top,
-    left,
-    right,
-    bottom,
-    radius = '4px',
-    transform = 'scale(1, 1)',
+    posi = 'relative',
+    radius = 'm',
     d = 'block',
+    transform: t = 'scale(1, 1)',
+    ...props
   }) => {
-    return {
-      width: w,
-      height: h,
-      padding: p,
-      margin: m,
-      minWidth: minW,
-      maxWidth: maxW,
-      minHeight: minH,
-      maxHeight: maxH,
-      backgroundColor: bg,
-      zIndex: z,
-      position,
-      top,
-      left,
-      right,
-      bottom,
-      borderRadius: radius,
-      transform,
+    return styleFn({
+      w,
+      h,
+      d,
+      bg,
+      posi,
+      radius,
+      transform: t,
+      ...props,
       overflow: 'hidden',
       transformOrigin: '0 60%',
-      display: d,
-    }
+    })
   }
 )
+
+SkeletonStyled.displayName = 'SkeletonStyled'
 
 const progress = keyframes`
   0% {
@@ -140,7 +74,7 @@ const progress = keyframes`
   }
 `
 
-const SkeletonAnimation = styled(SkeletonStyled)`
+export const SkeletonAnimation = styled(SkeletonStyled)`
   &:after {
     content: '';
     position: absolute;
@@ -160,14 +94,16 @@ const SkeletonAnimation = styled(SkeletonStyled)`
   }
 `
 
-export interface SkeletonProps
-  extends SkeletonCssProps,
-    BaseProps<HTMLDivElement> {}
+SkeletonAnimation.displayName = 'SkeletonAnimation'
+
+export type SkeletonProps = StyledComponentPropsWithAs<'span', SkeletonCssProps>
 
 export const Skeleton: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  SkeletonProps & React.RefAttributes<HTMLDivElement>
+  SkeletonProps & React.RefAttributes<HTMLSpanElement>
 >> = React.memo(
   React.forwardRef((props, ref) => <SkeletonAnimation ref={ref} {...props} />)
 )
+
+Skeleton.displayName = 'Skeleton'
 
 export default Skeleton

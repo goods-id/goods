@@ -1,40 +1,50 @@
 import React from 'react'
-import styled from 'styled-components'
-import { BackgroundColorProperty, ColorProperty } from 'csstype'
+import styled, { CSSObject, StyledComponentProps } from 'styled-components'
+import { compose, ThemeType } from '@styled-system/core'
 import { Text, TextCssProps } from '../../typography'
-import { StyledComponentProps } from '../../@types/global'
+import {
+  LayoutProps,
+  CustomSelector,
+  layout,
+  typography,
+  hover,
+  merge,
+} from '../../@goods-system'
 
-interface AnchorCssProps {
-  /**
-   * Hover Background Color
-   */
-  hoverBg?: BackgroundColorProperty
-  /**
-   * Hover Text Color
-   */
-  hoverColor?: ColorProperty
-}
+interface AnchorCssProps<T extends ThemeType = ThemeType>
+  extends LayoutProps<T>,
+    Pick<CustomSelector<T>, 'hoverProps'> {}
 
-export interface AnchorProps extends AnchorCssProps, TextCssProps {}
+export interface AnchorStyledProps extends AnchorCssProps, TextCssProps {}
 
-export const AnchorStyled = styled(Text)<AnchorProps>(props => {
-  const { hoverBg, hoverColor } = props
-  return {
-    cursor: 'pointer',
-    display: 'block',
-    textDecoration: 'none',
-    ':hover': {
-      backgroundColor: hoverBg,
-      color: hoverColor,
-    },
+const styleFn = compose(layout, typography)
+
+export const AnchorStyled = styled(Text)<AnchorProps>(
+  ({ d = 'block', textDecor = 'none', hoverProps = {}, ...props }) => {
+    const baseStyle = styleFn({ textDecor, d, ...props })
+    const otherStyle: CSSObject = {
+      cursor: 'pointer',
+      ...hover({ theme: props.theme, ...hoverProps }),
+    }
+    return merge(baseStyle, otherStyle)
   }
-})
+)
+
+AnchorStyled.displayName = 'AnchorStyled'
+
+export type AnchorProps = StyledComponentProps<
+  'a',
+  ThemeType,
+  AnchorStyledProps,
+  never
+>
 
 export const Anchor: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  Omit<StyledComponentProps<'a', AnchorProps>, 'as'> &
-    React.RefAttributes<HTMLAnchorElement>
+  AnchorProps & React.RefAttributes<HTMLAnchorElement>
 >> = React.memo(
   React.forwardRef((props, ref) => <AnchorStyled ref={ref} as='a' {...props} />)
 )
+
+Anchor.displayName = 'Anchor'
 
 export default Anchor

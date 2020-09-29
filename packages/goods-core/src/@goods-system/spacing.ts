@@ -1,8 +1,13 @@
-import { Globals } from 'csstype'
-import { system, compose } from '@styled-system/core'
+import { Property as CSS } from 'csstype'
+import {
+  system,
+  compose,
+  ThemeType,
+  SpacingName,
+  Config,
+  ResponsiveValue,
+} from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
 import { spacingConstants } from '../spacing'
 
 export interface MarginProps<Theme extends ThemeType = ThemeType> {
@@ -15,7 +20,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin)
    * */
-  m?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  m?: ResponsiveValue<SpacingName<Theme> | CSS.Margin, Theme>
   /**
    *  **Margin Top**
    *
@@ -25,7 +30,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top)
    * */
-  mt?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  mt?: ResponsiveValue<SpacingName<Theme> | CSS.MarginTop, Theme>
   /**
    *  **Margin Right**
    *
@@ -35,7 +40,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right)
    * */
-  mr?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  mr?: ResponsiveValue<SpacingName<Theme> | CSS.MarginRight, Theme>
   /**
    *  **Margin Bottom**
    *
@@ -45,7 +50,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom)
    * */
-  mb?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  mb?: ResponsiveValue<SpacingName<Theme> | CSS.MarginBottom, Theme>
   /**
    *  **Margin Left**
    *
@@ -55,7 +60,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left)
    * */
-  ml?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  ml?: ResponsiveValue<SpacingName<Theme> | CSS.MarginLeft, Theme>
   /**
    *  **Margin Right** and **Margin Left**
    *
@@ -69,7 +74,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [Margin left's MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left)
    * */
-  mx?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  mx?: ResponsiveValue<SpacingName<Theme> | CSS.Margin, Theme>
   /**
    *  **Margin Top** and **Margin Bottom**
    *
@@ -83,7 +88,7 @@ export interface MarginProps<Theme extends ThemeType = ThemeType> {
    *
    * [Margin bottom's MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom)
    * */
-  my?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  my?: ResponsiveValue<SpacingName<Theme> | CSS.Margin, Theme>
 }
 
 export interface PaddingProps<Theme extends ThemeType = ThemeType> {
@@ -96,7 +101,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)
    * */
-  p?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  p?: ResponsiveValue<SpacingName<Theme> | CSS.Padding, Theme>
   /**
    *  **Padding Top**
    *
@@ -106,7 +111,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top)
    * */
-  pt?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  pt?: ResponsiveValue<SpacingName<Theme> | CSS.PaddingTop, Theme>
   /**
    *  **Padding Right**
    *
@@ -116,7 +121,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right)
    * */
-  pr?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  pr?: ResponsiveValue<SpacingName<Theme> | CSS.PaddingRight, Theme>
   /**
    *  **Padding Bottom**
    *
@@ -126,7 +131,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom)
    * */
-  pb?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  pb?: ResponsiveValue<SpacingName<Theme> | CSS.PaddingBottom, Theme>
   /**
    *  **Padding Left**
    *
@@ -136,7 +141,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left)
    * */
-  pl?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  pl?: ResponsiveValue<SpacingName<Theme> | CSS.PaddingLeft, Theme>
   /**
    *  **Padding Right** and **Padding Left**
    *
@@ -150,7 +155,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [Padding left's MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left)
    * */
-  px?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  px?: ResponsiveValue<SpacingName<Theme> | CSS.Padding, Theme>
   /**
    *  **Padding Top** and **Padding Bottom**
    *
@@ -164,7 +169,7 @@ export interface PaddingProps<Theme extends ThemeType = ThemeType> {
    *
    * [Padding bottom's MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom)
    * */
-  py?: ResponsiveValue<keyof Required<Theme>['space'] | Globals, Theme>
+  py?: ResponsiveValue<SpacingName<Theme> | CSS.Padding, Theme>
 }
 
 export interface SpacingProps<Theme extends ThemeType = ThemeType>
@@ -235,7 +240,7 @@ const configPadding: Config<PaddingProps> = {
   },
 }
 
-export const margin = system(configMargin)
-export const padding = system(configPadding)
+export const margin = system<MarginProps>(configMargin)
+export const padding = system<PaddingProps>(configPadding)
 
-export const spacing = compose(margin, padding)
+export const spacing = compose<SpacingProps>(margin, padding)

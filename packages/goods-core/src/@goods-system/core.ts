@@ -25,5 +25,9 @@ export const sort = (obj: Record<string, unknown>): any => {
   return next
 }
 
-export const isNumber = (n): boolean =>
+export const isNumber = (n): n is number =>
   typeof n === 'number' && !Number.isNaN(n)
+
+export function mergeClass(...args: (string | null | undefined)[]): string {
+  return args.filter(Boolean).join(' ')
+}

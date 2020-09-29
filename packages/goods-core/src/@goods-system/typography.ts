@@ -1,9 +1,14 @@
 import { Property as CSS } from 'csstype'
-import { system, get, ConfigStyle } from '@styled-system/core'
 import { CSSObject, DefaultTheme } from 'styled-components'
+import {
+  system,
+  get,
+  TransformFn,
+  ThemeType,
+  Config,
+  ResponsiveValue,
+} from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
 import { breakpointConstants, createMediaQuery } from '../breakpoints'
 
 const commonRules = ['title', 'subtitle', 'body', 'caption'] as const
@@ -148,10 +153,7 @@ export function typographyRule(
   return { ...mRuleBased }
 }
 
-export interface TypographyProps<
-  Theme extends ThemeType = ThemeType,
-  TLength = string | number
-> {
+export interface TypographyProps<Theme extends ThemeType = ThemeType> {
   /**
    * **Text Overflow**
    *
@@ -172,7 +174,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration)
    * */
-  textDecor?: ResponsiveValue<CSS.TextDecoration<TLength>, Theme>
+  textDecor?: ResponsiveValue<CSS.TextDecoration, Theme>
   /**
    * **Word Spacing**
    *
@@ -181,7 +183,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing)
    * */
-  wordSpace?: ResponsiveValue<CSS.WordSpacing<TLength>, Theme>
+  wordSpace?: ResponsiveValue<CSS.WordSpacing, Theme>
   /**
    * **Word Wrap**
    *
@@ -262,7 +264,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size)
    * */
-  fSize?: ResponsiveValue<CSS.FontSize<TLength>, Theme>
+  fSize?: ResponsiveValue<CSS.FontSize, Theme>
   /**
    * **Letter spacing**
    *
@@ -272,7 +274,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing)
    * */
-  letterSpace?: ResponsiveValue<CSS.LetterSpacing<TLength>, Theme>
+  letterSpace?: ResponsiveValue<CSS.LetterSpacing, Theme>
   /**
    * **Line height**
    *
@@ -285,7 +287,7 @@ export interface TypographyProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height)
    * */
-  lineHeight?: ResponsiveValue<CSS.LineHeight<TLength>, Theme>
+  lineHeight?: ResponsiveValue<CSS.LineHeight, Theme>
   /**
    * **Font weight**
    *
@@ -317,22 +319,24 @@ export interface TypographyProps<
   fontStyle?: ResponsiveValue<CSS.FontStyle, Theme>
 }
 
-const addImportant = (name: keyof TypographyProps) =>
-  ((n, scale, props: TypographyProps & TypographyRuleProps) => {
-    const value = get(scale, n, n)
-    const propValue = props[name]
-    const isResponsive = typeof propValue === 'object'
-    const isAnyRule = Boolean(props.rule || props.dRule)
-    if (/!important$/.test(value) || isResponsive || !isAnyRule) {
-      return value
-    }
-    return `${value} !important`
-  }) as ConfigStyle['transform']
+const addImportant = (
+  name: keyof TypographyProps
+): TransformFn<TypographyProps & TypographyRuleProps> => (n, scale, props) => {
+  if (!props) return ''
+  const value = get(scale, n, n) as string
+  const propValue = props[name]
+  const isResponsive = typeof propValue === 'object'
+  const isAnyRule = Boolean(props.rule || props.dRule)
+  if (/!important$/.test(value) || isResponsive || !isAnyRule) {
+    return value
+  }
+  return `${value} !important`
+}
 
 const config: Config<TypographyProps> = {
   textOver: { property: 'textOverflow' },
   textDecor: { property: 'textDecoration' },
-  wordSpace: true,
+  wordSpace: { property: 'wordSpacing' },
   wordWrap: true,
   wordBreak: true,
   whiteSpace: true,
@@ -350,4 +354,4 @@ const config: Config<TypographyProps> = {
   fontStyle: true,
 }
 
-export const typography = system(config)
+export const typography = system<TypographyProps>(config)

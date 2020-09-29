@@ -12,8 +12,6 @@ import {
 import { Text } from '../typography'
 import { Div, DivProps } from '../basics/div'
 import { Image } from '../basics/image'
-import { useGoods } from '../goods-context'
-import { InBreakpoint, getValueInBp, createMediaQuery } from '../breakpoints'
 
 interface TitleProps {
   version?: string
@@ -142,14 +140,14 @@ export const Section: React.FC<SectionProps> = ({
   noChildTab = false,
   ...divProps
 }) => {
-  const { spacing } = useGoods()
   return (
-    <Div m={spacing('0', '0', 'l')} fDir='column' w='100%' {...divProps}>
+    <Div mb='l' fDir='column' w='100%' {...divProps}>
       <Text c='black40' rule={!tabSpacing ? 'subtitle' : 'body'} weight={500}>
         {title}
       </Text>
       <Div
-        p={spacing('s', noChildTab ? '0' : tabSpacing ? 's' : 'l')}
+        py='s'
+        px={noChildTab ? '0' : tabSpacing ? 's' : 'l'}
         w='100%'
         fDir='column'
       >
@@ -170,24 +168,9 @@ export const Point: React.FC<PointProps> = ({
   description,
   bullet = false,
 }) => {
-  const { colors, spacing, radius } = useGoods()
   return (
-    <Div
-      fDir='row'
-      fAlign='center'
-      m={spacing('0', '0', 's')}
-      w='100%'
-      fWrap='wrap'
-    >
-      {bullet && (
-        <Div
-          w='8px'
-          h='8px'
-          radius={radius('full')}
-          bg={colors.black40}
-          m={spacing('0', 'xxs', '0', '0')}
-        />
-      )}
+    <Div fDir='row' fAlign='center' mb='s' w='100%' fWrap='wrap'>
+      {bullet && <Div w='8px' h='8px' radius='full' bg='black40' mr='xxs' />}
       <Text rule='body' weight={500}>{`${title}:`}</Text>
       &nbsp;
       <Text rule='body' style={{ minWidth: '280px' }}>
@@ -197,58 +180,10 @@ export const Point: React.FC<PointProps> = ({
   )
 }
 
-interface GridProps extends Omit<DivProps, 'd'> {
-  column?: InBreakpoint<number>
-}
-
-function getGridTemplateColumns(
-  ...args: Parameters<typeof getValueInBp>
-): string {
-  const [value, bp] = args
-  return `repeat(${getValueInBp(value, bp) || 6}, 1fr)`
-}
-
-export const Grid = styled(Div)<GridProps>(props => {
-  const { column, theme } = props
-  const { breakpoints } = theme
-  const sm = createMediaQuery(breakpoints?.sm || '')
-  const md = createMediaQuery(breakpoints?.md || '')
-  const lg = createMediaQuery(breakpoints?.lg || '')
-  const xl = createMediaQuery(breakpoints?.xl || '')
-  return {
-    display: 'grid',
-    width: props.w || '100%',
-    gridTemplateColumns: getGridTemplateColumns(column, 'xs'),
-    [sm]: {
-      gridTemplateColumns: getGridTemplateColumns(column, ['sm', 'xs']),
-    },
-    [md]: {
-      gridTemplateColumns: getGridTemplateColumns(column, ['md', 'sm', 'xs']),
-    },
-    [lg]: {
-      gridTemplateColumns: getGridTemplateColumns(column, [
-        'lg',
-        'md',
-        'sm',
-        'xs',
-      ]),
-    },
-    [xl]: {
-      gridTemplateColumns: getGridTemplateColumns(column, [
-        'xl',
-        'lg',
-        'md',
-        'sm',
-        'xs',
-      ]),
-    },
-  }
-})
-
 export const Input = styled.input(({ theme }) => ({
   width: '100%',
   height: '48px',
-  backgroundColor: theme.colors.white30,
+  backgroundColor: theme.colors?.white30,
   borderRadius: theme.radius('l'),
   padding: theme.spacing('xs', 's'),
 }))

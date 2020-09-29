@@ -6,7 +6,6 @@ import {
   GoodsDocs,
   Section,
   Point,
-  Grid,
   Input,
   ImageBox,
 } from '../utils/storybook.docs'
@@ -46,7 +45,7 @@ const excludedProps = [
 ]
 
 const IconDocs: FC = () => {
-  const { colors, spacing } = useGoods()
+  const { spacing } = useGoods()
   const [searchKey, setSearchKey] = useState('')
 
   const onSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -71,13 +70,9 @@ const IconDocs: FC = () => {
       `}
       excludedProps={excludedProps}
     >
-      <ImageBox
-        imageSrc={IconDesignImg}
-        alt='Icon Design'
-        m={spacing('l', '0', 'xl')}
-      />
+      <ImageBox imageSrc={IconDesignImg} alt='Icon Design' mt='l' mb='xl' />
       <Section title='I. Usage' noChildTab>
-        <Div m={spacing('0', '0', 's', '0')}>
+        <Div mb='s'>
           <Text rule='body'>Here are some terms to standarized our terms</Text>
         </Div>
         {usageRule.map((item, key) => (
@@ -89,28 +84,28 @@ const IconDocs: FC = () => {
           />
         ))}
         <Div
-          bg={colors.white30}
+          bg='white30'
           w='100%'
           minH='48px'
           radius='4px'
           fJustify='center'
-          p={spacing('xs', 's')}
-          b={`1px solid ${colors.black20}`}
-          m={spacing('s', '0', 'l')}
+          py='xs'
+          px='s'
+          bW='1px'
+          bS='solid'
+          bC='black20'
+          mt='s'
+          mb='l'
         >
           <Text rule='body'>
             Icon Format is SVG but until we set React Native SVG settings, it
             needs PNG (1x, 1,5x, 2x, 4x Scale)
           </Text>
         </Div>
-        <ImageBox
-          imageSrc={IconSizingImg}
-          alt='Icon Sizing'
-          m={spacing('l', '0')}
-        />
+        <ImageBox imageSrc={IconSizingImg} alt='Icon Sizing' my='l' />
       </Section>
       <Section title='II. Icon List' noChildTab>
-        <Div w='100%' m={spacing('0', '0', 'l')}>
+        <Div w mb='l'>
           <Input
             id='search-icon'
             name='search-icon'
@@ -120,7 +115,15 @@ const IconDocs: FC = () => {
             onChange={onSearch}
           />
         </Div>
-        <Grid column={{ xs: 2, lg: 4, xl: 6 }}>
+        <Div
+          d='grid'
+          w
+          gTempCol={{
+            xs: 'repeat(2, 1fr)',
+            lg: 'repeat(4, 1fr)',
+            xl: 'repeat(6, 1fr)',
+          }}
+        >
           {icons.map(name => (
             <Div
               key={name}
@@ -133,7 +136,7 @@ const IconDocs: FC = () => {
               <Text rule='body'>{name}</Text>
             </Div>
           ))}
-        </Grid>
+        </Div>
       </Section>
     </GoodsDocs>
   )

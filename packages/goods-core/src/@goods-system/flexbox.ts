@@ -1,22 +1,17 @@
 import { Property as CSS } from 'csstype'
-import { system } from '@styled-system/core'
-import { Config, ResponsiveValue, GlobalsNumber } from '../@types/global'
-import { ThemeType } from '../theme'
+import { system, Config, ResponsiveValue, ThemeType } from '@styled-system/core'
 
-export interface FlexboxProps<
-  Theme extends ThemeType = ThemeType,
-  TLength = string | number
-> {
-  f?: ResponsiveValue<CSS.Flex<TLength>, Theme>
+export interface FlexboxProps<Theme extends ThemeType = ThemeType> {
+  f?: ResponsiveValue<CSS.Flex, Theme>
   fDir?: ResponsiveValue<CSS.FlexDirection, Theme>
-  fGrow?: ResponsiveValue<GlobalsNumber, Theme>
-  fShrink?: ResponsiveValue<GlobalsNumber, Theme>
+  fGrow?: ResponsiveValue<CSS.FlexGrow, Theme>
+  fShrink?: ResponsiveValue<CSS.FlexShrink, Theme>
   fJustify?: ResponsiveValue<CSS.JustifyContent, Theme>
   fJSelf?: ResponsiveValue<CSS.JustifySelf, Theme>
   fAlign?: ResponsiveValue<CSS.AlignItems, Theme>
   fASelf?: ResponsiveValue<CSS.AlignSelf, Theme>
   fWrap?: ResponsiveValue<CSS.FlexWrap, Theme>
-  order?: ResponsiveValue<GlobalsNumber, Theme>
+  order?: ResponsiveValue<CSS.Order, Theme>
 }
 
 const config: Config<FlexboxProps> = {
@@ -32,4 +27,4 @@ const config: Config<FlexboxProps> = {
   order: true,
 }
 
-export const flexbox = system(config)
+export const flexbox = system<FlexboxProps>(config)

@@ -3,7 +3,6 @@ import { Div } from '../basics/div'
 import { Image } from '../basics/image'
 import { Line } from '../basics/line'
 import { Text } from '../typography'
-import { useGoods } from '../goods-context'
 import { GoodsDocs } from '../utils/storybook.docs'
 import shadows from '.'
 
@@ -21,7 +20,6 @@ function getJustify(shadowName: keyof typeof shadows): string {
 }
 
 const ShadowDocs: React.FC = () => {
-  const { colors, shadow } = useGoods()
   return (
     <GoodsDocs
       withoutPropsTable
@@ -33,7 +31,7 @@ const ShadowDocs: React.FC = () => {
       `}
     >
       <Div w='100%' fAlign='center'>
-        <Div w='100%' position='relative' m='66px 0px 16px'>
+        <Div w='100%' posi='relative' m='66px 0px 16px'>
           <Div w='100%' fDir='row' z={2}>
             {shadowNames.map(name => (
               <Div key={name} w='calc(100%/3)' fAlign='center'>
@@ -44,7 +42,7 @@ const ShadowDocs: React.FC = () => {
                   h='40px'
                   fJustify={getJustify(name)}
                 >
-                  <Div h='8px' w='100%' radius='1px' bg={colors.black10} />
+                  <Div h='8px' w='100%' radius='1px' bg='black10' />
                 </Div>
                 <Div
                   maxW='calc(100% - 64px)'
@@ -52,7 +50,7 @@ const ShadowDocs: React.FC = () => {
                   minW='60px'
                   h='104px'
                   p='20px'
-                  bg={colors.white30}
+                  bg='white30'
                   m='40px 0px'
                   fJustify='center'
                   radius='4px'
@@ -62,8 +60,8 @@ const ShadowDocs: React.FC = () => {
                     h='0px'
                     p='100% 0px 0px'
                     radius='4px'
-                    bg={colors.white10}
-                    shadow={shadow[name]}
+                    bg='white10'
+                    shadow={name}
                   />
                 </Div>
                 <Div
@@ -79,13 +77,7 @@ const ShadowDocs: React.FC = () => {
               </Div>
             ))}
           </Div>
-          <Line
-            position='absolute'
-            h='1px'
-            w='100%'
-            bg={colors.white40}
-            style={{ top: '36px' }}
-          />
+          <Line posi='absolute' h='1px' w='100%' bg='white40' top='36px' />
         </Div>
         <Div w='100%' fDir='row' fJustify='flex-end'>
           {ilustrations.map((ilustration, index) => (

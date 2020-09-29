@@ -3,6 +3,10 @@
     "ms-vscode.vscode-typescript-tslint-plugin",
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "salbert.comment-ts",
+    "bierner.jsdoc-markdown-highlighting",
+    "stkb.rewrap",
     "jpoissonnier.vscode-styled-components"
   ]
 }

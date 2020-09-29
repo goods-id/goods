@@ -3,8 +3,6 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { utilsStoryParameters } from '../utils/storybook'
 import { Div } from '../basics/div'
 import shadows from './index'
-import spacing from '../spacing'
-import colors from '../color'
 import { Text } from '../typography'
 import ShadowDocs from './shadow.docs'
 
@@ -18,7 +16,7 @@ const ShadowDisplay = ({ shadowStr, title }) => (
     w='100px'
     h='100px'
     shadow={shadowStr}
-    bg={colors.white10}
+    bg='white10'
     fAlign='center'
     fJustify='center'
   >
@@ -27,7 +25,7 @@ const ShadowDisplay = ({ shadowStr, title }) => (
 )
 
 export const ShadowExample: Story = () => (
-  <Div fDir='row' p={spacing('s')} fJustify='space-between' bg={colors.white30}>
+  <Div fDir='row' p='s' fJustify='space-between' bg='white30'>
     <ShadowDisplay shadowStr={shadows.flat} title='Flat' />
     <ShadowDisplay shadowStr={shadows.low} title='Low' />
     <ShadowDisplay shadowStr={shadows.high} title='High' />

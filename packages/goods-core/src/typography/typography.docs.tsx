@@ -2,7 +2,6 @@ import React from 'react'
 import { Div } from '../basics/div'
 import { Line } from '../basics/line'
 import { Image } from '../basics/image'
-import { useGoods } from '../goods-context'
 import { GoodsDocs, Section, Point } from '../utils/storybook.docs'
 import { Text } from '.'
 import {
@@ -109,20 +108,22 @@ const Rules: React.FC<RulesProps> = ({
   rule,
   dRule,
 }) => {
-  const { spacing } = useGoods()
-  const { fontSize, fontWeight, letterSpacing, lineHeight } = rule
+  const { fontSize, fontWeight, letterSpacing, lineHeight } = (rule
     ? typographyMobileRuleSettings[rule]
-    : dRule
-    ? typographyDesktopRuleSettings[dRule]
-    : { fontSize: '', fontWeight: undefined, letterSpacing: '', lineHeight: '' }
+    : dRule && typographyDesktopRuleSettings[dRule]) || {
+    fontSize: '',
+    fontWeight: undefined,
+    letterSpacing: '',
+    lineHeight: '',
+  }
 
   return (
-    <Div fDir='row' m={spacing('0', '0', 'l')} fAlign='center' fWrap='wrap'>
+    <Div fDir='row' mb='l' fAlign='center' fWrap='wrap'>
       <Div w='217px' fDir='column'>
-        <Text size='16px' lineHeight='24px'>
+        <Text fSize='16px' lineHeight='24px'>
           {title}
         </Text>
-        <Text size='16px' weight={300} lineHeight='24px' c='black20'>
+        <Text fSize='16px' weight={300} lineHeight='24px' c='black20'>
           {subtitle}
         </Text>
       </Div>
@@ -130,7 +131,7 @@ const Rules: React.FC<RulesProps> = ({
         <Text
           rule={rule}
           dRule={dRule}
-          size={fontSize}
+          fSize={fontSize}
           weight={fontWeight}
           letterSpace={letterSpacing}
           lineHeight={lineHeight}
@@ -144,7 +145,6 @@ const Rules: React.FC<RulesProps> = ({
 }
 
 const TextDocs: React.FC = () => {
-  const { colors, spacing } = useGoods()
   return (
     <GoodsDocs
       designDesc={`
@@ -158,33 +158,28 @@ const TextDocs: React.FC = () => {
       <Section title='I. Brief'>
         <Div fDir='row' fAlign='center' fWrap='wrap'>
           <Div>
-            <Text weight={500} size='96px' lineHeight='128px' c='black40'>
+            <Text weight='bold' fSize='96px' lineHeight='128px' c='black40'>
               Aa
             </Text>
           </Div>
-          <Line
-            w='2px'
-            h='216px'
-            bg={colors.black30}
-            m={spacing('0', 'l', '0', 'xxxl')}
-          />
+          <Line w='2px' h='216px' bg='black30' mr='l' ml='xxxl' />
           <Div fDir='column' minW='300px' maxW='600px'>
-            <Text weight={500} size='32px' lineHeight='40px' c='blue50'>
+            <Text weight='bold' fSize='32px' lineHeight='40px' c='blue50'>
               Rubik
             </Text>
-            <Div m={spacing('s', '0', '0')}>
+            <Div mt='s'>
               <Text rule='body'>
                 Rubik is a sans serif font family with slightly rounded corners.
                 You can find this font free and open sources at Google Font.
               </Text>
             </Div>
-            <Div m={spacing('s', '0', '0')}>
+            <Div mt='s'>
               <Text rule='body'>
                 This font has 5 different weights from Lights (300), Regular
                 (400), Medium (500), Bold (700), Black (900).
               </Text>
             </Div>
-            <Div m={spacing('s', '0', '0')}>
+            <Div mt='s'>
               <Text rule='body'>
                 The reason we chose this font was because of the characteristic
                 of the character with its slightly rounded corner that fits
@@ -221,16 +216,11 @@ const TextDocs: React.FC = () => {
           description='font size used as a regular body text and starting point of type scale'
         />
         <Div fDir='column' fJustify='center' fAlign='center'>
-          <Image
-            src={LineHeightImg}
-            alt='Line Height'
-            m={spacing('xxl', '0', '0')}
-            maxW='100%'
-          />
+          <Image src={LineHeightImg} alt='Line Height' mt='xxl' maxW='100%' />
           <Image
             src={CharSpacingImg}
             alt='Character Spacing'
-            m={spacing('xxl', '0', '0')}
+            mt='xxl'
             maxW='100%'
           />
         </Div>

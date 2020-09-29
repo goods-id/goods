@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-import { compose } from '@styled-system/core'
-import { StyledComponentProps } from '../@types/global'
-import { merge, sort } from '../@goods-system/core'
+import styled, { StyledComponentPropsWithAs } from 'styled-components'
+import { compose, merge } from '@styled-system/core'
+import { sort } from '../@goods-system/core'
 import {
   margin,
   MarginProps,
@@ -34,4 +33,6 @@ export const Text = styled.p<TextCssProps>(({ c = 'black30', ...props }) => {
   return sort(merge(stylesRule, styles))
 })
 
-export type TextProps = StyledComponentProps<'p', TextCssProps>
+Text.displayName = 'Text'
+
+export type TextProps = StyledComponentPropsWithAs<'p', TextCssProps>

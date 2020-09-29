@@ -1,13 +1,7 @@
 import { Property as CSS } from 'csstype'
-import { system } from '@styled-system/core'
+import { system, ThemeType, Config, ResponsiveValue } from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
-
-export interface GridProps<
-  Theme extends ThemeType = ThemeType,
-  TLength = string | number
-> {
+export interface GridProps<Theme extends ThemeType = ThemeType> {
   /**
    * **Gap**
    *
@@ -17,7 +11,7 @@ export interface GridProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)
    */
-  gap?: ResponsiveValue<CSS.Gap<TLength>, Theme>
+  gap?: ResponsiveValue<CSS.Gap, Theme>
   /**
    * **Grid Area**
    *
@@ -39,7 +33,7 @@ export interface GridProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns)
    */
-  gAutoCol?: ResponsiveValue<CSS.GridAutoColumns<TLength>, Theme>
+  gAutoCol?: ResponsiveValue<CSS.GridAutoColumns, Theme>
   /**
    * **Grid Auto Rows**
    *
@@ -49,7 +43,7 @@ export interface GridProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows)
    */
-  gAutoRow?: ResponsiveValue<CSS.GridAutoRows<TLength>, Theme>
+  gAutoRow?: ResponsiveValue<CSS.GridAutoRows, Theme>
   /**
    * **Grid Auto Flow**
    *
@@ -158,7 +152,7 @@ export interface GridProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
    */
-  gTempCol?: ResponsiveValue<CSS.GridTemplateColumns<TLength>, Theme>
+  gTempCol?: ResponsiveValue<CSS.GridTemplateColumns, Theme>
   /**
    * **Grid Template Rows**
    *
@@ -167,7 +161,7 @@ export interface GridProps<
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows
    */
-  gTempRow?: ResponsiveValue<CSS.GridTemplateRows<TLength>, Theme>
+  gTempRow?: ResponsiveValue<CSS.GridTemplateRows, Theme>
 }
 
 const config: Config<GridProps> = {
@@ -216,4 +210,4 @@ const config: Config<GridProps> = {
   },
 }
 
-export const grid = system(config)
+export const grid = system<GridProps>(config)

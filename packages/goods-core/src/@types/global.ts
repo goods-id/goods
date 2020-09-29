@@ -1,16 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import * as React from 'react'
-import * as CSS from 'csstype'
-import {
-  StyledComponentProps as StyledComponentPropsBase,
-  DefaultTheme,
-} from 'styled-components'
-import { ConfigStyle } from '@styled-system/core'
 
-import { Theme, ThemeType } from '../theme'
+import { ThemeType, Theme } from '../theme'
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends Omit<Theme, 'breakpoints'>, ThemeType {}
+  export interface DefaultTheme
+    extends Pick<Theme, 'spacing' | 'radius'>,
+      ThemeType {}
+
+  export type StyledComponentPropsWithAs<
+    C extends keyof JSX.IntrinsicElements,
+    P extends object,
+    T extends DefaultTheme = DefaultTheme,
+    A extends keyof any = never
+  > = StyledComponentProps<C, T, P, A> & {
+    as?: keyof JSX.IntrinsicElements
+    forwardedAs?: keyof JSX.IntrinsicElements
+  }
 }
 
 export interface BaseIconProps extends React.SVGProps<SVGSVGElement> {
@@ -30,27 +37,3 @@ type FourParams<T> = [T, T, T, T]
 export type NameToCSSValue<T> = (
   ...params: OneParam<T> | TwoParams<T> | ThreeParams<T> | FourParams<T>
 ) => string
-
-interface GoodsConfigStyle extends ConfigStyle {
-  scale?: Exclude<keyof ThemeType, 'fontBase'>
-}
-
-export type Config<Props> = Required<
-  { [x in keyof Props]: GoodsConfigStyle | boolean }
->
-
-export type StyledComponentProps<
-  C extends keyof JSX.IntrinsicElements,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  O extends object
-> = StyledComponentPropsBase<C, DefaultTheme, O, never> & {
-  as?: keyof JSX.IntrinsicElements
-  forwardedAs?: keyof JSX.IntrinsicElements
-}
-
-export type ResponsiveValue<T, Theme extends ThemeType = ThemeType> =
-  | T
-  | null
-  | { [key in keyof Required<Theme>['breakpoints']]?: T }
-
-export type GlobalsNumber = CSS.Globals | number

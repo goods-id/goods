@@ -1,8 +1,13 @@
 import { Property as CSS } from 'csstype'
-import { system, get, compose } from '@styled-system/core'
+import {
+  system,
+  get,
+  compose,
+  ThemeType,
+  Config,
+  ResponsiveValue,
+} from '@styled-system/core'
 
-import { ThemeType } from '../theme'
-import { Config, ResponsiveValue } from '../@types/global'
 import { isNumber } from './core'
 
 export interface TransitionProps<Theme extends ThemeType = ThemeType> {
@@ -231,7 +236,7 @@ const transitionConfig: Config<TransitionProps> = {
   tTimingFunction: { property: 'transitionTimingFunction' },
 }
 
-export const transition = system(transitionConfig)
+export const transition = system<TransitionProps>(transitionConfig)
 
 const animationConfig: Config<AnimationProps> = {
   animation: true,
@@ -245,7 +250,7 @@ const animationConfig: Config<AnimationProps> = {
   aTimingFunction: { property: 'animationTimingFunction' },
 }
 
-export const animation = system(animationConfig)
+export const animation = system<AnimationProps>(animationConfig)
 
 const transformConfig: Config<TransformProps> = {
   transform: true,
@@ -254,6 +259,6 @@ const transformConfig: Config<TransformProps> = {
   transformStyle: true,
 }
 
-export const transform = system(transformConfig)
+export const transform = system<TransformProps>(transformConfig)
 
-export const motion = compose(transition, animation, transform)
+export const motion = compose<MotionProps>(transition, animation, transform)
