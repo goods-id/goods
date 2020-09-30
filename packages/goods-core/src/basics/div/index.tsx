@@ -19,6 +19,7 @@ import {
   table,
   motion,
   hover,
+  interaction,
   BackgroundProps,
   PositionProps,
   ColorProps,
@@ -32,6 +33,7 @@ import {
   TableProps,
   MotionProps,
   CustomSelector,
+  InteractionProps,
 } from '../../@goods-system'
 
 export interface BoxStyledProps<T extends ThemeType = ThemeType>
@@ -46,15 +48,12 @@ export interface BoxStyledProps<T extends ThemeType = ThemeType>
     GridProps<T>,
     ListProps<T>,
     MotionProps<T>,
-    TableProps<T> {}
+    TableProps<T>,
+    InteractionProps<T> {}
 
 export interface DivCssProps<T extends ThemeType = ThemeType>
   extends BoxStyledProps<T>,
     Pick<CustomSelector<T>, 'hoverProps'> {
-  /**
-   * Cursor
-   */
-  cursor?: CSS.Cursor
   /**
    * Use custom scroll bar.
    * If `overflow === 'scroll'`, custom scroll bar is auto shown.
@@ -98,14 +97,14 @@ const styleFn = compose<BoxStyledProps>(
   grid,
   list,
   motion,
-  table
+  table,
+  interaction
 )
 
 export const DivStyled = styled.div<DivCssProps>(
   ({
     d = 'flex',
     fDir = 'column',
-    cursor,
     hoverProps = {},
     scrollBarWidth = 8,
     scrollBarHeight = 24,
@@ -118,7 +117,6 @@ export const DivStyled = styled.div<DivCssProps>(
   }) => {
     const baseStyle = styleFn({ theme, d, fDir, ...props })
     const otherStyle: CSSObject = {
-      cursor,
       ...hover({ theme, ...hoverProps }),
       ...((props.overflow === 'scroll' || isScrollBarOn) && {
         '::-webkit-scrollbar': {

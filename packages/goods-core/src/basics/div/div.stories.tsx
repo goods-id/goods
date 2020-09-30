@@ -37,6 +37,8 @@ BoxExample.args = {
   shadow: 'high',
   gap: '4px',
   gTempCol: 'repeat(auto-fit, 200px)',
+  resize: 'horizontal',
+  cursor: 'wait',
 }
 
 export const BoxTransitioned: Story<BoxProps> = args => {
@@ -49,15 +51,22 @@ export const BoxTransitioned: Story<BoxProps> = args => {
   return (
     <Box w='500px' maxW={1} h='300px' posi='relative'>
       <Box
-        s={isChanged ? '100px' : '300px'}
+        s={isChanged ? '300px' : '500px'}
         top={isChanged ? '50%' : '0px'}
         left={isChanged ? '50%' : '0px'}
-        bg={isChanged ? 'green50' : 'blue60'}
+        bgImage={
+          isChanged
+            ? 'url(https://cdn.idntimes.com/content-images/post/20190902/68708724-2110609995909560-5468908578491490675-n-03c82fa4f9b36a1c893d656d52f52766.jpg)'
+            : 'url(https://4.bp.blogspot.com/-pE09m3LT_E8/VIr8Pycc-QI/AAAAAAAAAFM/Tey4Zv_MYAo/s1600/JessicaVeranda5_zpsf3621dc9.jpg)'
+        }
         c={isChanged ? 'black40' : 'white10'}
         transform={isChanged ? 'rotate(315deg)' : 'none'}
         {...args}
         onClick={toggle}
-        dangerouslySetInnerHTML={{ __html: 'Pencet aku 😉' }}
+        dangerouslySetInnerHTML={{
+          __html:
+            '<p style="background: white; color: black; padding: 0px 16px">Pencet Aku kaka 😉</p>',
+        }}
       />
     </Box>
   )
@@ -71,6 +80,7 @@ BoxTransitioned.args = {
   radius: 'full',
   tProperty: 'all',
   tDuration: 2000,
+  bgSize: 'contain',
   tTimingFunction: 'cubic-bezier(.51,.41,.17,1.79)',
   style: { cursor: 'pointer', textAlign: 'center' },
 }
