@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "composite": true,
+    "importHelpers": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
@@ -19,7 +20,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "lib",
-    "removeComments": true,
+    "removeComments": false,
     "rootDir": "src",
     "skipLibCheck": true,
     "strictNullChecks": true,

@@ -44,6 +44,7 @@ const config = {
           allowJs: true,
           sourceMap: true,
           declaration: true,
+          importHelpers: true,
         },
         exclude: [
           './node_modules',

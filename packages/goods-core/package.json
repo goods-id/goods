@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/tree/goods_master/packages/goods-core",
@@ -9,10 +9,12 @@
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "directories": {
-    "lib": "lib"
+    "lib": "./lib"
   },
   "files": [
-    "lib"
+    "lib",
+    "lib/node_modules",
+    "lib/**/*"
   ],
   "publishConfig": {
     "access": "restricted"
@@ -42,7 +44,8 @@
   "dependencies": {
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.1",
-    "csstype": "^3.0.3"
+    "csstype": "^3.0.3",
+    "tslib": "^2.0.1"
   },
   "peerDependencies": {
     "react": "^16.13.1",
