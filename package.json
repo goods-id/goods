@@ -18,6 +18,7 @@
     "clean": "lerna run clean",
     "lerna": "lerna",
     "lint": "lerna run lint",
+    "dev": "yarn workspace @pomona/goods-core run dev",
     "report-coverage": "yarn workspace @pomona/goods-core run report-coverage",
     "storybook": "start-storybook -p 9001 -c .storybook-react -s .storybook-react/public",
     "storybook:build": "rimraf dist-web && build-storybook -c .storybook-react -o dist-web && node ./.storybook-react/after-build",
