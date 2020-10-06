@@ -49,11 +49,11 @@ export interface BoxStyledProps<T extends ThemeType = ThemeType>
     ListProps<T>,
     MotionProps<T>,
     TableProps<T>,
-    InteractionProps<T> {}
+    InteractionProps<T>,
+    Pick<CustomSelector<T>, 'hoverProps'> {}
 
 export interface DivCssProps<T extends ThemeType = ThemeType>
-  extends BoxStyledProps<T>,
-    Pick<CustomSelector<T>, 'hoverProps'> {
+  extends BoxStyledProps<T> {
   /**
    * Use custom scroll bar.
    * If `overflow === 'scroll'`, custom scroll bar is auto shown.
@@ -152,7 +152,10 @@ Div.displayName = 'Div'
 export default Div
 
 export const BoxStyled = styled.div<BoxStyledProps>(
-  ({ d = 'flex', fDir = 'column', ...props }) => styleFn({ d, fDir, ...props })
+  ({ d = 'flex', fDir = 'column', hoverProps, theme, ...props }) => ({
+    ...styleFn({ d, fDir, theme, ...props }),
+    ...hover({ theme, ...hoverProps }),
+  })
 )
 
 BoxStyled.displayName = 'BoxStyled'

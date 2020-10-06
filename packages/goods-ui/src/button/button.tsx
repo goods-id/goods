@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Property as CSS } from 'csstype'
 import styled, { DefaultTheme, InterpolationValue } from 'styled-components'
 import {
   compose,
@@ -9,7 +8,6 @@ import {
   Config,
   ResponsiveValue,
   TransformFn,
-  ColorName,
 } from '@styled-system/core'
 import {
   Icon,
@@ -35,7 +33,8 @@ import {
   BoxProps,
   Spinner,
   colors,
-  useGoods,
+  interaction,
+  InteractionProps,
 } from '@pomona/goods-core'
 import { isIconButtonProps, IconButtonProps } from '../@types/global'
 
@@ -56,7 +55,8 @@ export interface ButtonStyledProps
     FlexboxProps,
     ShadowProps,
     TypographyProps,
-    BackgroundProps {
+    BackgroundProps,
+    InteractionProps {
   buttonSize?: ResponsiveValue<SizeRule | number>
 }
 
@@ -87,6 +87,7 @@ const styleFn = compose<ButtonStyledProps>(
   shadow,
   typography,
   background,
+  interaction,
   buttonRule
 )
 
@@ -116,7 +117,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
           bg,
           props?.theme
         )}  radial-gradient(circle, rgba(0, 0, 0, 0.03) 1%, rgba(255, 255, 255, 0.05) 1%) center/15000%`,
-        filter: 'opacity(80%)',
+        filter: 'brightness(95%)',
       },
       '&:active': {
         // backgroundColor: '#09A000',
@@ -153,7 +154,7 @@ export interface ButtonProps
   extends ButtonStyledProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
   isLoading?: boolean
-  loadingColor?: CSS.Color | ColorName
+  loadingColor?: ColorProps['c']
   prefix?: IconButtonProps | React.ReactNode
   prefixContainer?: BoxProps
   suffix?: React.ReactNode | IconButtonProps
@@ -172,16 +173,21 @@ export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
         suffix,
         suffixContainer,
         isLoading,
-        loadingColor,
+        loadingColor = 'white10',
+        pointEvents,
         ...props
       },
       ref
     ) => {
-      const theme = useGoods()
       return (
-        <ButtonStyled posi='relative' ref={ref} {...props}>
+        <ButtonStyled
+          posi='relative'
+          ref={ref}
+          pointEvents={isLoading ? 'none' : pointEvents}
+          {...props}
+        >
           {isLoading ? (
-            <Spinner color={getRippleColor(loadingColor, theme)} />
+            <Spinner c={loadingColor} />
           ) : (
             <>
               {prefix && (

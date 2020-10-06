@@ -21,8 +21,8 @@ const SORT_ORDER = {
     'Global Style',
   ],
   Core: ['Colour', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
-  Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor'],
-  Component: ['Input'],
+  Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor', 'Spinner'],
+  Component: ['Input', 'Button'],
 }
 
 addParameters({

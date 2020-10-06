@@ -7,6 +7,7 @@ import {
   Config,
   ResponsiveValue,
 } from '@styled-system/core'
+import { css, FlattenSimpleInterpolation, Keyframes } from 'styled-components'
 
 import { isNumber } from './core'
 
@@ -134,7 +135,7 @@ export interface AnimationProps<Theme extends ThemeType = ThemeType> {
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name)
    */
-  aName?: ResponsiveValue<CSS.AnimationName, Theme>
+  aName?: CSS.AnimationName | Keyframes
   /**
    * **Animation Play State**
    *
@@ -262,3 +263,10 @@ const transformConfig: Config<TransformProps> = {
 export const transform = system<TransformProps>(transformConfig)
 
 export const motion = compose<MotionProps>(transition, animation, transform)
+
+export const getAnimationName = ({
+  aName,
+}: Pick<AnimationProps, 'aName'>): FlattenSimpleInterpolation =>
+  css`
+    animation-name: ${aName};
+  `

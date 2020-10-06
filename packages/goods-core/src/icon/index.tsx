@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import * as React from 'react'
 import styled from 'styled-components'
 import colors from '../color'
