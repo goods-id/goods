@@ -27,7 +27,10 @@
     "test": "yarn workspace @pomona/goods-core run test",
     "test:coverage": "yarn workspace @pomona/goods-core run test:coverage",
     "validate": "lerna run validate",
-    "prettier-fix": "prettier --write \"**/*.+(js|jsx|tsx|ts|mdx)\""
+    "prettier-fix": "prettier --write \"**/*.+(js|jsx|tsx|ts|mdx)\"",
+    "prerelease:alpha": "lerna version --no-git-tag-version --conventional-prerelease --yes && git add -u .",
+    "release:alpha": "lerna publish from-package --pre-dist-tag next",
+    "postrelease:alpha": "git commit -m 'chore(release): Publish alpha' && git push"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
