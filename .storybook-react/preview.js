@@ -22,7 +22,7 @@ const SORT_ORDER = {
   ],
   Core: ['Colour', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
   Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor', 'Spinner'],
-  Component: ['Input', 'Button', 'Checkbox'],
+  Component: ['Input', 'Button', 'Checkbox', 'Radio'],
 }
 
 addParameters({
@@ -34,7 +34,10 @@ addParameters({
   viewport: {
     viewports: INITIAL_VIEWPORTS,
   },
-  actions: { argTypesRegex: '^on.*' },
+  controls: {
+    expanded: true,
+    hideNoControlsWarning: true,
+  },
   docs: {
     container: ({ children, context }) => {
       return (
@@ -50,9 +53,9 @@ addParameters({
   },
 })
 
+addDecorator(jsxDecorator)
 addDecorator(withA11y)
 addDecorator(withKnobs)
-addDecorator(jsxDecorator)
 
 const withGoods = StoryFn => {
   React.useEffect(() => {

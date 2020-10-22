@@ -19,3 +19,7 @@ export const getColor = (col: ColorProps['c'], theme: DefaultTheme): string => {
   const colorConst = color({ c: col, theme })?.color
   return colorConst || ''
 }
+
+declare global {
+  type ChangeEventInput = React.ChangeEvent<HTMLInputElement>
+}

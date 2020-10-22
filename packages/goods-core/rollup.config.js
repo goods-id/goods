@@ -13,9 +13,10 @@ const config = {
   input: './src/index.ts',
   output: [
     {
-      file: pkg.main,
+      dir: pkg.main.replace(/\/[\w.]+$/, ''),
       format: 'esm',
       sourcemap: true,
+      chunkFileNames: '[name]-chunk.js',
     },
     {
       dir: 'lib',

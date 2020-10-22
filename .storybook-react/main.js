@@ -23,6 +23,10 @@ const displayedHtmlProps = [
   'href',
   'target',
   'disabled',
+  'c',
+  'c1',
+  'size',
+  'rotate',
 ]
 
 const sourceLoaderOptions = {
@@ -51,16 +55,15 @@ module.exports = {
       options: { sourceLoaderOptions },
     },
     '@storybook/addon-controls',
+    'storybook-addon-jsx',
     {
       name: '@storybook/addon-storysource',
       options: sourceLoaderOptions,
     },
-    // '@storybook/addon-actions',
     '@storybook/addon-knobs',
     '@storybook/addon-links',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport/register',
-    'storybook-addon-jsx',
   ],
 
   typescript: {

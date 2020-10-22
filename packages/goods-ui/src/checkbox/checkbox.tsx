@@ -158,6 +158,7 @@ export const Checkbox: React.MemoExoticComponent<React.ForwardRefExoticComponent
                 checked={checked}
                 disabled={disabled}
                 id={`checbox-${id}`}
+                name={name}
                 type='checkbox'
                 ref={ref}
                 onChange={onChange}

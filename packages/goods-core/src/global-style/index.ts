@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     margin: 0px;
     width: 100%;
     padding: 0px auto;
-    background: ${props => props.theme.colors?.white20};
+    background: ${props => props.theme.colors?.white10};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

@@ -45,6 +45,16 @@ export interface FlexboxProps<Theme extends ThemeType = ThemeType> {
    * */
   fJustify?: ResponsiveValue<CSS.JustifyContent, Theme>
   /**
+   * **Justify Items**
+   *
+   * The CSS **`justify-items`** property defines the default
+   * `justify-self` for all items of the box, giving them all a
+   * default way of justifying each box along the appropriate axis.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items)
+   */
+  fJustifyItems?: ResponsiveValue<CSS.JustifyItems, Theme>
+  /**
    * **Justify Self**
    *
    * The CSS justify-self property sets the way a box is justified inside its alignment container along the appropriate axis.
@@ -92,6 +102,7 @@ const config: Config<FlexboxProps> = {
   fGrow: { property: 'flexGrow' },
   fShrink: { property: 'flexShrink' },
   fJustify: { property: 'justifyContent' },
+  fJustifyItems: { property: 'justifyItems' },
   fJSelf: { property: 'justifySelf' },
   fAlign: { property: 'alignItems' },
   fASelf: { property: 'alignSelf' },

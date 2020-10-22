@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useMemo, ChangeEvent, FC } from 'react'
-import { Div } from '../basics/div'
+import { Box } from '../basics/div'
 import { Text } from '../typography'
-import { useGoods } from '../goods-context'
 import {
   GoodsDocs,
   Section,
@@ -45,7 +44,6 @@ const excludedProps = [
 ]
 
 const IconDocs: FC = () => {
-  const { spacing } = useGoods()
   const [searchKey, setSearchKey] = useState('')
 
   const onSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -72,9 +70,9 @@ const IconDocs: FC = () => {
     >
       <ImageBox imageSrc={IconDesignImg} alt='Icon Design' mt='l' mb='xl' />
       <Section title='I. Usage' noChildTab>
-        <Div mb='s'>
+        <Box mb='s'>
           <Text rule='body'>Here are some terms to standarized our terms</Text>
-        </Div>
+        </Box>
         {usageRule.map((item, key) => (
           <Point
             key={key}
@@ -83,7 +81,7 @@ const IconDocs: FC = () => {
             bullet
           />
         ))}
-        <Div
+        <Box
           bg='white30'
           w='100%'
           minH='48px'
@@ -101,11 +99,11 @@ const IconDocs: FC = () => {
             Icon Format is SVG but until we set React Native SVG settings, it
             needs PNG (1x, 1,5x, 2x, 4x Scale)
           </Text>
-        </Div>
+        </Box>
         <ImageBox imageSrc={IconSizingImg} alt='Icon Sizing' my='l' />
       </Section>
       <Section title='II. Icon List' noChildTab>
-        <Div w mb='l'>
+        <Box w mb='l'>
           <Input
             id='search-icon'
             name='search-icon'
@@ -114,8 +112,8 @@ const IconDocs: FC = () => {
             value={searchKey}
             onChange={onSearch}
           />
-        </Div>
-        <Div
+        </Box>
+        <Box
           d='grid'
           w
           gTempCol={{
@@ -125,18 +123,18 @@ const IconDocs: FC = () => {
           }}
         >
           {icons.map(name => (
-            <Div
+            <Box
               key={name}
               w='120px'
               h='120px'
               fAlign='center'
               fJustify='center'
             >
-              <Icon name={name} m={spacing('0', '0', 'm')} />
+              <Icon name={name} mb='m' />
               <Text rule='body'>{name}</Text>
-            </Div>
+            </Box>
           ))}
-        </Div>
+        </Box>
       </Section>
     </GoodsDocs>
   )

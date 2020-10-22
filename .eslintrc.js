@@ -27,6 +27,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-wrap-multilines': 'off',
+    'react/require-default-props': 'off',
     // Cannot use `Component.displayName` pattern on class components in TS.
     'react/static-property-placement': 'off',
     'import/prefer-default-export': 'off',

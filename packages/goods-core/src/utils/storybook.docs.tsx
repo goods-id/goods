@@ -10,7 +10,7 @@ import {
   ArgsTable,
 } from '@storybook/addon-docs/dist/blocks'
 import { Text } from '../typography'
-import { Div, DivProps } from '../basics/div'
+import { Box, BoxProps } from '../basics/div'
 import { Image } from '../basics/image'
 
 interface TitleProps {
@@ -126,7 +126,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
   )
 }
 
-interface SectionProps extends Omit<DivProps, 'ref'> {
+interface SectionProps extends Omit<BoxProps, 'ref'> {
   title: string
   tabSpacing?: boolean
   noChildTab?: boolean
@@ -141,19 +141,19 @@ export const Section: React.FC<SectionProps> = ({
   ...divProps
 }) => {
   return (
-    <Div mb='l' fDir='column' w='100%' {...divProps}>
+    <Box mb='l' fDir='column' w='100%' {...divProps}>
       <Text c='black40' rule={!tabSpacing ? 'subtitle' : 'body'} weight={500}>
         {title}
       </Text>
-      <Div
+      <Box
         py='s'
         px={noChildTab ? '0' : tabSpacing ? 's' : 'l'}
         w='100%'
         fDir='column'
       >
         {children}
-      </Div>
-    </Div>
+      </Box>
+    </Box>
   )
 }
 
@@ -169,14 +169,14 @@ export const Point: React.FC<PointProps> = ({
   bullet = false,
 }) => {
   return (
-    <Div fDir='row' fAlign='center' mb='s' w='100%' fWrap='wrap'>
-      {bullet && <Div w='8px' h='8px' radius='full' bg='black40' mr='xxs' />}
+    <Box fDir='row' fAlign='center' mb='s' w='100%' fWrap='wrap'>
+      {bullet && <Box w='8px' h='8px' radius='full' bg='black40' mr='xxs' />}
       <Text rule='body' weight={500}>{`${title}:`}</Text>
       &nbsp;
       <Text rule='body' style={{ minWidth: '280px' }}>
         {description}
       </Text>
-    </Div>
+    </Box>
   )
 }
 
@@ -188,16 +188,16 @@ export const Input = styled.input(({ theme }) => ({
   padding: theme.spacing('xs', 's'),
 }))
 
-interface ImageBoxProps extends Omit<DivProps, 'ref'> {
+interface ImageBoxProps extends Omit<BoxProps, 'ref'> {
   imageSrc: string
   alt: string
 }
 
 export const ImageBox: React.FC<ImageBoxProps> = props => {
-  const { imageSrc, alt, ...divProps } = props
+  const { imageSrc, alt, ...rest } = props
   return (
-    <Div maxW='100%' w='fit-content' fAlign='center' {...divProps}>
+    <Box maxW='100%' w='fit-content' fAlign='center' {...rest}>
       <Image alt={alt} src={imageSrc} w='100%' />
-    </Div>
+    </Box>
   )
 }

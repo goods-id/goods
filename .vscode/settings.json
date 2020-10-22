@@ -2,7 +2,9 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [120],
+  "editor.rulers": [
+    120
+  ],
   "editor.formatOnSave": true,
   "files.encoding": "utf8",
   "files.trimTrailingWhitespace": true,
@@ -22,5 +24,13 @@
   "deno.enable": false,
   "html.autoClosingTags": true,
   "extensions.ignoreRecommendations": false,
-  "files.autoSave": "off"
+  "files.autoSave": "off",
+  "codemetrics.nodeconfiguration.JsxSelfClosingElement": 0,
+  "codemetrics.nodeconfiguration.ReturnStatement": 0,
+  "codemetrics.nodeconfiguration.DefaultClause": 0,
+  "codemetrics.nodeconfiguration.CaseClause": 0,
+  "codemetrics.nodeconfiguration.SwitchStatement": 0,
+  "codemetrics.nodeconfiguration.BreakStatement": 0,
+  "codemetrics.nodeconfiguration.ObjectLiteralExpression": 0,
+  "codemetrics.nodeconfiguration.ArrowFunction": 0
 }

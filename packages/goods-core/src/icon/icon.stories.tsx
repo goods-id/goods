@@ -1,69 +1,47 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { select, color, text, number } from '@storybook/addon-knobs'
-import { Icon, IconName, IconSize, IconRotate } from '.'
-import { useGoods } from '../goods-context'
-import { Div } from '../basics/div'
+import { Icon, IconName, IconProps } from '.'
+import { Box } from '../basics/div'
+import colors from '../color'
 import IconDocs from './icon.docs'
 
 const iconNames = Object.values(IconName)
+const colorNames = Object.keys(colors)
 
-const iconSizes: (keyof typeof IconSize | '')[] = [
-  'small',
-  'normal',
-  'large',
-  '',
-]
-
-const iconRotates: (keyof typeof IconRotate | '')[] = [
-  'up',
-  'right',
-  'down',
-  'left',
-  '',
-]
-
-export default {
+const storyMetaData: Meta<IconProps> = {
   title: 'Core/Icon',
   component: Icon,
   parameters: { docs: { page: IconDocs } },
-} as Meta
+}
+
+export default storyMetaData
 
 export const All: Story = () => {
-  const { spacing } = useGoods()
   return (
-    <Div fDir='row' fWrap='wrap' fJustify='flex-start'>
+    <Box fDir='row' fWrap='wrap' fJustify='flex-start'>
       {iconNames.map(name => (
-        <Icon key={name} name={name} m={spacing('s')} />
+        <Icon key={name} name={name} m='s' />
       ))}
-    </Div>
+    </Box>
   )
 }
 
-export const WithKnobs: Story = () => {
-  const { colors, spacing } = useGoods() || {}
-  const namedSize = select('named', iconSizes, 'normal', 'size')
-  const numberedSize = number('numbered', 24, { min: 0, step: 1 }, 'size')
-  const namedRotate = select('named', iconRotates, 'up', 'rotate')
-  const numberedRotate = number(
-    'numbered',
-    0,
-    { min: 0, max: 359, step: 1 },
-    'rotate'
-  )
-  return (
-    <Icon
-      name={select('name', iconNames, IconName.home)}
-      c={color('c', colors?.blue50 || '')}
-      c1={color('c1', colors?.red60 || '')}
-      m={text('m', spacing('s'))}
-      p={text('p', spacing('0'))}
-      size={namedSize || numberedSize}
-      rotate={namedRotate || numberedRotate}
-    />
-  )
+export const IconExample: Story<IconProps> = args => {
+  return <Icon {...args} />
 }
 
-WithKnobs.parameters = {
+IconExample.args = {
+  name: 'pomona',
+  c: 'blue50',
+  size: 'normal',
+}
+
+IconExample.argTypes = {
+  name: { name: 'name', control: { type: 'select', options: iconNames } },
+  c: { name: 'c', control: { type: 'select', options: colorNames } },
+  c1: { name: 'c1', control: { type: 'select', options: colorNames } },
+}
+
+IconExample.parameters = {
   docs: { disable: true },
 }
