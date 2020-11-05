@@ -48,7 +48,7 @@ export const Input: React.MemoExoticComponent<React.ForwardRefExoticComponent<
         supRule = 'caption',
         suffixContainer,
         prefixContainer,
-        supText,
+        supText = '',
         supErrorColor = 'red60',
         prefix,
         label,
@@ -140,7 +140,7 @@ export const Input: React.MemoExoticComponent<React.ForwardRefExoticComponent<
               )}
             </Box>
           )}
-          {typeof supText === 'string' ? (
+          {typeof supText === 'string' || typeof supText === 'number' ? (
             <Text
               c={props.isError ? supErrorColor : supColor}
               rule={supRule}
