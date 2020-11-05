@@ -57,6 +57,12 @@ export interface ButtonStyledProps
     TypographyProps,
     BackgroundProps,
     InteractionProps {
+  /**
+   * **Button Size**
+   *
+   * The size of button. `small` is equivalent to the dense button styling.
+   *
+   * */
   buttonSize?: ResponsiveValue<SizeRule | number>
 }
 
@@ -153,11 +159,47 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
 export interface ButtonProps
   extends ButtonStyledProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> {
+  /**
+   * **isLoading**
+   *
+   * If true, a loading spinner is displayed.
+   *
+   * */
   isLoading?: boolean
+  /**
+   * **loadingColor**
+   *
+   * The color of the loading spinner. It supports those theme colors that make sense for this component.
+   *
+   * */
   loadingColor?: ColorProps['c']
+  /**
+   * **prefix**
+   *
+   * A property to place component that act as prefix. It will be located at the beginning of component
+   *
+   * */
   prefix?: IconButtonProps | React.ReactNode
+  /**
+   * **prefixContainer**
+   *
+   * Props for Prefix Component Container
+   *
+   * */
   prefixContainer?: BoxProps
+  /**
+   * **suffix**
+   *
+   * A property to place component that act as a suffix. It will be located at the end of component
+   *
+   * */
   suffix?: React.ReactNode | IconButtonProps
+  /**
+   * **suffixContainer**
+   *
+   * Props for Suffix Component Container
+   *
+   * */
   suffixContainer?: BoxProps
 }
 

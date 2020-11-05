@@ -25,13 +25,61 @@ export interface InputProps
   extends Omit<InputStyledProps, 'prefix' | 'isLabeled'>,
     HTMLTagInputAttibute,
     HTMLTagTextareaAttribute {
+  /**
+   * **containerProps**
+   *
+   * Extends the styles applied to the component
+   *
+   * */
   containerProps?: Omit<BoxProps, 'ref'>
+  /**
+   * **prefix**
+   *
+   * A property to place component that act as prefix. It will be located at the beginning of component
+   *
+   * */
   prefix?: IconButtonProps | React.ReactNode | boolean
+  /**
+   * **supColor**
+   *
+   * Sup Color
+   *
+   * */
   supColor?: ColorProps['c']
+  /**
+   * **supRule**
+   *
+   * Property to change of the support text color
+   *
+   * */
   supRule?: TypographyRuleProps['rule']
+  /**
+   * **supRule**
+   *
+   * Property to change rule of the support text
+   *
+   * */
   supText?: React.ReactNode
+  /**
+   * **supText**
+   *
+   * The text to be used as a support text
+   *
+   * */
   labelProps?: LabelStyledProps
+  /**
+   * **labelProps**
+   *
+   * Extend style to the label
+   *
+   * */
   label?: string
+  /**
+   * **isLoading**
+   *
+   * The text to be used in an enclosing label element
+   *
+   * */
   supErrorColor?: ColorProps['c']
 }
 
