@@ -127,12 +127,17 @@ export const LabelStyled = styled.label<LabelStyledProps>(
     const defaultStyle: InterpolationValue = {
       pointerEvents: 'none',
       [`${InputStyled}.error ~ &`]: errorStyle,
-      [`${InputStyled}:not(.error):not(:focus):placeholder-shown:not(:hover) ~ &`]: style,
+      [`${InputStyled}:not(.error):not(:focus):placeholder-shown:not(:hover) ~ &:not(.label-input-filled)`]: style,
       [`${InputStyled}:not(.error):focus ~ &`]: focusStyle,
       [`${InputStyled}:focus ~ &, ${InputStyled}:not(:placeholder-shown) ~ &`]: filledStyle,
       [`${InputStyled}:not(.error):hover ~ &`]: hoverStyle,
-      [`${InputStyled}:not(.error):disabled ~ &`]: disabledStyle,
+      [`${InputStyled}:not(.error):disabled ~ &, ${InputStyled}:not(.error):disabled:not(:focus):placeholder-shown:not(:hover) ~ &`]: disabledStyle,
     }
-    return merge(defaultStyle, style)
+
+    const result = merge(merge(defaultStyle, style), {
+      '&.label-input-filled': filledStyle,
+    })
+
+    return result
   }
 )

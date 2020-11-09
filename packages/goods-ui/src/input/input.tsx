@@ -8,9 +8,10 @@ import {
   TypographyRuleProps,
   mergeClass,
 } from '@pomona/goods-core'
-import { IconButtonProps, isIconButtonProps } from '../@types/global'
+import { isIconButtonProps } from '../_utils/helpers'
 import { InputStyled, InputStyledProps } from './input-styled'
 import { LabelStyled, LabelStyledProps } from './label-styled'
+import { IconButtonProps } from '../@types/global'
 
 type HTMLTagInputAttibute = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,

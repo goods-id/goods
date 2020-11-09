@@ -22,7 +22,7 @@ const SORT_ORDER = {
   ],
   Core: ['Colour', 'Shadow', 'Spacing', 'Corner Radius', 'Typography', 'Icon'],
   Basics: ['Div', 'Image', 'Skeleton', 'Line', 'Anchor', 'Spinner'],
-  Component: ['Input', 'Button', 'Checkbox', 'Radio', 'Switch'],
+  Component: ['Input', 'Button', 'Checkbox', 'Radio', 'Switch', 'Dropdown'],
 }
 
 addParameters({

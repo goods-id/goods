@@ -18,7 +18,7 @@ import {
   hexToRgba,
 } from '@pomona/goods-core'
 import React from 'react'
-import { getColor } from '../@types/global'
+import { getColor } from '../_utils/helpers'
 
 export interface CheckboxLabelSystemProps
   extends SpacingProps,

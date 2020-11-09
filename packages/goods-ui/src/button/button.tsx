@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { DefaultTheme, InterpolationValue } from 'styled-components'
+import styled, { InterpolationValue } from 'styled-components'
 import {
   compose,
   get,
@@ -32,11 +32,11 @@ import {
   Box,
   BoxProps,
   Spinner,
-  colors,
   interaction,
   InteractionProps,
 } from '@pomona/goods-core'
-import { isIconButtonProps, IconButtonProps } from '../@types/global'
+import { isIconButtonProps, getColor } from '../_utils/helpers'
+import { IconButtonProps } from '../@types/global'
 
 const sizeRuleConstant = {
   small: '24px',
@@ -78,11 +78,6 @@ const configButton: Config<Pick<ButtonStyledProps, 'buttonSize'>> = {
 
 const buttonRule = system(configButton)
 
-const getRippleColor = (col, theme: DefaultTheme) => {
-  const colorConst = theme?.colors || colors
-  return col in colorConst ? colorConst[col] : col
-}
-
 const styleFn = compose<ButtonStyledProps>(
   layout,
   spacing,
@@ -119,7 +114,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>(
       outline: 'none',
       transition: 'background 0.8s',
       '&:hover': {
-        background: `${getRippleColor(
+        background: `${getColor(
           bg,
           props?.theme
         )}  radial-gradient(circle, rgba(0, 0, 0, 0.03) 1%, rgba(255, 255, 255, 0.05) 1%) center/15000%`,

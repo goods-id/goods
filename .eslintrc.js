@@ -49,6 +49,7 @@ module.exports = {
       },
       rules: {
         'no-unused-vars': 'off',
+        'no-param-reassign': ['error', { props: false }],
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/explicit-function-return-type': ['off'],
         '@typescript-eslint/no-empty-function': 'off',

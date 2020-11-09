@@ -124,4 +124,11 @@ module.exports = {
     config.resolve.extensions.push('.ts', '.tsx')
     return config
   },
+
+  babel: async options => {
+    return {
+      ...options,
+      plugins: [...options.plugins, 'babel-plugin-styled-components'],
+    }
+  },
 }

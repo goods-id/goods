@@ -83,6 +83,10 @@ const Chevron = lazy(
   () => import(/* webpackChunkName: "ic-chevron" */ './svg/chevron')
 )
 
+const Checked = lazy(
+  () => import(/* webpackChunkName: "ic-checked" */ './svg/checked')
+)
+
 const Checkbox = lazy(
   () => import(/* webpackChunkName: "ic-checkbox" */ './svg/checkbox')
 )
@@ -155,6 +159,7 @@ export enum IconName {
   search = 'search',
   dropdown = 'dropdown',
   chevron = 'chevron',
+  checked = 'checked',
   checkbox = 'checkbox',
   checkboxOff = 'checkboxOff',
   approved = 'approved',
@@ -226,6 +231,8 @@ const IconRender = ({ name, c = 'blue50', c1 }: IconRenderProps) => {
       return <Dropdown c={c} c1={c1} />
     case 'chevron':
       return <Chevron c={c} c1={c1} />
+    case 'checked':
+      return <Checked c={c} c1={c1} />
     case 'checkbox':
       return <Checkbox c={c} c1={c1} />
     case 'checkboxOff':
@@ -269,6 +276,7 @@ const defaultPropsList: {
   radioActive: { viewBox: '0 0 24 24' },
   radioDisabled: { viewBox: '0 0 24 24' },
   calendar: { viewBox: '0 0 16 16' },
+  checked: { viewBox: '0 0 24 24' },
 }
 
 export const Icon = React.memo(

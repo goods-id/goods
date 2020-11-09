@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { Icon, Image } from '@pomona/goods-core'
-import { Radio, RadioGroupProps, RadioItemProps } from './radio'
+import { Radio, RadioProps, RadioItemProps } from './radio'
 
 const storyMetaData: Meta = {
   title: 'Component/Radio',
@@ -12,7 +12,7 @@ const storyMetaData: Meta = {
 
 export default storyMetaData
 
-interface RadioAndItemProps extends Omit<RadioGroupProps, 'value' | 'name'> {
+interface RadioAndItemProps extends Omit<RadioProps, 'value' | 'name'> {
   itemProps?: Omit<RadioItemProps, 'value' | 'ref'>
 }
 

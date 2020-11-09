@@ -20,7 +20,7 @@ import {
 } from '@pomona/goods-core'
 import { IconButtonProps } from '../@types/global'
 
-export interface InputRuleProps extends ColorProps, BorderProps {}
+export interface InputRuleProps extends ColorProps, BorderProps, SpacingProps {}
 
 export interface ConditionalProps {
   isError?: boolean
@@ -49,7 +49,7 @@ export interface InputStyledProps
   isLabeled?: boolean
 }
 
-const inputRule = compose(color, border)
+const inputRule = compose(color, border, spacing)
 const styleFn = compose(
   spacing,
   layout,
