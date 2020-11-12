@@ -41,7 +41,7 @@ export const SkeletonStyled = styled.span<SkeletonCssProps>(
   ({
     w = '300px',
     h = '20px',
-    bg = 'hsl(0, 0%, 89%)',
+    bg = 'hsl(0, 0%, 90%)',
     posi = 'relative',
     radius = 'm',
     d = 'block',
@@ -84,9 +84,9 @@ export const SkeletonAnimation = styled(SkeletonStyled)`
     height: 100%;
     background: linear-gradient(
       90deg,
-      hsl(0, 0%, 89%),
-      hsl(0, 0%, 93%),
-      hsl(0, 0%, 89%)
+      rgba(255, 255, 255, 0) 0,
+      rgb(255 255 255 / 50%) 50%,
+      rgba(255, 255, 255, 0) 100%
     );
     animation: ${css`
       ${progress} 1s ease-in-out infinite;
