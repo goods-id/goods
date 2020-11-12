@@ -9,8 +9,8 @@
 			"path": "packages/goods-core"
 		},
 		{
-			"name": "📦 goods-helpers",
-			"path": "packages/goods-helpers"
+			"name": "📦 goods-helper",
+			"path": "packages/goods-helper"
 		},
 		{
 			"name": "📦 goods-native",

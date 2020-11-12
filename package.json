@@ -88,7 +88,7 @@
     "yarn": "^1.22.4"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,css,scss,md,html}": [
+    "*.{ts,tsx,js,jsx,css,scss,html}": [
       "eslint",
       "prettier",
       "prettier --write"
