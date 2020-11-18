@@ -5,6 +5,12 @@ interface RectHookReturn<T extends HTMLElement> {
   rect: DOMRect
 }
 
+/**
+ * Hook to record DOMRect of an element
+ * @param [deps] array of dependencies. If one item changed, the
+ * DOMRect will be updated
+ * @default []
+ */
 export function useRect<T extends HTMLElement = HTMLElement>(
   deps: unknown[] = []
 ): RectHookReturn<T> {

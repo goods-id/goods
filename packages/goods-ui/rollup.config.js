@@ -52,6 +52,7 @@ const config = {
           './src/**/*.stories.tsx',
           './src/**/*.story.tsx',
           './src/**/*.docs.tsx',
+          './src/**/storybook.tsx',
         ],
       },
     }),

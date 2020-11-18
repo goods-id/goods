@@ -1,4 +1,6 @@
-import { OptionItem } from './_types'
+import { BoxProps } from '@pomona/goods-core'
+import { toCssValue } from '../_utils'
+import { DropdownProps, OptionItem } from './_types'
 
 export function findOption<K extends keyof OptionItem>(
   optionItems: OptionItem[],
@@ -8,8 +10,10 @@ export function findOption<K extends keyof OptionItem>(
   const searchResult = optionItems.find(opt => opt[key] === value) || {
     value: '',
   }
-  searchResult.label = searchResult.label || searchResult.value
-  return searchResult
+  return {
+    ...searchResult,
+    ...(!searchResult.label && { label: searchResult.value }),
+  }
 }
 
 export function getFocusedElement(
@@ -246,4 +250,55 @@ export function getInputAndMenuRadius(
       res(result)
     }, 100)
   })
+}
+
+interface GetDefaultInputAndMenuPropsParam
+  extends Pick<
+    DropdownProps,
+    'focusProps' | 'hoverProps' | 'errorProps' | 'menuOffsetTop' | 'isError'
+  > {
+  inputRect: DOMRect
+}
+
+interface GetDefaultInputAndMenuPropsReturn
+  extends Pick<BoxProps, 'bW' | 'bS' | 'bC'> {
+  bgHover: BoxProps['bg']
+  bWError: BoxProps['bW']
+  bSError: BoxProps['bS']
+  bCError: BoxProps['bC']
+  bgError: BoxProps['bg']
+  menuTop: string
+}
+
+export function getDefaultInputAndMenuProps({
+  focusProps,
+  hoverProps,
+  errorProps,
+  isError,
+  menuOffsetTop,
+  inputRect,
+}: GetDefaultInputAndMenuPropsParam): GetDefaultInputAndMenuPropsReturn {
+  let { bW, bS, bC } = focusProps || {}
+  let { bg: bgHover } = hoverProps || {}
+  const {
+    bW: bWError = '1px',
+    bS: bSError = 'solid',
+    bC: bCError = 'red60',
+    bg: bgError = 'red10',
+  } = errorProps || {}
+
+  if (isError) {
+    bW = bWError
+    bS = bSError
+    bC = bCError
+    bgHover = bgError
+  }
+
+  const { height } = inputRect
+  const menuOffsetTopValue = toCssValue(menuOffsetTop)
+  const menuTop = menuOffsetTopValue
+    ? `calc(${height - 1}px + ${menuOffsetTopValue})`
+    : `${height - 1}px`
+
+  return { bCError, bSError, bWError, bgError, bgHover, menuTop, bC, bS, bW }
 }

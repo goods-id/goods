@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import {
   DocsContext,
@@ -37,6 +37,22 @@ const defaultExcludedProps = [
   'onMouseLeave',
   'onMouseEnter',
   'onMouseOut',
+]
+
+const includedPropsFormComponent = [
+  'onChange',
+  'onKeyDown',
+  'onFocus',
+  'onBlur',
+]
+
+const formComponents = [
+  'Input',
+  'Checkbox',
+  'Radio',
+  'Switch',
+  'Dropdown',
+  'Dropdown Async',
 ]
 
 function getChapter(chapterName: string): string {
@@ -82,9 +98,22 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
   } = props
 
   const context = useContext(DocsContext)
+  const title = extractTitle(context)
   const component = !withoutPropsTable && getComponent({ of: '.' }, context)
 
-  React.useEffect(() => {
+  const excluded = useMemo(() => {
+    if (title === 'Button') {
+      return excludedProps.filter(prop => prop !== 'onClick')
+    }
+    if (formComponents.includes(title)) {
+      return excludedProps.filter(
+        prop => !includedPropsFormComponent.includes(prop)
+      )
+    }
+    return excludedProps
+  }, [title])
+
+  useEffect(() => {
     document.body.classList.add('scroll')
     return () => {
       document.body.classList.remove('scroll')
@@ -118,7 +147,7 @@ export const GoodsDocs: React.FC<GoodsDocsProps> = props => {
           <Text rule='title' weight={500} my='m'>
             Props
           </Text>
-          <ArgsTable exclude={excludedProps} />
+          <ArgsTable exclude={excluded} />
         </>
       )}
       {!withoutStories && <Stories />}

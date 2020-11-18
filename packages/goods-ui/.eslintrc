@@ -7,7 +7,7 @@
         "**/*.story.ts",
         "**/*.story.tsx",
         "**/*.docs.tsx",
-        "**/utils/storybook.tsx"
+        "**/_utils/storybook.tsx"
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": ["off"],

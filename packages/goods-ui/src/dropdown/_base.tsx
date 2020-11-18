@@ -11,9 +11,10 @@ import {
   mergeClass,
   Text,
 } from '@pomona/goods-core'
+import { useRect } from '@pomona/goods-helper'
 import { InputStyled } from '../input/input-styled'
 import { LabelStyled } from '../input/label-styled'
-import { isIconButtonProps, useRect } from '../_utils'
+import { isIconButtonProps } from '../_utils'
 import { DropdownInputProps, MenuComponentProps, OptionItem } from './_types'
 
 export const ValueContainer = styled(BoxStyled)<{
@@ -48,6 +49,7 @@ export const DropdownInput = memo(
         clearIcon,
         onClear,
         onClearIconMouseDown,
+        chevronIcon,
         w = true,
         c = 'black30',
         supColor = 'black20',
@@ -97,6 +99,7 @@ export const DropdownInput = memo(
           child = renderOptionItem({
             value: selectedValue,
             label: selectedLabel,
+            context: 'input',
             disabled,
           })
         }
@@ -123,7 +126,7 @@ export const DropdownInput = memo(
             pl={paddingLeft}
             pr={paddingRight}
             w
-            cursor='text'
+            cursor={disabled ? 'not-allowed' : 'text'}
             textWidth='100%'
             fDir='row'
             fAlign='center'
@@ -251,15 +254,9 @@ export const DropdownInput = memo(
                 )}
               </Box>
             )}
-            <BoxStyled
-              as='label'
-              htmlFor={id}
-              cursor={disabled ? 'not-allowed' : 'pointer'}
-              pointEvents={isMenuOpen ? 'none' : undefined}
-              transition='transform 0.2s ease-in'
-            >
-              {suffix ? (
-                isIconButtonProps(suffix) ? (
+            {suffix && (
+              <Box as='span' mr='xxs'>
+                {isIconButtonProps(suffix) ? (
                   <Icon
                     name={suffix.icName}
                     c={suffix.icColor}
@@ -269,6 +266,27 @@ export const DropdownInput = memo(
                   />
                 ) : (
                   suffix
+                )}
+              </Box>
+            )}
+            <BoxStyled
+              as='label'
+              htmlFor={id}
+              cursor={disabled ? 'not-allowed' : 'pointer'}
+              pointEvents={isMenuOpen ? 'none' : undefined}
+              transition='transform 0.2s ease-in'
+            >
+              {chevronIcon ? (
+                isIconButtonProps(chevronIcon) ? (
+                  <Icon
+                    name={chevronIcon.icName}
+                    c={chevronIcon.icColor}
+                    size={chevronIcon.icSize}
+                    rotate={chevronIcon.icRotate}
+                    transition='inherit'
+                  />
+                ) : (
+                  chevronIcon
                 )
               ) : (
                 <Icon
@@ -348,7 +366,12 @@ export const OptionBox = memo<OptionBoxProps>(
 
     let rendered: React.ReactNode = text
     if (typeof renderOptionItem === 'function') {
-      rendered = renderOptionItem({ value, disabled, label: text })
+      rendered = renderOptionItem({
+        value,
+        disabled,
+        label: text,
+        context: 'menu',
+      })
     }
 
     return (
@@ -416,4 +439,95 @@ export const MenuBox = styled(BoxStyled)<MenuBoxProps>(
       },
     }
   }
+)
+
+export const DefaultMenuComponent = memo(
+  forwardRef<HTMLDivElement, MenuComponentProps>(
+    (
+      {
+        options,
+        renderOptionItem,
+        noOptionsMessage,
+        id,
+        isOpen,
+        focused,
+        bgFocused,
+        selected,
+        onSelect,
+        onItemHover,
+        top,
+        left,
+        bW = '1px',
+        bS = 'solid',
+        bC = 'blue50',
+        radius = 'm',
+        w = true,
+        ...props
+      },
+      ref
+    ) => {
+      const shownOptions = options.filter(opt => !opt.hidden)
+      const totalShownOptions = shownOptions.length
+      return (
+        <Box
+          id={`${id}-container`}
+          d={isOpen ? 'flex' : 'none'}
+          posi='absolute'
+          top={top}
+          left={left}
+          w={w}
+          maxH='148px'
+          bg='white10'
+          z={10}
+          px='xxxs'
+          py='2px'
+          bW={bW}
+          bS={bS}
+          bC={bC}
+          radius={radius}
+          {...props}
+        >
+          <MenuBox
+            ref={ref}
+            id={id}
+            w
+            pr='xxxs'
+            maxH='100%'
+            overflow='scroll'
+            cScrollBar={bC}
+          >
+            {totalShownOptions ? (
+              shownOptions.map(opt => (
+                <OptionBox
+                  key={opt.value}
+                  renderOptionItem={renderOptionItem}
+                  selected={selected}
+                  cSelected={bC}
+                  focused={focused}
+                  bgFocused={bgFocused}
+                  onSelect={onSelect}
+                  onItemHover={onItemHover}
+                  {...opt}
+                />
+              ))
+            ) : (
+              <ValueContainer
+                w
+                px='xxs'
+                py='xs'
+                lineClamp={2}
+                textWidth='100%'
+                title={noOptionsMessage}
+                c='black30'
+              >
+                <Text as='span' rule='body'>
+                  {noOptionsMessage}
+                </Text>
+              </ValueContainer>
+            )}
+          </MenuBox>
+        </Box>
+      )
+    }
+  )
 )

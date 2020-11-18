@@ -1,24 +1,29 @@
 import React, { forwardRef, memo } from 'react'
-import { Box } from '@pomona/goods-core'
+import { Box, Spinner } from '@pomona/goods-core'
 import { DefaultMenuComponent, DropdownInput } from './_base'
-import { useDropdown } from './hooks/dropdown'
-import { DropdownProps } from './_types'
+import { useDropdownAsync } from './hooks/dropdown-async'
+import { DropdownAsyncProps } from './_types'
 import { toCssValue } from '../_utils'
 import { getDefaultInputAndMenuProps } from './_helpers'
 
-export const Dropdown = memo(
-  forwardRef<HTMLInputElement, DropdownProps>(
+export const DropdownAsync = memo(
+  forwardRef<HTMLInputElement, DropdownAsyncProps>(
     (
       {
         id = `${Date.now()}`,
+        autoFilter = false,
         readOnly = false,
         disabled = false,
         isError = false,
         value = '',
         name = '',
-        options = [],
+        fetchDeps,
+        fetchLimit,
+        fetchOptions,
         noOptionsMessage = 'No data',
         renderOptionItem,
+        suffix,
+        loadingColor = 'blue50',
         radius = 'm',
         w,
         maxW,
@@ -43,6 +48,7 @@ export const Dropdown = memo(
     ) => {
       const [
         {
+          isLoading,
           isMenuOpen,
           inputAndMenuRadius,
           focusedValue,
@@ -67,19 +73,21 @@ export const Dropdown = memo(
           onMenuMouseMove,
           onKeyDown,
         },
-      ] = useDropdown({
+      ] = useDropdownAsync({
         ref,
-        value,
-        name,
-        readOnly,
+        autoFilter,
         disabled,
-        options,
+        readOnly,
+        name,
+        value,
+        fetchDeps,
+        fetchLimit,
+        fetchOptions,
         onChange,
-        disabledAutoFilter: false,
-        onFocus: onFocusProps,
         onBlur: onBlurProps,
-        onSearch: onSearchProps,
+        onFocus: onFocusProps,
         onKeyDown: onKeyDownProps,
+        onSearch: onSearchProps,
         isMenuOpen: isMenuOpenProps,
       })
 
@@ -113,7 +121,7 @@ export const Dropdown = memo(
         inputRect,
       })
 
-      const inputId = `dropdown-${id}`
+      const inputId = `dropdown-async-${id}`
 
       return (
         <Box
@@ -159,6 +167,16 @@ export const Dropdown = memo(
               bg: bgError,
               ...errorProps,
             }}
+            suffix={
+              isLoading ? (
+                <>
+                  <Spinner c={loadingColor} />
+                  {suffix}
+                </>
+              ) : (
+                suffix
+              )
+            }
           />
           <MenuComponent
             ref={menuRef}

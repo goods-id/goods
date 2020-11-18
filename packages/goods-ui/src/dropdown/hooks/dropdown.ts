@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useDerivedStateFromProp, useRect } from '@pomona/goods-helper'
 import { DropdownProps, OptionItemWithHidden } from '../_types'
 import {
   findOption,
@@ -12,12 +13,7 @@ import {
   getInputAndMenuRadius,
   initialInputAndMenuRadius,
 } from '../_helpers'
-import {
-  handleMouseDown,
-  scrollIntoView,
-  useDerivedStateFromProp,
-  useRect,
-} from '../../_utils'
+import { handleMouseDown, scrollIntoView } from '../../_utils'
 import { ChangeEventInput } from '../../@types/global'
 
 interface DropdownHookProps
@@ -36,9 +32,10 @@ interface DropdownHookProps
     | 'onSearch'
   > {
   ref?: Parameters<React.ForwardRefRenderFunction<HTMLInputElement>>[1]
+  disabledAutoFilter?: boolean
 }
 
-interface DropdownHookState {
+export interface DropdownHookState {
   isMenuOpen: boolean
   inputAndMenuRadius: typeof initialInputAndMenuRadius
   focusedValue: string
@@ -51,7 +48,7 @@ interface DropdownHookState {
   menuRef: React.RefObject<HTMLDivElement>
 }
 
-interface DropdownHookAction {
+export interface DropdownHookAction {
   onClick(e: React.MouseEvent<HTMLInputElement>): void
   onFocus(e: React.FocusEvent<HTMLInputElement>): void | Promise<void>
   onBlur(e: React.FocusEvent<HTMLInputElement>): void | Promise<void>
@@ -78,6 +75,7 @@ export function useDropdown({
   onKeyDown: onKeyDownProps,
   onChange,
   ref,
+  disabledAutoFilter = false,
 }: DropdownHookProps = {}): [DropdownHookState, DropdownHookAction] {
   const [isBlockedItemHover, setBlockedItemHover] = useState(false)
   const [inputAndMenuRadius, setInputAndMenuRadius] = useState(
@@ -284,14 +282,18 @@ export function useDropdown({
   ])
 
   useEffect(() => {
-    const searchedRegExp = new RegExp(searchedValue, 'i')
-    setFilteredOptions(prevOptions => {
-      return prevOptions.map(item => ({
-        ...item,
-        hidden: !searchedRegExp.test(item.label || item.value),
-      }))
-    })
-  }, [searchedValue])
+    if (!disabledAutoFilter) {
+      const searchedValueLowerCase = searchedValue.toLowerCase()
+      setFilteredOptions(prevOptions => {
+        return prevOptions.map(item => ({
+          ...item,
+          hidden: !(item.label || item.value)
+            .toLowerCase()
+            .includes(searchedValueLowerCase),
+        }))
+      })
+    }
+  }, [searchedValue, disabledAutoFilter])
 
   useEffect(() => {
     const menuEl = menuRef.current
@@ -306,11 +308,11 @@ export function useDropdown({
   useEffect(() => {
     const { label = '' } = findOption(options, {
       key: 'value',
-      value,
+      value: selectedValue,
     })
     setSelectedLabel(label)
     if (label) setSearchedValue('')
-  }, [value, options])
+  }, [selectedValue, options])
 
   useEffect(() => {
     const menuElement = menuRef.current

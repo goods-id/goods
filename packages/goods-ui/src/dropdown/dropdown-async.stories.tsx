@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import { Box, colors, Image, Text } from '@pomona/goods-core'
-import { Dropdown } from './dropdown'
-import { DropdownProps, OptionItem } from './_types'
+import { Box, Image, Text } from '@pomona/goods-core'
+import { DropdownAsync } from './dropdown-async'
+import { DropdownAsyncProps, FetchOptionsHandler } from './_types'
 import { Input } from '../input'
 import { ChangeEventInput } from '../@types/global'
 import {
@@ -13,44 +13,65 @@ import {
 } from '../_utils/storybook'
 
 export default {
-  title: 'Component/Dropdown',
-  component: Dropdown,
+  title: 'Component/Dropdown Async',
+  component: DropdownAsync,
 }
 
-const options: OptionItem[] = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'avocado', label: 'Avocado' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'blackcurrent', label: 'Blackcurrent' },
-  { value: 'cherry', label: 'Cherry' },
-  { value: 'durian', label: 'Durian' },
-  {
-    value: 'long-fruit',
-    label:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident consequuntur iste deleniti accusantium atque nesciunt modi, quo mollitia, deserunt veniam possimus nisi commodi sed. Quasi officiis impedit dignissimos eveniet omnis.',
-  },
-  { value: 'orange', label: 'Orange' },
-]
+interface RandomUser {
+  name: { title: string; first: string; last: string }
+  id: { name: string; value: string | null }
+  picture: { large: string; medium: string; thumbnail: string }
+}
 
-export const DropdownExample: Story<DropdownProps> = args => {
+const BASE_URL = 'https://randomuser.me/api/'
+const label = 'User'
+const placeholder = 'Choose a user'
+const supText = 'Choose a user you want to be'
+const noOptionsMessage = 'User not found'
+const initialValue = 'FN-03035027547-Mr-Joel-Tiller'
+
+const fetchUsers: FetchOptionsHandler = async ({ page, limit }) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}?page=${
+        page + 1
+      }&results=${limit}&seed=goods&inc=name,id,picture`
+    )
+    const data: { results?: RandomUser[] } = await response.json()
+    if (data?.results) {
+      return data.results.map(({ name, id }) => {
+        const { title, first, last } = name
+        return {
+          value: `${id.name}-${id.value || ''}-${title}-${first}-${last}`,
+          label: `${title} ${first} ${last}`,
+        }
+      })
+    }
+    return []
+  } catch {
+    return []
+  }
+}
+
+export const DropdownAsyncExample: Story<DropdownAsyncProps> = args => {
   return (
     <Box h='200px'>
-      <Dropdown
+      <DropdownAsync
         {...args}
-        key='dropdown-example'
-        id='fruits'
-        name='fruit'
-        options={options}
+        id='user'
+        name='user'
+        fetchOptions={fetchUsers}
       />
     </Box>
   )
 }
 
-DropdownExample.args = {
-  label: 'Fruit',
-  placeholder: 'Choose a fruit',
-  supText: 'Choose a fruit you want',
-  noOptionsMessage: 'Hasil tidak ditemukan',
+DropdownAsyncExample.args = {
+  autoFilter: true,
+  label,
+  placeholder,
+  supText,
+  noOptionsMessage,
   w: '400px',
   maxW: 'calc(100vw - 32px)',
 }
@@ -62,28 +83,29 @@ export const Basic: Story = () => {
         const dashed = cond.replace(/\s/g, '-').toLowerCase()
         return (
           <ConditionBox key={dashed} title={cond}>
-            <Dropdown
-              key={`fruits-basic-${dashed}`}
-              id={`fruits-basic-${dashed}`}
-              name={`fruit-basic-${dashed}`}
-              options={options}
-              placeholder='Choose a fruit'
-              noOptionsMessage='Fruit not found'
+            <DropdownAsync
+              key={`user-basic-${dashed}`}
+              id={`user-basic-${dashed}`}
+              name={`user-basic-${dashed}`}
+              autoFilter
+              fetchOptions={fetchUsers}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
               w
-              value={isWithValue(cond) ? 'banana' : undefined}
+              value={isWithValue(cond) ? initialValue : undefined}
               readOnly={cond === 'Read only'}
               disabled={cond === 'Disabled'}
               isError={cond === 'Error'}
               label={
                 cond === 'No label' || cond === 'No label and support text'
                   ? undefined
-                  : 'Fruits'
+                  : label
               }
               supText={
                 cond === 'No support text' ||
                 cond === 'No label and support text'
                   ? undefined
-                  : 'Choose a fruit you want'
+                  : supText
               }
             />
           </ConditionBox>
@@ -102,36 +124,31 @@ export const Prefixed: Story = () => {
         const dashed = cond.replace(/\s/g, '-').toLowerCase()
         return (
           <ConditionBox key={dashed} title={cond}>
-            <Dropdown
-              key={`fruits-prefixed-${dashed}`}
-              id={`fruits-prefixed-${dashed}`}
-              name={`fruit-prefixed-${dashed}`}
-              options={options}
-              placeholder='Choose a fruit'
-              noOptionsMessage='Fruit not found'
+            <DropdownAsync
+              key={`user-prefixed-${dashed}`}
+              id={`user-prefixed-${dashed}`}
+              name={`user-prefixed-${dashed}`}
+              autoFilter
+              fetchOptions={fetchUsers}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
               w
-              value={isWithValue(cond) ? 'banana' : undefined}
+              value={isWithValue(cond) ? initialValue : undefined}
               readOnly={cond === 'Read only'}
               disabled={cond === 'Disabled'}
               isError={cond === 'Error'}
               label={
                 cond === 'No label' || cond === 'No label and support text'
                   ? undefined
-                  : 'Fruits'
+                  : label
               }
               supText={
                 cond === 'No support text' ||
                 cond === 'No label and support text'
                   ? undefined
-                  : 'Choose a fruit you want'
+                  : supText
               }
-              prefix={
-                <Image
-                  src='https://img.icons8.com/color/48/000000/fruit-bag.png'
-                  alt='fruit-bag-icon'
-                  s='24px'
-                />
-              }
+              prefix={{ icName: 'profile' }}
             />
           </ConditionBox>
         )
@@ -149,51 +166,55 @@ export const WithClearIcon: Story = () => {
         const dashed = cond.replace(/\s/g, '-').toLowerCase()
         return (
           <ConditionBox key={dashed} title={cond}>
-            <Dropdown
+            <DropdownAsync
               w
               clearIcon
-              key={`fruits-clear-icon-${dashed}`}
-              id={`fruits-clear-icon-${dashed}`}
-              name={`fruit-clear-icon-${dashed}`}
-              options={options}
-              placeholder='Choose a fruit'
-              noOptionsMessage='Fruit not found'
-              value={isWithValue(cond) ? 'banana' : undefined}
+              key={`user-clear-icon-${dashed}`}
+              id={`user-clear-icon-${dashed}`}
+              name={`user-clear-icon-${dashed}`}
+              autoFilter
+              fetchOptions={fetchUsers}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
+              value={isWithValue(cond) ? initialValue : undefined}
               readOnly={cond === 'Read only'}
               disabled={cond === 'Disabled'}
               isError={cond === 'Error'}
               label={
                 cond === 'No label' || cond === 'No label and support text'
                   ? undefined
-                  : 'Fruits'
+                  : label
               }
               supText={
                 cond === 'No support text' ||
                 cond === 'No label and support text'
                   ? undefined
-                  : 'Choose a fruit you want'
+                  : supText
               }
             />
           </ConditionBox>
         )
       })}
       <ConditionBox title='Custom clear icon'>
-        <Dropdown
+        <DropdownAsync
           w
-          key='fruits-clear-icon-custom'
-          id='fruits-clear-icon-custom'
-          name='fruit-clear-icon-custom'
-          options={options}
-          placeholder='Choose a fruit'
-          noOptionsMessage='Fruit not found'
-          label='Fruits'
-          supText='Choose a fruit you want'
+          key='user-clear-icon-custom'
+          id='user-clear-icon-custom'
+          name='user-clear-icon-custom'
+          autoFilter
+          fetchOptions={fetchUsers}
+          placeholder={placeholder}
+          noOptionsMessage={noOptionsMessage}
+          label={label}
+          supText={supText}
           clearIcon={{ icName: 'rejected', icColor: 'black30' }}
         />
       </ConditionBox>
     </Template>
   )
 }
+
+WithClearIcon.parameters = { docs: { disable: true } }
 
 export const CustomMenuPlacementAndWidth: Story = () => {
   const [containerWidth, setContainerWidth] = useState('50%')
@@ -260,27 +281,28 @@ export const CustomMenuPlacementAndWidth: Story = () => {
         const dashed = cond.replace(/\s/g, '-').toLowerCase()
         return (
           <ConditionBox key={dashed} title={cond}>
-            <Dropdown
-              key={`fruits-custom-width-placement-${dashed}`}
-              id={`fruits-custom-width-placement-${dashed}`}
-              name={`fruit-custom-width-placement-${dashed}`}
-              options={options}
-              placeholder='Choose a fruit'
-              noOptionsMessage='Fruit not found'
-              value={isWithValue(cond) ? 'banana' : undefined}
+            <DropdownAsync
+              key={`user-custom-width-placement-${dashed}`}
+              id={`user-custom-width-placement-${dashed}`}
+              name={`user-custom-width-placement-${dashed}`}
+              autoFilter
+              fetchOptions={fetchUsers}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
+              value={isWithValue(cond) ? initialValue : undefined}
               readOnly={cond === 'Read only'}
               disabled={cond === 'Disabled'}
               isError={cond === 'Error'}
               label={
                 cond === 'No label' || cond === 'No label and support text'
                   ? undefined
-                  : 'Fruits'
+                  : label
               }
               supText={
                 cond === 'No support text' ||
                 cond === 'No label and support text'
                   ? undefined
-                  : 'Choose a fruit you want'
+                  : supText
               }
               w={containerWidth}
               menuWidth={menuWidth}
@@ -296,29 +318,54 @@ export const CustomMenuPlacementAndWidth: Story = () => {
 
 CustomMenuPlacementAndWidth.parameters = { docs: { disable: true } }
 
-const colorOptions: OptionItem[] = Object.keys(colors).map(colorName => ({
-  value: colors[colorName],
-  label: colorName,
-}))
+const fetchUsersWithImage: FetchOptionsHandler = async ({ page, limit }) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}?page=${
+        page + 1
+      }&results=${limit}&seed=goods&inc=name,id,picture`
+    )
+    const data: { results?: RandomUser[] } = await response.json()
+    if (data?.results) {
+      return data.results
+        .filter(user => user.picture?.thumbnail)
+        .map(({ name, id, picture }) => {
+          const { title, first, last } = name
+          return {
+            value: `${picture.thumbnail}-${id.name}-${
+              id.value || ''
+            }-${title}-${first}-${last}`,
+            label: `${title} ${first} ${last}`,
+          }
+        })
+    }
+    return []
+  } catch {
+    return []
+  }
+}
 
-const renderColorOption: DropdownProps['renderOptionItem'] = ({
+const renderUser: DropdownAsyncProps['renderOptionItem'] = ({
   value,
-  label,
+  label: userLabel,
+  disabled,
 }) => {
+  const [src] = value.split('-')
   return (
     <>
-      <Box
-        as='span'
+      <Image
+        alt={label}
+        src={src}
+        s='24px'
+        radius='full'
+        mr='xxs'
+        shadow='low'
         b='1px solid'
         bC='black40'
-        radius='full'
-        s='16px'
-        mr='xxs'
-        bg={value}
-        shadow='low'
+        filter={disabled ? 'grayscale(100%)' : undefined}
       />
-      <Text as='span' rule='body' style={{ width: 'calc(100% - 56px)' }}>
-        {`${label} - ${value}`}
+      <Text as='span' rule='body' style={{ width: 'calc(100% - 64px)' }}>
+        {userLabel}
       </Text>
     </>
   )
@@ -331,29 +378,34 @@ export const CustomRenderOptionItem: Story = () => {
         const dashed = cond.replace(/\s/g, '-').toLowerCase()
         return (
           <ConditionBox key={dashed} title={cond}>
-            <Dropdown
-              key={`color-custom-render-${dashed}`}
-              id={`color-custom-render-${dashed}`}
-              name={`color-custom-render-${dashed}`}
-              options={colorOptions}
-              placeholder='Choose a color'
-              noOptionsMessage='Color not found'
+            <DropdownAsync
+              key={`user-custom-render-${dashed}`}
+              id={`user-custom-render-${dashed}`}
+              name={`user-custom-render-${dashed}`}
+              autoFilter
+              fetchOptions={fetchUsersWithImage}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
               w
-              value={isWithValue(cond) ? colors.blue50 : undefined}
+              value={
+                isWithValue(cond)
+                  ? `${BASE_URL}portraits/thumb/men/94.jpg-${initialValue}`
+                  : undefined
+              }
               readOnly={cond === 'Read only'}
               disabled={cond === 'Disabled'}
               isError={cond === 'Error'}
-              renderOptionItem={renderColorOption}
+              renderOptionItem={renderUser}
               label={
                 cond === 'No label' || cond === 'No label and support text'
                   ? undefined
-                  : 'Color'
+                  : label
               }
               supText={
                 cond === 'No support text' ||
                 cond === 'No label and support text'
                   ? undefined
-                  : 'Choose a color you want'
+                  : supText
               }
             />
           </ConditionBox>
