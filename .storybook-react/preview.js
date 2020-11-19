@@ -30,6 +30,8 @@ const SORT_ORDER = {
     'Switch',
     'Dropdown',
     'Dropdown Async',
+    'Menu',
+    'Accordion',
   ],
 }
 

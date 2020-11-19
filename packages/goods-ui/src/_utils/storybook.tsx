@@ -46,7 +46,7 @@ export const Template: React.FC<TemplateProps> = ({
   )
 }
 
-interface ConditionBoxProps {
+interface ConditionBoxProps extends BoxProps {
   title: string
   c?: BoxProps['c']
   bg?: BoxProps['bg']
@@ -57,6 +57,7 @@ export const ConditionBox: React.FC<ConditionBoxProps> = ({
   bg,
   title,
   children,
+  ...props
 }) => {
   return (
     <Box
@@ -67,6 +68,7 @@ export const ConditionBox: React.FC<ConditionBoxProps> = ({
       bC='black40'
       radius='m'
       p='xs'
+      {...props}
     >
       <Text rule='subtitle' c={c} bg={bg}>
         {title}

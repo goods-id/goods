@@ -8,7 +8,6 @@
     "bierner.jsdoc-markdown-highlighting",
     "stkb.rewrap",
     "jpoissonnier.vscode-styled-components",
-    "kisstkondoros.vscode-codemetrics",
-    "tabnine.tabnine-vscode"
+    "kisstkondoros.vscode-codemetrics"
   ]
 }
