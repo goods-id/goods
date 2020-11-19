@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/tree/goods_master/packages/goods-core",
@@ -14,13 +14,15 @@
   "files": [
     "lib",
     "lib/node_modules",
-    "lib/**/*"
+    "lib/**/*",
+    "ssr",
+    "ssr/**/*"
   ],
   "publishConfig": {
     "access": "restricted"
   },
   "scripts": {
-    "clean": "rimraf lib && rimraf tsc-out",
+    "clean": "rimraf lib && rimraf tsc-out && rimraf ssr",
     "compile": "yarn clean && yarn rollup",
     "dev": "rollup -c -w ./rollup.config.js",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",

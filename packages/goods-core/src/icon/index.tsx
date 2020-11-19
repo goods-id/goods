@@ -1,7 +1,10 @@
 import React, { lazy, Suspense } from 'react'
-import { Svg, SvgProps, SvgIconProps } from './svg/_base'
+import { Svg } from './svg/_base'
+import { defaultPropsList } from './_shared'
+import { IconRenderProps, IconProps } from './_types'
 
 export { iconSize as IconSize, iconRotate as IconRotate } from './svg/_base'
+export * from './_types'
 
 const Pomona = lazy(
   () => import(/* webpackChunkName: "ic-pomona" */ './svg/pomona')
@@ -136,56 +139,9 @@ const Calendar = lazy(
   () => import(/* webpackChunkName: "ic-calendar" */ './svg/calendar')
 )
 
-export enum IconName {
-  pomona = 'pomona',
-  home = 'home',
-  homeOff = 'homeOff',
-  profile = 'profile',
-  profileOff = 'profileOff',
-  notification = 'notification',
-  notificationOff = 'notificationOff',
-  note = 'note',
-  noteOff = 'noteOff',
-  cart = 'cart',
-  cartOff = 'cartOff',
-  transaction = 'transaction',
-  store = 'store',
-  camera = 'camera',
-  warning = 'warning',
-  plus = 'plus',
-  minus = 'minus',
-  close = 'close',
-  arrow = 'arrow',
-  search = 'search',
-  dropdown = 'dropdown',
-  chevron = 'chevron',
-  checked = 'checked',
-  checkbox = 'checkbox',
-  checkboxOff = 'checkboxOff',
-  approved = 'approved',
-  rejected = 'rejected',
-  question = 'question',
-  point = 'point',
-  receipt = 'receipt',
-  burgerBar = 'burgerBar',
-  radio = 'radio',
-  radioActive = 'radioActive',
-  radioDisabled = 'radioDisabled',
-  calendar = 'calendar',
-}
-
-interface IconRenderProps extends SvgIconProps {
-  /**
-   * Icon Name
-   */
-  name: keyof typeof IconName
-}
-
-export interface IconProps extends IconRenderProps, Omit<SvgProps, 'name'> {}
-
 export { Svg }
 
-const IconRender = ({ name, c = 'blue50', c1 }: IconRenderProps) => {
+const IconRender: React.FC<IconRenderProps> = ({ name, c = 'blue50', c1 }) => {
   switch (name) {
     case 'pomona':
       return <Pomona c={c} c1={c1} />
@@ -260,23 +216,6 @@ const IconRender = ({ name, c = 'blue50', c1 }: IconRenderProps) => {
     default:
       return null
   }
-}
-
-const defaultPropsList: {
-  [K in keyof typeof IconName]?: Partial<Omit<IconProps, 'name'>>
-} = {
-  pomona: { viewBox: '0 0 56 56' },
-  approved: { viewBox: '0 0 48 48', c1: 'white10' },
-  rejected: { viewBox: '0 0 48 48', c1: 'white10' },
-  question: { viewBox: '0 0 88 87', c1: 'white10' },
-  point: { viewBox: '0 0 32 37' },
-  receipt: { viewBox: '0 0 32 36' },
-  burgerBar: { viewBox: '0 0 24 24' },
-  radio: { viewBox: '0 0 24 24' },
-  radioActive: { viewBox: '0 0 24 24' },
-  radioDisabled: { viewBox: '0 0 24 24' },
-  calendar: { viewBox: '0 0 16 16' },
-  checked: { viewBox: '0 0 24 24' },
 }
 
 export const Icon = React.memo(

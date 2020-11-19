@@ -4,12 +4,14 @@
 
 # Build directories
 lib/
+ssr/
 storybook-static/
 dist/
 dist-web/
 tsc-out/
 .cache/
 /packages/*/storybook-static/
+/packages/**/ssr/
 
 # /Lockfiles
 /package-lock.json
