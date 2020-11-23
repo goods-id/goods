@@ -1,6 +1,6 @@
 {
   "name": "@pomona/goods",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Pomona Design System",
   "main": "N/A",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "storybook:build": "rimraf dist-web && build-storybook -c .storybook-react -o dist-web && node ./.storybook-react/after-build",
     "storybook:sync": "aws s3 sync dist-web/ s3://pomona-design-system/ --profile goods --cache-control no-cache",
     "storybook:deploy": "yarn run storybook:build && yarn run storybook:sync",
+    "deploy:storybook": "yarn run storybook:deploy",
     "test": "yarn workspace @pomona/goods-core run test",
     "test:coverage": "yarn workspace @pomona/goods-core run test:coverage",
     "validate": "lerna run validate",
