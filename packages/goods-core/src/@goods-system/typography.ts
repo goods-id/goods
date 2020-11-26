@@ -135,6 +135,21 @@ export interface TypographyRuleProps<Theme extends ThemeType = ThemeType> {
   dRule?: TypographyDesktopRule
 }
 
+const allowedProperties: (keyof TextBasicSettings)[] = [
+  'fontSize',
+  'fontWeight',
+  'letterSpacing',
+  'lineHeight',
+]
+
+function filterRuleStyle(ruleStyle: Partial<TextBasicSettings>) {
+  return allowedProperties.reduce((obj, prop) => {
+    const value = ruleStyle[prop]
+    if (value) obj[prop] = value
+    return obj
+  }, {})
+}
+
 export function typographyRule(
   props: TypographyRuleProps & { theme?: DefaultTheme } = {}
 ): CSSObject {
@@ -145,12 +160,14 @@ export function typographyRule(
   const dRuleBased = dRule
     ? typographyDesktopRuleSettings[dRule]
     : mRule && typographyDesktopRuleSettings[mRule]
+  const mRuleStyle = filterRuleStyle(mRuleBased || {})
+  const dRuleStyle = filterRuleStyle(dRuleBased || {})
   const { lg } = theme?.breakpoints || breakpointConstants
   if (lg) {
     const breakpointLg = createMediaQuery(lg)
-    return { ...mRuleBased, [breakpointLg]: dRuleBased }
+    return { ...mRuleStyle, [breakpointLg]: dRuleStyle }
   }
-  return { ...mRuleBased }
+  return { ...mRuleStyle }
 }
 
 export interface TypographyProps<Theme extends ThemeType = ThemeType> {
@@ -340,7 +357,7 @@ const config: Config<TypographyProps> = {
   wordWrap: true,
   wordBreak: true,
   whiteSpace: true,
-  lineClamp: true,
+  lineClamp: { properties: ['lineClamp', 'WebkitLineClamp'] },
   lineBreak: true,
   fontFam: { property: 'fontFamily' },
   fSize: { property: 'fontSize', transform: addImportant('fSize') },

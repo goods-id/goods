@@ -1,6 +1,6 @@
 import { SvgIconProps, SvgProps } from './svg/_base'
 
-const iconName = {
+export const iconName = {
   pomona: 'pomona',
   home: 'home',
   homeOff: 'homeOff',

@@ -8,12 +8,13 @@ import {
   Input,
   ImageBox,
 } from '../utils/storybook.docs'
-import { Icon, IconName } from '.'
+import { Icon } from '.'
+import { IconName, iconName } from './_types'
 
 const IconDesignImg = require('../../assets/stories/icon-design.png')
 const IconSizingImg = require('../../assets/stories/icon-sizing.png')
 
-const iconNames = Object.values(IconName)
+const iconNames = Object.keys(iconName) as IconName[]
 
 const usageRule = [
   {

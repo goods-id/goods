@@ -1,11 +1,12 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Icon, IconName, IconProps } from '.'
+import { Icon, IconProps } from '.'
+import { iconName, IconName } from './_types'
 import { Box } from '../basics/div'
 import colors from '../color'
 import IconDocs from './icon.docs'
 
-const iconNames = Object.values(IconName)
+const iconNames = Object.keys(iconName) as IconName[]
 const colorNames = Object.keys(colors)
 
 const storyMetaData: Meta<IconProps> = {
