@@ -65,6 +65,7 @@ export const DropdownAsyncExample: Story<DropdownAsyncProps> = args => {
         id='user'
         name='user'
         fetchOptions={fetchUsers}
+        loadingComponent={undefined}
       />
     </Box>
   )
@@ -89,6 +90,7 @@ export const DropdownAsyncControlled: Story<DropdownAsyncProps> = args => {
     <Box h='200px'>
       <DropdownAsync
         {...args}
+        loadingComponent={undefined}
         id='user'
         name='user'
         value={value}
