@@ -21,7 +21,7 @@ export function getFocusedElement(
   focusedVal?: string
 ): HTMLDivElement | null {
   if (!menuEl || !focusedVal) return null
-  return menuEl.querySelector<HTMLDivElement>(`div[data-value="${focusedVal}"]`)
+  return menuEl.querySelector<HTMLDivElement>(`div[data-key="${focusedVal}"]`)
 }
 
 interface InputAndMenuRadius<V = '0px' | undefined> {

@@ -7,6 +7,7 @@ export interface OptionItem {
   value: string
   label?: string
   disabled?: boolean
+  key?: string
 }
 
 export interface OptionItemWithHidden extends OptionItem {
@@ -106,7 +107,7 @@ export interface DropdownAsyncProps extends Omit<DropdownProps, 'options'> {
    *
    * Condition 1 and 2 will send params
    * ```typescript
-   * { search: '', page: 0, limit: fetchLimit }
+   * { search: initialSearch, page: 0, limit: fetchLimit }
    * ```
    * `fetchLimit` is taken from `fetchLimit` props
    *
@@ -144,8 +145,19 @@ export interface DropdownAsyncProps extends Omit<DropdownProps, 'options'> {
    */
   autoFilter?: boolean
   /**
-   * Color for spinner
+   * Color for `loadingComponent`
    * @default "blue50"
    */
   loadingColor?: ColorProps['c']
+  /**
+   * loading component that is shown when fetch options fired
+   * @default Spinner
+   */
+  loadingComponent?: React.ComponentType<{ c?: ColorProps['c'] }>
+  /**
+   * value that passed to `search` field in `fetchOption` params when condition
+   * 1 or 2 occurs
+   * @default ""
+   */
+  initialSearch?: string
 }

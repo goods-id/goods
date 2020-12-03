@@ -52,6 +52,7 @@ export const DropdownInput = memo(
         chevronIcon,
         w = true,
         c = 'black30',
+        b = '1px solid transparent',
         supColor = 'black20',
         supErrorColor = 'red60',
         supRule = 'caption',
@@ -70,15 +71,13 @@ export const DropdownInput = memo(
         pr,
         pl,
         h,
-        minH: minHProps,
+        minH = '48px',
         radius,
         focusProps,
         ...props
       },
       ref
     ) => {
-      const minH = minHProps || (label ? '48px' : '40px')
-
       const {
         ref: prefixRef,
         rect: { width: prefixWidth },
@@ -154,6 +153,7 @@ export const DropdownInput = memo(
               autoComplete='off'
               isLabeled={Boolean(label)}
               c={c}
+              b={b}
               w={w}
               minH={minH}
               isError={isError}
@@ -319,13 +319,14 @@ export const DropdownInput = memo(
 )
 
 interface OptionBoxProps
-  extends OptionItem,
+  extends Omit<OptionItem, 'key'>,
     Pick<
       MenuComponentProps,
       'renderOptionItem' | 'selected' | 'focused' | 'onSelect' | 'onItemHover'
     > {
   cSelected?: IconProps['c']
   bgFocused?: BoxProps['bg']
+  keyValue?: string
 }
 
 type MouseEventHandler = ((e: React.MouseEvent) => void) | undefined
@@ -336,6 +337,7 @@ export const OptionBox = memo<OptionBoxProps>(
     bgFocused: bgFocusedProps = 'blue10',
     renderOptionItem,
     value,
+    keyValue,
     label,
     disabled,
     selected,
@@ -343,8 +345,9 @@ export const OptionBox = memo<OptionBoxProps>(
     onSelect,
     onItemHover,
   }) => {
+    const dataKey = keyValue || value
     const isSelected = value === selected
-    const isFocused = value === focused
+    const isFocused = dataKey === focused
     const text = label || value
 
     let cursor: BoxProps['cursor'] = 'pointer'
@@ -377,6 +380,7 @@ export const OptionBox = memo<OptionBoxProps>(
     return (
       <ValueContainer
         data-value={value}
+        data-key={dataKey}
         data-disabled={disabled}
         data-selected={isSelected}
         title={text}
@@ -499,7 +503,7 @@ export const DefaultMenuComponent = memo(
             {totalShownOptions ? (
               shownOptions.map(opt => (
                 <OptionBox
-                  key={opt.value}
+                  key={opt.key || opt.value}
                   renderOptionItem={renderOptionItem}
                   selected={selected}
                   cSelected={bC}
@@ -508,6 +512,7 @@ export const DefaultMenuComponent = memo(
                   onSelect={onSelect}
                   onItemHover={onItemHover}
                   {...opt}
+                  keyValue={opt.key}
                 />
               ))
             ) : (

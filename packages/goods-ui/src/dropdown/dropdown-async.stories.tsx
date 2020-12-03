@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import { Box, Image, Text } from '@pomona/goods-core'
+import { Box, Image, Skeleton, Text } from '@pomona/goods-core'
 import { DropdownAsync } from './dropdown-async'
 import { DropdownAsyncProps, FetchOptionsHandler } from './_types'
 import { Input } from '../input'
@@ -29,6 +29,8 @@ const placeholder = 'Choose a user'
 const supText = 'Choose a user you want to be'
 const noOptionsMessage = 'User not found'
 const initialValue = 'FN-03035027547-Mr-Joel-Tiller'
+const controledInitialValue = 'PPS-1249572T-Ms-Sharron-Graves'
+const initialSearch = 'Ms Sharron Graves'
 
 const fetchUsers: FetchOptionsHandler = async ({ page, limit }) => {
   try {
@@ -39,11 +41,13 @@ const fetchUsers: FetchOptionsHandler = async ({ page, limit }) => {
     )
     const data: { results?: RandomUser[] } = await response.json()
     if (data?.results) {
-      return data.results.map(({ name, id }) => {
+      return data.results.map(({ name, id }, i) => {
         const { title, first, last } = name
+        const value = `${id.name}-${id.value || ''}-${title}-${first}-${last}`
         return {
-          value: `${id.name}-${id.value || ''}-${title}-${first}-${last}`,
+          value,
           label: `${title} ${first} ${last}`,
+          key: `${value}-${i + page * limit + 1}`,
         }
       })
     }
@@ -67,6 +71,38 @@ export const DropdownAsyncExample: Story<DropdownAsyncProps> = args => {
 }
 
 DropdownAsyncExample.args = {
+  autoFilter: true,
+  label,
+  placeholder,
+  supText,
+  noOptionsMessage,
+  w: '400px',
+  maxW: 'calc(100vw - 32px)',
+}
+
+export const DropdownAsyncControlled: Story<DropdownAsyncProps> = args => {
+  const [{ value, initSearch }, setValue] = useState({
+    value: controledInitialValue,
+    initSearch: initialSearch,
+  })
+  return (
+    <Box h='200px'>
+      <DropdownAsync
+        {...args}
+        id='user'
+        name='user'
+        value={value}
+        initialSearch={initSearch}
+        fetchOptions={fetchUsers}
+        onChange={({ value: val, label: lbl }) => {
+          setValue({ value: val, initSearch: lbl || '' })
+        }}
+      />
+    </Box>
+  )
+}
+
+DropdownAsyncControlled.args = {
   autoFilter: true,
   label,
   placeholder,
@@ -416,3 +452,55 @@ export const CustomRenderOptionItem: Story = () => {
 }
 
 CustomRenderOptionItem.parameters = { docs: { disable: true } }
+
+const Loader = () => {
+  return (
+    <Box d='grid' gTempCol='repeat(3, 8px)' gap='2px'>
+      {Array.from({ length: 3 }, (_, index) => (
+        <Skeleton key={index} radius='full' s='8px' bg='orange90' />
+      ))}
+    </Box>
+  )
+}
+
+export const CustomLoadingComponent: Story = () => {
+  return (
+    <Template key='prefixed' title='Custom Loading Component'>
+      {commonConditions.map(cond => {
+        const dashed = cond.replace(/\s/g, '-').toLowerCase()
+        return (
+          <ConditionBox key={dashed} title={cond}>
+            <DropdownAsync
+              key={`user-custom-loading-component-${dashed}`}
+              id={`user-custom-loading-component-${dashed}`}
+              name={`user-custom-loading-component-${dashed}`}
+              autoFilter
+              loadingComponent={Loader}
+              fetchOptions={fetchUsers}
+              placeholder={placeholder}
+              noOptionsMessage={noOptionsMessage}
+              w
+              value={isWithValue(cond) ? initialValue : undefined}
+              readOnly={cond === 'Read only'}
+              disabled={cond === 'Disabled'}
+              isError={cond === 'Error'}
+              label={
+                cond === 'No label' || cond === 'No label and support text'
+                  ? undefined
+                  : label
+              }
+              supText={
+                cond === 'No support text' ||
+                cond === 'No label and support text'
+                  ? undefined
+                  : supText
+              }
+            />
+          </ConditionBox>
+        )
+      })}
+    </Template>
+  )
+}
+
+CustomLoadingComponent.parameters = { docs: { disable: true } }

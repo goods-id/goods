@@ -1,9 +1,9 @@
 {
   "name": "@pomona/goods-ui",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "> TODO: description",
   "author": "Pomona Front-End Team",
-  "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/tree/goods_master/packages/goods-ui",
+  "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pofe-goods/tree/master/packages/goods-ui",
   "license": "ISC",
   "main": "./lib/goods-ui.js",
   "module": "./lib/index.js",

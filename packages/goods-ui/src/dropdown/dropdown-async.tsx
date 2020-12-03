@@ -17,6 +17,7 @@ export const DropdownAsync = memo(
         isError = false,
         value = '',
         name = '',
+        initialSearch = '',
         fetchDeps,
         fetchLimit,
         fetchOptions,
@@ -24,6 +25,7 @@ export const DropdownAsync = memo(
         renderOptionItem,
         suffix,
         loadingColor = 'blue50',
+        loadingComponent: Loader = Spinner,
         radius = 'm',
         w,
         maxW,
@@ -80,6 +82,7 @@ export const DropdownAsync = memo(
         readOnly,
         name,
         value,
+        initialSearch,
         fetchDeps,
         fetchLimit,
         fetchOptions,
@@ -170,7 +173,7 @@ export const DropdownAsync = memo(
             suffix={
               isLoading ? (
                 <>
-                  <Spinner c={loadingColor} />
+                  <Loader c={loadingColor} />
                   {suffix}
                 </>
               ) : (

@@ -18,7 +18,8 @@ export default {
 }
 
 const options: OptionItem[] = [
-  { value: 'apple', label: 'Apple' },
+  { value: 'apple', label: 'Apple', key: 'apple-1' },
+  { value: 'apple', label: 'Apple', key: 'apple-2' },
   { value: 'avocado', label: 'Avocado' },
   { value: 'banana', label: 'Banana' },
   { value: 'blackcurrent', label: 'Blackcurrent' },

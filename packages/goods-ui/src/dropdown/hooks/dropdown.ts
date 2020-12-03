@@ -125,13 +125,14 @@ export function useDropdown({
 
       openMenu()
       if (!dir) {
-        setFocusedValue(focusableOptions[0].value)
+        const { value: val, key } = focusableOptions[0]
+        setFocusedValue(key || val)
         return
       }
 
       setFocusedValue(prevFocused => {
         const focusedIndex = focusableOptions.findIndex(
-          opt => opt.value === prevFocused
+          ({ value: val, key }) => (key || val) === prevFocused
         )
 
         let nextFocusedIndex = 0
@@ -142,7 +143,9 @@ export function useDropdown({
           nextFocusedIndex = (focusedIndex + 1) % totalOptions
         }
 
-        return focusableOptions[nextFocusedIndex]?.value || ''
+        const nextFocused = focusableOptions[nextFocusedIndex] || { value: '' }
+
+        return nextFocused.key || nextFocused.value
       })
     },
     [filteredOptions, selectedValue, openMenu]
@@ -177,12 +180,13 @@ export function useDropdown({
 
   const onSelect = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const { title, dataset } = e.currentTarget
-    const { value: val = '', disabled: dataDisabled, selected } = dataset
+    const { value: val = '', disabled: dataDisabled, selected, key } = dataset
     const isDisabled = dataDisabled === 'true'
     if (isDisabled || selected === 'true') return
     if (typeof onChange === 'function') {
       onChange({
         name,
+        key,
         value: val,
         label: title,
         disabled: isDisabled,
@@ -196,7 +200,7 @@ export function useDropdown({
 
   const onItemHover = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      const { value: hovered = '' } = e.currentTarget.dataset
+      const { key: hovered = '' } = e.currentTarget.dataset
       if (isBlockedItemHover || hovered === focusedValue) {
         return
       }

@@ -12,7 +12,7 @@ interface DropdownAsyncState {
 }
 
 interface DropdownAsyncAction {
-  type: 'AFTER_FIRST_FETCH' | 'AFTER_FETCH_MORE' | 'BEFORE_FIRST_FETCH'
+  type: 'AFTER_FIRST_FETCH' | 'AFTER_FETCH_MORE' | 'SET_LOADING' | 'RESET_PAGE'
   payload?: Partial<DropdownAsyncState>
 }
 
@@ -25,10 +25,13 @@ const initialState: DropdownAsyncState = {
 const reducer = produce(
   (draft: DropdownAsyncState, action: DropdownAsyncAction) => {
     const { type, payload = {} } = action
-    const { options } = payload
+    const { options, loading } = payload
+    const isLoading = Boolean(loading)
     switch (type) {
-      case 'BEFORE_FIRST_FETCH':
-        draft.loading = true
+      case 'SET_LOADING':
+        if (isLoading !== draft.loading) {
+          draft.loading = isLoading
+        }
         break
       case 'AFTER_FIRST_FETCH':
         draft.page = 1
@@ -39,10 +42,16 @@ const reducer = produce(
         break
       case 'AFTER_FETCH_MORE':
         draft.page += 1
-        draft.loading = false
+        if (isLoading !== draft.loading) {
+          draft.loading = isLoading
+        }
         if (Array.isArray(options)) {
           draft.options = [...draft.options, ...options]
         }
+        break
+      case 'RESET_PAGE':
+        draft.page = 0
+        draft.loading = false
         break
       default:
         break
@@ -58,6 +67,7 @@ interface DropdownAsyncHookProps
     | 'disabled'
     | 'value'
     | 'isMenuOpen'
+    | 'initialSearch'
     | 'onFocus'
     | 'onBlur'
     | 'onChange'
@@ -78,6 +88,7 @@ interface DropdownAsyncHookState extends DropdownHookState {
 export function useDropdownAsync({
   name = '',
   value = '',
+  initialSearch = '',
   readOnly = false,
   disabled = false,
   isMenuOpen = false,
@@ -101,7 +112,7 @@ export function useDropdownAsync({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (typeof onSearch === 'function') onSearch(e)
       if (!autoFilter) {
-        dispatch({ type: 'BEFORE_FIRST_FETCH' })
+        dispatch({ type: 'SET_LOADING', payload: { loading: true } })
         fetchOptions({
           page: 0,
           search: e.target.value,
@@ -117,7 +128,10 @@ export function useDropdownAsync({
     [onSearch]
   )
 
-  const [{ menuRef, searchedValue, ...state }, action] = useDropdown({
+  const [
+    { menuRef, searchedValue, selectedLabel, isMenuOpen: isOpen, ...state },
+    action,
+  ] = useDropdown({
     ref,
     name,
     value,
@@ -133,20 +147,26 @@ export function useDropdownAsync({
     disabledAutoFilter: !autoFilter,
   })
 
-  const fetchMore = useCallback(async () => {
-    if (searchedValue && autoFilter) return [{ value: '', label: '' }]
-    try {
-      const newOptions = await fetchOptions({
-        page,
-        search: searchedValue,
-        limit: fetchLimit,
-      })
-      dispatch({ type: 'AFTER_FETCH_MORE', payload: { options: newOptions } })
-      return newOptions
-    } catch {
-      return []
-    }
-  }, [page, searchedValue, fetchOptions])
+  const fetchMore = useCallback(
+    async (newLoading = false) => {
+      if (searchedValue && autoFilter) return [{ value: '', label: '' }]
+      try {
+        const newOptions = await fetchOptions({
+          page,
+          search: searchedValue || initialSearch,
+          limit: fetchLimit,
+        })
+        dispatch({
+          type: 'AFTER_FETCH_MORE',
+          payload: { options: newOptions, loading: newLoading },
+        })
+        return newOptions
+      } catch {
+        return []
+      }
+    },
+    [page, searchedValue, fetchOptions, initialSearch]
+  )
 
   const { scrollTargetRef, isLoading } = useInfiniteScroll({
     scrollTargetRef: menuRef,
@@ -154,8 +174,8 @@ export function useDropdownAsync({
   })
 
   useEffect(() => {
-    dispatch({ type: 'BEFORE_FIRST_FETCH' })
-    fetchOptions({ page: 0, search: '', limit: fetchLimit }).then(
+    dispatch({ type: 'SET_LOADING', payload: { loading: true } })
+    fetchOptions({ page: 0, search: initialSearch, limit: fetchLimit }).then(
       newOptions => {
         dispatch({
           type: 'AFTER_FIRST_FETCH',
@@ -165,9 +185,39 @@ export function useDropdownAsync({
     )
   }, [...fetchDeps])
 
+  const target = scrollTargetRef.current
+
+  useEffect(() => {
+    let isBottom = false
+    if (target && isOpen) {
+      const { scrollTop, clientHeight, scrollHeight } = target
+      isBottom = scrollTop + clientHeight >= scrollHeight
+    }
+    if (autoFilter && initialSearch) {
+      if (
+        !isBottom &&
+        page > 0 &&
+        page <= 500 &&
+        !selectedLabel &&
+        !searchedValue
+      ) {
+        dispatch({ type: 'SET_LOADING', payload: { loading: true } })
+        fetchMore(true).then(result => {
+          if (!result.length) {
+            dispatch({ type: 'RESET_PAGE' })
+          }
+        })
+      } else {
+        dispatch({ type: 'SET_LOADING', payload: { loading: false } })
+      }
+    }
+  }, [page, initialSearch, selectedLabel, searchedValue, target, isOpen])
+
   return [
     {
       searchedValue,
+      selectedLabel,
+      isMenuOpen: isOpen,
       menuRef: scrollTargetRef,
       isLoading: isLoading || loading,
       ...state,
