@@ -21,7 +21,7 @@
     "dev": "yarn workspace @pomona/goods-core run dev",
     "report-coverage": "yarn workspace @pomona/goods-core run report-coverage",
     "storybook": "start-storybook -p 9001 -c .storybook-react -s .storybook-react/public",
-    "storybook:build": "rimraf dist-web && build-storybook -c .storybook-react -o dist-web && node ./.storybook-react/after-build",
+    "storybook:build": "rimraf dist-web && build-storybook -c .storybook-react -o dist-web &&  node ./.storybook-react/after-build",
     "storybook:sync": "aws s3 sync dist-web/ s3://pomona-design-system/ --profile goods --cache-control no-cache",
     "storybook:deploy": "yarn run storybook:build && yarn run storybook:sync",
     "deploy:storybook": "yarn run storybook:deploy",
