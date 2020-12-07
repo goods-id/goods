@@ -1,9 +1,9 @@
 {
   "name": "@pomona/goods-core",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
-  "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/tree/goods_master/packages/goods-core",
+  "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pofe-goods/tree/master/packages/goods-core",
   "license": "ISC",
   "main": "./lib/_files/index.js",
   "module": "./lib/index.js",

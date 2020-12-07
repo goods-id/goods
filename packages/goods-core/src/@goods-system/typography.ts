@@ -172,6 +172,15 @@ export function typographyRule(
 
 export interface TypographyProps<Theme extends ThemeType = ThemeType> {
   /**
+   * **Box Orient**
+   *
+   * The **box-orient** CSS property sets whether an element lays out its contents
+   * horizontally or vertically.
+   *
+   * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/box-orient)
+   */
+  boxOrient?: ResponsiveValue<CSS.BoxOrient, Theme>
+  /**
    * **Text Overflow**
    *
    * The **text-overflow** CSS property sets how hidden overflow
@@ -344,13 +353,14 @@ const addImportant = (
   const propValue = props[name]
   const isResponsive = typeof propValue === 'object'
   const isAnyRule = Boolean(props.rule || props.dRule)
-  if (/!important$/.test(value) || isResponsive || !isAnyRule) {
+  if (!value || /!important$/.test(value) || isResponsive || !isAnyRule) {
     return value
   }
   return `${value} !important`
 }
 
 const config: Config<TypographyProps> = {
+  boxOrient: { properties: ['boxOrient', 'WebkitBoxOrient', 'MozBoxOrient'] },
   textOver: { property: 'textOverflow' },
   textDecor: { property: 'textDecoration' },
   wordSpace: { property: 'wordSpacing' },

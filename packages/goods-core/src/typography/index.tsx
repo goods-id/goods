@@ -14,22 +14,25 @@ import {
   TypographyProps,
   TypographyRuleProps,
 } from '../@goods-system/typography'
+import { layout, LayoutProps } from '../@goods-system/layout'
 
 export interface TextCssProps
   extends TypographyRuleProps,
     TypographyProps,
     MarginProps,
     ColorProps,
-    PaddingProps {}
+    PaddingProps,
+    LayoutProps {}
+
+const styleFn = compose(typography, margin, color, padding, layout)
 
 export const Text = styled.p<TextCssProps>(({ c = 'black30', ...props }) => {
   const stylesRule = typographyRule(props)
-  const styles = compose(
-    typography,
-    margin,
-    color,
-    padding
-  )({ c, fontFam: props.theme?.fontBase || 'Rubik', ...props })
+  const styles = styleFn({
+    c,
+    fontFam: props.theme?.fontBase || 'Rubik',
+    ...props,
+  })
   return sort(merge(stylesRule, styles))
 })
 
