@@ -7,7 +7,7 @@
   "private": true,
   "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pomona3-ui/tree/goods_master",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "workspaces": [
     "packages/*"
