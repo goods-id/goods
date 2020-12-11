@@ -55,5 +55,6 @@
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "gitHead": "b82f14d738fa5eedd9b91893d4923342f1a258ec"
 }
