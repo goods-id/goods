@@ -22,7 +22,7 @@
     "report-coverage": "yarn workspace goods-core run report-coverage",
     "prebuild": "yarn workspace goods-core run compile && yarn workspace goods-helper run compile && yarn workspace goods-ui run compile",
     "storybook": "start-storybook -p 9001 -c .storybook-react -s .storybook-react/public",
-    "storybook:build": "rimraf dist-web && prebuild && build-storybook -c .storybook-react -o dist-web &&  node ./.storybook-react/after-build",
+    "storybook:build": "rimraf dist-web && yarn prebuild && build-storybook -c .storybook-react -o dist-web &&  node ./.storybook-react/after-build",
     "deploy:storybook": "yarn run storybook:build",
     "test": "yarn workspace goods-core run test",
     "test:coverage": "yarn workspace goods-core run test:coverage",
