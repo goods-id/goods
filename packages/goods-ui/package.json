@@ -44,7 +44,7 @@
     "storybook-addon-jsx": "^7.3.0"
   },
   "dependencies": {
-    "@pomona/goods-core": "^1.6.0",
+    "@pomona/goods-core": "^1.6.1",
     "@pomona/goods-helper": "^1.1.0",
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.1",

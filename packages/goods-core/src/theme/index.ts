@@ -6,6 +6,45 @@ import radius, { radiusConstants } from '../radius'
 import spacing, { spacingConstants } from '../spacing'
 import shadow from '../shadow'
 import breakpoints, { breakpointConstants } from '../breakpoints'
+import { IconProps } from '../icon/_types'
+import { BorderProps } from '../@goods-system/border'
+
+type AlertMapping = Record<
+  'info' | 'error' | 'warning' | 'success',
+  {
+    bg: BorderProps['bC']
+    bC: BorderProps['bC']
+    icName: IconProps['name']
+    icColor: IconProps['c']
+  }
+>
+
+const alerts: AlertMapping = {
+  info: {
+    bg: 'blue10',
+    bC: 'blue20',
+    icName: 'approved',
+    icColor: 'blue60',
+  },
+  error: {
+    bg: 'red10',
+    bC: 'red20',
+    icName: 'approved',
+    icColor: 'red60',
+  },
+  warning: {
+    bg: 'orange20',
+    bC: 'orange70',
+    icName: 'approved',
+    icColor: 'orange70',
+  },
+  success: {
+    bg: 'green10',
+    bC: 'green20',
+    icName: 'approved',
+    icColor: 'green80',
+  },
+}
 
 export const zIndices = {
   mobileStepper: 1000,
@@ -65,6 +104,7 @@ export interface ThemeType extends ThemeStyledSystem {
   shadows?: typeof shadow
   zIndices?: typeof zIndices
   fontBase?: string
+  alerts?: AlertMapping
 }
 
 export const goodsTheme: ThemeType & Partial<Omit<Theme, 'breakpoints'>> = {
@@ -74,6 +114,7 @@ export const goodsTheme: ThemeType & Partial<Omit<Theme, 'breakpoints'>> = {
   radii: radiusConstants,
   shadows: shadow,
   zIndices,
+  alerts,
   fontBase: 'Rubik',
   radius,
   spacing,
@@ -105,6 +146,15 @@ export function overrideGoodsTheme(
       goodsTheme.shadows && {
         shadows: { ...goodsTheme.shadows, ...newTheme.shadows },
       }),
+    ...(newTheme.alerts &&
+      goodsTheme.alerts && {
+        alerts: { ...goodsTheme.alerts, ...newTheme.alerts },
+      }),
+    ...(newTheme.zIndices &&
+      goodsTheme.zIndices && {
+        zIndices: { ...goodsTheme.zIndices, ...newTheme.zIndices },
+      }),
+    ...(newTheme.fontBase && { fontBase: newTheme.fontBase }),
   }
 }
 
