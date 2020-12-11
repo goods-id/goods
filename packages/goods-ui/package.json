@@ -1,6 +1,6 @@
 {
   "name": "goods-ui",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "description": "> TODO: description",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pofe-goods/tree/master/packages/goods-ui",
@@ -47,8 +47,8 @@
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.1",
     "csstype": "^3.0.3",
-    "goods-core": "^1.6.2",
-    "goods-helper": "^1.1.2",
+    "goods-core": "^1.6.4",
+    "goods-helper": "^1.1.4",
     "immer": "^7.0.15",
     "react-fast-compare": "^3.2.0",
     "tslib": "^2.0.1"
