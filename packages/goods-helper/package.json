@@ -1,5 +1,5 @@
 {
-  "name": "@pomona/goods-helper",
+  "name": "goods-helper",
   "version": "1.1.0",
   "description": "Pomona Goods Design System - Helper",
   "author": "Pomona Front-End Team",
@@ -40,6 +40,7 @@
     "react": "^17.0.1"
   },
   "dependencies": {
+    "goods-core": "^1.6.0",
     "react-fast-compare": "^3.2.0",
     "tslib": "^2.0.3"
   },

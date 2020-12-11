@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box, BoxProps, Icon, Text } from '@pomona/goods-core'
+import { Box, BoxProps, Icon, Text } from 'goods-core'
 import { Accordion, AccordionProps } from './accordion'
 import { AccordionGroup } from './accordion-group'
 import { MenuGroup, Menu, MenuListItem } from '../menu'

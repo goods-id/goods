@@ -8,7 +8,7 @@ import {
   Text,
   TypographyProps,
   TypographyRuleProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { useRadioContext } from './radio.context'
 
 interface RadioItemBoxStyledProps extends Omit<BoxStyledProps, 'hoverProps'> {

@@ -1,4 +1,4 @@
-import { color, ColorProps } from '@pomona/goods-core'
+import { color, ColorProps } from 'goods-core'
 import { DefaultTheme } from 'styled-components'
 import { IconButtonProps } from '../@types/global'
 

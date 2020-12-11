@@ -1,4 +1,4 @@
-import { IconProps } from '@pomona/goods-core'
+import { IconProps } from 'goods-core'
 
 export type ChangeEventInput = React.ChangeEvent<HTMLInputElement>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box, Line, Text } from '@pomona/goods-core'
+import { Box, Line, Text } from 'goods-core'
 import { Checkbox, CheckboxProps } from './checkbox'
 
 const storyMetaData: Meta<CheckboxProps> = {

@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react'
-import { Box, BoxProps } from '@pomona/goods-core'
+import { Box, BoxProps } from 'goods-core'
 import { ContextValue, MenuListContext } from './menu-list.context'
 
 export interface MenuGroupProps extends ContextValue, BoxProps {}

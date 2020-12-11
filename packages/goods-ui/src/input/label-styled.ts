@@ -17,7 +17,7 @@ import {
   PositionProps,
   TransitionProps,
   transition,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { InputStyled, ConditionalProps } from './input-styled'
 
 export interface FilledProps

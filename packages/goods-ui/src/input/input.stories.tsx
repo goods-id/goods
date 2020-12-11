@@ -1,6 +1,6 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Icon, Text, useGoods, Box } from '@pomona/goods-core'
+import { Icon, Text, useGoods, Box } from 'goods-core'
 import { Input, InputProps } from './input'
 
 const storyMetaData: Meta<InputProps> = {

@@ -4,8 +4,8 @@ import React, {
   PropsWithChildren,
   useEffect,
 } from 'react'
-import { BoxStyledProps } from '@pomona/goods-core'
-import { useDerivedStateFromProp } from '@pomona/goods-helper'
+import { BoxStyledProps } from 'goods-core'
+import { useDerivedStateFromProp } from 'goods-helper'
 import BasicModal, {
   BasicModalHeader,
   BasicModalBody,

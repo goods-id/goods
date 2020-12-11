@@ -7,7 +7,7 @@ import {
   ColorProps,
   TypographyRuleProps,
   mergeClass,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { isIconButtonProps } from '../_utils/helpers'
 import { InputStyled, InputStyledProps } from './input-styled'
 import { LabelStyled, LabelStyledProps } from './label-styled'
@@ -84,9 +84,11 @@ export interface InputProps
   supErrorColor?: ColorProps['c']
 }
 
-export const Input: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  InputProps & React.RefAttributes<HTMLInputElement | HTMLTextAreaElement>
->> = React.memo(
+export const Input: React.MemoExoticComponent<
+  React.ForwardRefExoticComponent<
+    InputProps & React.RefAttributes<HTMLInputElement | HTMLTextAreaElement>
+  >
+> = React.memo(
   React.forwardRef(
     (
       {

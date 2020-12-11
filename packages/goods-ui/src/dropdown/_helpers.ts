@@ -1,4 +1,4 @@
-import { BoxProps } from '@pomona/goods-core'
+import { BoxProps } from 'goods-core'
 import { toCssValue } from '../_utils'
 import { DropdownProps, OptionItem } from './_types'
 

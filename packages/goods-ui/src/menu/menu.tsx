@@ -11,7 +11,7 @@ import {
   BoxStyled,
   typography,
   TypographyProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { getColor } from '../_utils/helpers'
 import { useMenuContext } from './menu-context'
 

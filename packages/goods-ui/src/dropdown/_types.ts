@@ -1,4 +1,4 @@
-import { BoxProps, ColorProps, TypographyRuleProps } from '@pomona/goods-core'
+import { BoxProps, ColorProps, TypographyRuleProps } from 'goods-core'
 import { InputStyledProps } from '../input/input-styled'
 import { LabelStyledProps } from '../input/label-styled'
 import { IconButtonProps, ChangeEventInput } from '../@types/global'

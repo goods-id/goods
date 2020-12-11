@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Icon, Image } from '@pomona/goods-core'
+import { Icon, Image } from 'goods-core'
 import { Radio, RadioProps, RadioItemProps } from './radio'
 
 const storyMetaData: Meta = {

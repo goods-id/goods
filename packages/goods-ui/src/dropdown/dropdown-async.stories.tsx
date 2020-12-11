@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import { Box, Image, Skeleton, Text } from '@pomona/goods-core'
+import { Box, Image, Skeleton, Text } from 'goods-core'
 import { DropdownAsync } from './dropdown-async'
 import { DropdownAsyncProps, FetchOptionsHandler } from './_types'
 import { Input } from '../input'

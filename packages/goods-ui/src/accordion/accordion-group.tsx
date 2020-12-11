@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react'
-import { Box, BoxProps } from '@pomona/goods-core'
+import { Box, BoxProps } from 'goods-core'
 import { ContextValue, AccordionContext } from './accordion.context'
 
 export interface AccordionGroupProps extends ContextValue, BoxProps {}

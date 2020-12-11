@@ -16,7 +16,7 @@ import {
   position,
   PositionProps,
   hexToRgba,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import React from 'react'
 import { getColor } from '../_utils/helpers'
 

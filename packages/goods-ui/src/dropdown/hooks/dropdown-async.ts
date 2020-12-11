@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react'
 import produce from 'immer'
 import isEqual from 'react-fast-compare'
-import { useInfiniteScroll } from '@pomona/goods-helper'
+import { useInfiniteScroll } from 'goods-helper'
 import { DropdownAsyncProps, OptionItem } from '../_types'
 import { DropdownHookAction, DropdownHookState, useDropdown } from './dropdown'
 

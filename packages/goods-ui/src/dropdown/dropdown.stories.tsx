@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import { Box, colors, Image, Text } from '@pomona/goods-core'
+import { Box, colors, Image, Text } from 'goods-core'
 import { Dropdown } from './dropdown'
 import { DropdownProps, OptionItem } from './_types'
 import { Input } from '../input'

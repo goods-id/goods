@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box } from '@pomona/goods-core'
+import { Box } from 'goods-core'
 import { Switch, SwitchProps } from './switch'
 
 const storyMetaData: Meta = {

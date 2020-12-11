@@ -11,7 +11,7 @@ import {
   TextProps,
   TypographyProps,
   TypographyRuleProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 
 const SwitchInput = styled(BoxStyled)<BoxStyledProps>(() => {
   return {

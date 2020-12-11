@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps, Line, Text } from '@pomona/goods-core'
+import { Box, BoxProps, Line, Text } from 'goods-core'
 
 export const commonFormConditions = [
   'Normal',

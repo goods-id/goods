@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { BoxProps } from '@pomona/goods-core'
+import { BoxProps } from 'goods-core'
 
 export interface ContextValue {
   activeItemId?: string

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box, useGoods } from '@pomona/goods-core'
+import { Box, useGoods } from 'goods-core'
 import { Button, ButtonProps } from './button'
 
 const storyMetaData: Meta<ButtonProps> = {

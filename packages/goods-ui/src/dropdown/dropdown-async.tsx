@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react'
-import { Box, Spinner } from '@pomona/goods-core'
+import { Box, Spinner } from 'goods-core'
 import { DefaultMenuComponent, DropdownInput } from './_base'
 import { useDropdownAsync } from './hooks/dropdown-async'
 import { DropdownAsyncProps } from './_types'

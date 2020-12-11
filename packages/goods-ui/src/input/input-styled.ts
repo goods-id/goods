@@ -17,7 +17,7 @@ import {
   FlexboxProps,
   position,
   PositionProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { IconButtonProps } from '../@types/global'
 
 export interface InputRuleProps extends ColorProps, BorderProps, SpacingProps {}

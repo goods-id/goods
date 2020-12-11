@@ -11,7 +11,7 @@ import {
   BoxProps,
   hexToRgba,
   TextProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { getColor } from '../_utils/helpers'
 import { useMenuListContext } from './menu-list.context'
 

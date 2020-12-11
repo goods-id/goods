@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react'
-import { Box } from '@pomona/goods-core'
+import { Box } from 'goods-core'
 import { DefaultMenuComponent, DropdownInput } from './_base'
 import { useDropdown } from './hooks/dropdown'
 import { DropdownProps } from './_types'

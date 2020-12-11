@@ -7,7 +7,7 @@ import {
   Icon,
   mergeClass,
   Text,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { IconButtonProps } from '../@types/global'
 import { isIconButtonProps } from '../_utils'
 

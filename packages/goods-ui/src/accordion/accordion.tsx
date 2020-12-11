@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useCallback } from 'react'
-import { Box, Text, BoxProps, IconProps, Icon } from '@pomona/goods-core'
+import { Box, Text, BoxProps, IconProps, Icon } from 'goods-core'
 
 import { useAccordionContext } from './accordion.context'
 
@@ -32,9 +32,7 @@ export interface AccordionProps extends BoxProps {
   suffixComponent?: React.ComponentType<PrefixSuffixProps>
 }
 
-export const Accordion: React.NamedExoticComponent<AccordionProps> = React.memo<
-  AccordionProps
->(
+export const Accordion: React.NamedExoticComponent<AccordionProps> = React.memo<AccordionProps>(
   React.forwardRef(
     (
       {

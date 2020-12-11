@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useDerivedStateFromProp, useRect } from '@pomona/goods-helper'
+import { useDerivedStateFromProp, useRect } from 'goods-helper'
 import { DropdownProps, OptionItemWithHidden } from '../_types'
 import {
   findOption,

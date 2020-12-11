@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { Box, BoxProps } from '@pomona/goods-core'
+import { Box, BoxProps } from 'goods-core'
 import { Menu, MenuListItem } from './menu'
 import { MenuGroup } from './menu-group'
 import { ConditionBox, Template } from '../_utils/storybook'

@@ -34,7 +34,7 @@ import {
   Spinner,
   interaction,
   InteractionProps,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import { isIconButtonProps, getColor } from '../_utils/helpers'
 import { IconButtonProps } from '../@types/global'
 
@@ -198,9 +198,11 @@ export interface ButtonProps
   suffixContainer?: BoxProps
 }
 
-export const Button: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  ButtonProps & React.RefAttributes<HTMLButtonElement>
->> = React.memo(
+export const Button: React.MemoExoticComponent<
+  React.ForwardRefExoticComponent<
+    ButtonProps & React.RefAttributes<HTMLButtonElement>
+  >
+> = React.memo(
   React.forwardRef(
     (
       {

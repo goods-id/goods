@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { Story } from '@storybook/react/types-6-0'
-import { Icon, Text } from '@pomona/goods-core'
+import { Icon, Text } from 'goods-core'
 import { Modal, FeedbackProvider } from './index'
 import { Button } from '../button'
 import { openFeedback } from './modal-feedback'

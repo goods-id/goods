@@ -10,8 +10,8 @@ import {
   IconProps,
   mergeClass,
   Text,
-} from '@pomona/goods-core'
-import { useRect } from '@pomona/goods-helper'
+} from 'goods-core'
+import { useRect } from 'goods-helper'
 import { InputStyled } from '../input/input-styled'
 import { LabelStyled } from '../input/label-styled'
 import { isIconButtonProps } from '../_utils'

@@ -14,7 +14,7 @@ import {
   Text,
   ColorProps,
   color,
-} from '@pomona/goods-core'
+} from 'goods-core'
 import React, { memo } from 'react'
 import styled, { InterpolationValue } from 'styled-components'
 import { compose, merge } from '@styled-system/core'
@@ -112,9 +112,11 @@ const DefaultIcon = memo<SVGCheckboxProps>(({ c = 'white10' }) => {
   )
 })
 
-export const Checkbox: React.MemoExoticComponent<React.ForwardRefExoticComponent<
-  CheckboxProps & React.RefAttributes<HTMLInputElement>
->> = React.memo(
+export const Checkbox: React.MemoExoticComponent<
+  React.ForwardRefExoticComponent<
+    CheckboxProps & React.RefAttributes<HTMLInputElement>
+  >
+> = React.memo(
   React.forwardRef(
     (
       {

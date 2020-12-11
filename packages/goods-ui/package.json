@@ -1,5 +1,5 @@
 {
-  "name": "@pomona/goods-ui",
+  "name": "goods-ui",
   "version": "1.10.0",
   "description": "> TODO: description",
   "author": "Pomona Front-End Team",
@@ -44,11 +44,11 @@
     "storybook-addon-jsx": "^7.3.0"
   },
   "dependencies": {
-    "@pomona/goods-core": "^1.6.0",
-    "@pomona/goods-helper": "^1.1.0",
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.1",
     "csstype": "^3.0.3",
+    "goods-core": "^1.6.0",
+    "goods-helper": "^1.1.0",
     "immer": "^7.0.15",
     "react-fast-compare": "^3.2.0",
     "tslib": "^2.0.1"

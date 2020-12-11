@@ -1,4 +1,4 @@
-import { color, ColorProps } from '@pomona/goods-core'
+import { color, ColorProps } from 'goods-core'
 import styled, { CSSObject } from 'styled-components'
 
 export type SVGCheckboxProps = Pick<ColorProps, 'c'>

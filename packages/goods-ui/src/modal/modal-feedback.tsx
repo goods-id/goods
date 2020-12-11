@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { render } from 'react-dom'
 import produce, { Immutable } from 'immer'
-import { Box, RichText } from '@pomona/goods-core'
+import { Box, RichText } from 'goods-core'
 import { Button, ButtonProps } from '../button'
 import { Modal } from './modal'
 import { BasicModalHeaderProps } from './_base'
@@ -86,12 +86,12 @@ export const FeedbackPopupStateContext = createContext(
   initialState as Immutable<FeedbackPopupState>
 )
 
-export const FeedbackPopupDispatchContext = createContext<
-  FeedbackPopupDispatch
->({
-  openFeedback: () => {},
-  closeFeedback: () => {},
-})
+export const FeedbackPopupDispatchContext = createContext<FeedbackPopupDispatch>(
+  {
+    openFeedback: () => {},
+    closeFeedback: () => {},
+  }
+)
 
 let timeout: number
 
