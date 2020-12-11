@@ -19,7 +19,7 @@
     "ssr/**/*"
   ],
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "clean": "rimraf lib && rimraf tsc-out && rimraf ssr",
