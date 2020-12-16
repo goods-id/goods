@@ -82,9 +82,9 @@ const reducer = produce(
   }
 )
 
-export const FeedbackPopupStateContext = createContext(
-  initialState as Immutable<FeedbackPopupState>
-)
+export const FeedbackPopupStateContext: React.Context<
+  Immutable<FeedbackPopupState>
+> = createContext(initialState as Immutable<FeedbackPopupState>)
 
 export const FeedbackPopupDispatchContext = createContext<FeedbackPopupDispatch>(
   {

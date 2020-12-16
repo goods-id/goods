@@ -1,9 +1,9 @@
 {
   "name": "goods-ui",
-  "version": "1.10.5",
+  "version": "1.10.6",
   "description": "> TODO: description",
   "author": "Pomona Front-End Team",
-  "homepage": "https://github.com/PT-Tennova-Cipta-Inatech/pofe-goods/tree/master/packages/goods-ui",
+  "homepage": "https://github.com/goods-id/goods/tree/master/packages/goods-ui",
   "license": "ISC",
   "main": "./lib/goods-ui.js",
   "module": "./lib/index.js",
@@ -18,7 +18,7 @@
     "lib/**/*"
   ],
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "clean": "rimraf lib && rimraf tsc-out",
@@ -47,8 +47,8 @@
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.1",
     "csstype": "^3.0.3",
-    "goods-core": "^1.6.5",
-    "goods-helper": "^1.1.5",
+    "goods-core": "^1.6.6",
+    "goods-helper": "^1.1.6",
     "immer": "^7.0.15",
     "react-fast-compare": "^3.2.0",
     "tslib": "^2.0.1"
