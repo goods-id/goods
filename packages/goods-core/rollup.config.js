@@ -84,6 +84,7 @@ const configLib = {
       preserveModules: true,
       sourcemap: true,
       preserveModulesRoot: 'src',
+      exports: 'auto',
     },
   ],
   treeshake: true,
@@ -128,13 +129,28 @@ const configSSR = {
       sourcemap: true,
       preserveModulesRoot: 'src',
     },
+    {
+      dir: 'cjs/ssr',
+      format: 'commonjs',
+      entryFileNames: ({ name }) => {
+        if (name === 'ssr') return 'index.js'
+        return `${name}.js`
+      },
+      preserveModules: true,
+      sourcemap: true,
+      preserveModulesRoot: 'src',
+      exports: 'auto',
+    },
   ],
   treeshake: true,
   plugins: [
     ...commonPlugins,
     generateTypescriptPlugin('ssr'),
     copy({
-      targets: [{ src: 'ssr/ssr.d.ts', dest: 'ssr', rename: 'index.d.ts' }],
+      targets: [
+        { src: 'ssr/ssr.d.ts', dest: 'ssr', rename: 'index.d.ts' },
+        { src: 'cjs/ssr/ssr.d.ts', dest: 'cjs/ssr', rename: 'index.d.ts' },
+      ],
       hook: 'writeBundle',
       flatten: true,
     }),
