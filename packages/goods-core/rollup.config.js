@@ -6,7 +6,6 @@ import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
 import copy from 'rollup-plugin-copy'
 import url from '@rollup/plugin-url'
-import pkg from './package.json'
 
 /** @type {import('rollup').InputOptions['plugins']} */
 const commonPlugins = [
@@ -66,25 +65,12 @@ const configLib = {
   input: './src/index.ts',
   output: [
     {
-      dir: pkg.main.replace(/\/[\w.]+$/, ''),
-      format: 'esm',
-      sourcemap: true,
-      chunkFileNames: '[name]-chunk.js',
-    },
-    {
       dir: 'lib',
-      format: 'esm',
-      preserveModules: true,
-      sourcemap: true,
-      preserveModulesRoot: 'src',
-    },
-    {
-      dir: 'cjs',
-      format: 'commonjs',
-      preserveModules: true,
-      sourcemap: true,
-      preserveModulesRoot: 'src',
+      format: 'cjs',
       exports: 'auto',
+      preserveModules: true,
+      sourcemap: true,
+      preserveModulesRoot: 'src',
     },
   ],
   treeshake: true,
@@ -107,7 +93,7 @@ const configLib = {
         },
         {
           src: 'src/global-style/fonts/*',
-          dest: ['lib/global-style/fonts', 'cjs/global-style/fonts'],
+          dest: ['lib/global-style/fonts'],
         },
       ],
     }),
@@ -120,26 +106,15 @@ const configSSR = {
   output: [
     {
       dir: 'ssr',
-      format: 'esm',
-      entryFileNames: ({ name }) => {
-        if (name === 'ssr') return 'index.js'
-        return `${name}.js`
-      },
-      preserveModules: true,
-      sourcemap: true,
-      preserveModulesRoot: 'src',
-    },
-    {
-      dir: 'cjs/ssr',
-      format: 'commonjs',
-      entryFileNames: ({ name }) => {
-        if (name === 'ssr') return 'index.js'
-        return `${name}.js`
-      },
-      preserveModules: true,
-      sourcemap: true,
-      preserveModulesRoot: 'src',
+      format: 'cjs',
       exports: 'auto',
+      entryFileNames: ({ name }) => {
+        if (name === 'ssr') return 'index.js'
+        return `${name}.js`
+      },
+      preserveModules: true,
+      sourcemap: true,
+      preserveModulesRoot: 'src',
     },
   ],
   treeshake: true,
@@ -147,10 +122,7 @@ const configSSR = {
     ...commonPlugins,
     generateTypescriptPlugin('ssr'),
     copy({
-      targets: [
-        { src: 'ssr/ssr.d.ts', dest: 'ssr', rename: 'index.d.ts' },
-        { src: 'cjs/ssr/ssr.d.ts', dest: 'cjs/ssr', rename: 'index.d.ts' },
-      ],
+      targets: [{ src: 'ssr/ssr.d.ts', dest: 'ssr', rename: 'index.d.ts' }],
       hook: 'writeBundle',
       flatten: true,
     }),

@@ -4,20 +4,15 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
-import pkg from './package.json'
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
   input: './src/index.ts',
   output: [
     {
-      file: pkg.main,
-      format: 'esm',
-      sourcemap: true,
-    },
-    {
       dir: 'lib',
-      format: 'esm',
+      format: 'cjs',
+      exports: 'auto',
       preserveModules: true,
       sourcemap: true,
       preserveModulesRoot: 'src',

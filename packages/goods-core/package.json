@@ -1,11 +1,11 @@
 {
   "name": "goods-core",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/goods-id/goods/tree/master/packages/goods-core",
   "license": "ISC",
-  "main": "./lib/_files/index.js",
+  "main": "./lib/index.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "directories": {
@@ -16,15 +16,13 @@
     "lib/node_modules",
     "lib/**/*",
     "ssr",
-    "ssr/**/*",
-    "cjs",
-    "cjs/**/*"
+    "ssr/**/*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "clean": "rimraf lib && rimraf tsc-out && rimraf ssr && rimraf cjs",
+    "clean": "rimraf lib && rimraf tsc-out && rimraf ssr",
     "compile": "yarn clean && yarn rollup",
     "dev": "rollup -c -w ./rollup.config.js",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
