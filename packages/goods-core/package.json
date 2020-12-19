@@ -1,6 +1,6 @@
 {
   "name": "goods-core",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/goods-id/goods/tree/master/packages/goods-core",
@@ -8,7 +8,6 @@
   "main": "./lib/_files/index.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "type": "module",
   "directories": {
     "lib": "./lib"
   },
