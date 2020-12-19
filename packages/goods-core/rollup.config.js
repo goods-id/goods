@@ -78,6 +78,13 @@ const configLib = {
       sourcemap: true,
       preserveModulesRoot: 'src',
     },
+    {
+      dir: 'cjs',
+      format: 'commonjs',
+      preserveModules: true,
+      sourcemap: true,
+      preserveModulesRoot: 'src',
+    },
   ],
   treeshake: true,
   plugins: [
@@ -99,7 +106,7 @@ const configLib = {
         },
         {
           src: 'src/global-style/fonts/*',
-          dest: 'lib/global-style/fonts',
+          dest: ['lib/global-style/fonts', 'cjs/global-style/fonts'],
         },
       ],
     }),
