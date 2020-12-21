@@ -1,6 +1,6 @@
 {
   "name": "goods-core",
-  "version": "1.6.12",
+  "version": "1.6.13",
   "description": "Pomona Goods Design System - Systems, Core and Basics",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/goods-id/goods/tree/master/packages/goods-core",
@@ -16,7 +16,9 @@
     "lib/node_modules",
     "lib/**/*",
     "ssr",
-    "ssr/**/*"
+    "ssr/**/*",
+    "babel",
+    "babel/**/*"
   ],
   "publishConfig": {
     "access": "public"
@@ -39,6 +41,7 @@
     "@types/styled-components": "^5.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "babel-plugin-transform-imports": "^2.0.0",
     "babel-preset-react-app": "^9.1.2",
     "react-docgen-typescript-loader": "^3.7.2",
     "rollup-plugin-url": "^3.0.1",

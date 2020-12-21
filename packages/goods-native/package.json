@@ -24,7 +24,9 @@
     "react": "^16.13.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1"
+    "@commitlint/cli": "^9.0.1",
+    "babel-plugin-styled-components": "^1.12.0",
+    "babel-plugin-transform-imports": "^2.0.0"
   },
   "gitHead": "2d458f02d28345db9a495021b82b3a06d31a0e45"
 }

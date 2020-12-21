@@ -3,6 +3,7 @@
   "overrides": [
     {
       "files": [
+        "babel/**",
         "**/*.stories.tsx",
         "**/*.story.ts",
         "**/*.story.tsx",

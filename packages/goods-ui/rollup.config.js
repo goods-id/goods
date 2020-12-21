@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import autoExternal from 'rollup-plugin-auto-external'
 import url from '@rollup/plugin-url'
+import babel from '@rollup/plugin-babel'
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
@@ -20,6 +21,7 @@ const config = {
     },
   ],
   treeshake: true,
+  external: [/@babel\/runtime/, /goods-core/],
   plugins: [
     autoExternal(),
     url({
@@ -50,6 +52,21 @@ const config = {
           './src/**/storybook.tsx',
         ],
       },
+    }),
+    babel({
+      presets: [
+        ['@babel/preset-env', { modules: false }],
+        'goods-core/babel/preset',
+      ],
+      plugins: [
+        '@babel/plugin-transform-runtime',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-proposal-nullish-coalescing-operator',
+      ],
+      babelHelpers: 'runtime',
+      include: [/src/],
+      extensions: ['.ts', '.tsx'],
+      babelrc: false,
     }),
   ],
 }

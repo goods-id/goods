@@ -40,6 +40,7 @@
   ],
   "exclude": [
     "node_modules",
-    "**/lib"
+    "**/lib",
+    "ssr/"
   ]
 }
