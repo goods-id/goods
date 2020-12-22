@@ -88,7 +88,7 @@ const createTransformFn = (ssr = false) => (importName = '') => {
     case 'margin':
     case 'padding':
     case 'spacing':
-      return join('@goods-sytem', 'spacing')
+      return join('@goods-system', 'spacing')
 
     case 'animation':
     case 'getAnimationName':
