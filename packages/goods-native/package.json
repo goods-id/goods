@@ -19,14 +19,14 @@
   "dependencies": {
     "@styled-system/core": "^5.1.1",
     "@styled-system/variant": "^5.1.5",
+    "babel-plugin-styled-components": "^1.12.0",
+    "babel-plugin-transform-imports": "^2.0.0",
     "csstype": "^3.0.3",
     "goods-core": "^1.6.5",
     "react": "^16.13.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "babel-plugin-styled-components": "^1.12.0",
-    "babel-plugin-transform-imports": "^2.0.0"
+    "@commitlint/cli": "^9.0.1"
   },
   "gitHead": "2d458f02d28345db9a495021b82b3a06d31a0e45"
 }

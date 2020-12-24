@@ -1,6 +1,6 @@
 {
   "name": "goods-helper",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Pomona Goods Design System - Helper",
   "author": "Pomona Front-End Team",
   "homepage": "https://github.com/goods-id/goods/tree/master/packages/goods-helper",
@@ -14,7 +14,9 @@
   "files": [
     "lib",
     "lib/node_modules",
-    "lib/**/*"
+    "lib/**/*",
+    "babel",
+    "babel/**/*"
   ],
   "publishConfig": {
     "access": "public"
@@ -34,15 +36,14 @@
     "@commitlint/cli": "^11.0.0",
     "@rollup/plugin-url": "^5.0.1",
     "@types/react": "^16.9.56",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-styled-components": "^1.12.0",
-    "babel-plugin-transform-imports": "^2.0.0"
+    "babel-loader": "^8.1.0"
   },
   "peerDependencies": {
     "react": "^17.0.1"
   },
   "dependencies": {
-    "goods-core": "^1.6.12",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "goods-core": "^1.6.15",
     "react-fast-compare": "^3.2.0",
     "tslib": "^2.0.3"
   },
